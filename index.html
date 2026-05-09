@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retired PC Tech - [Your Name]</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><span class="tech-name">[Your Name]</span> - The Retired PC Guru</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services (Past)</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Bringing Order to the Digital Chaos</h2>
+            <p>Decades of experience diagnosing, repairing, and building the machines that power our lives.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="images/profile-pic.jpg" alt="Profile Picture of [Your Name]" class="profile-pic">
+                <div class="about-text">
+                    <p>Hello! After years immersed in the world of silicon, circuits, and late-night debugging, I've officially hung up my screwdriver. But the passion for technology and problem-solving remains. This space is a digital scrapbook of my journey, showcasing some memorable builds, repair triumphs, and perhaps a few war stories.</p>
+                    <p>From the clunky beige boxes of the 80s to the sleek powerhouses of today, I've seen it all. Whether it was coaxing a dial-up modem to connect or troubleshooting a bleeding-edge gaming rig, my goal was always the same: to get it working, and working well.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Past Services & Specialties</h2>
+            <div class="services-list">
+                <div class="service-item">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Component Upgrades</h3>
+                    <p>From RAM to GPUs, breathing new life into aging systems.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-wrench"></i>
+                    <h3>System Builds</h3>
+                    <p>Custom-tailored PCs for gaming, work, and everything in between.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-bug"></i>
+                    <h3>Troubleshooting & Repair</h3>
+                    <p>Diagnosing and fixing hardware and software issues.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-server"></i>
+                    <h3>Network Setup</h3>
+                    <p>Setting up reliable home and small office networks.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-hdd"></i>
+                    <h3>Data Recovery</h3>
+                    <p>Attempting to salvage precious data from failing drives.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Virus Removal & Security</h3>
+                    <p>Protecting systems from digital threats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>PC Build & Repair Gallery</h2>
+            <div class="gallery-grid">
+                <!-- Gallery Items will be loaded here by JavaScript -->
+            </div>
+            <button id="load-more-gallery" class="btn">Load More</button>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch (or just reminisce!)</h2>
+            <div class="contact-content">
+                <div class="social-links">
+                    <h3>Connect With Me</h3>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="mailto:your.email@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <!-- Add more social media links as needed -->
+                </div>
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <p>While I'm retired from active service, I still enjoy hearing from fellow tech enthusiasts. Leave a message below!</p>
+                    <form id="comment-form">
+                        <input type="hidden" id="gallery-item-id" name="galleryItemId">
+                        <textarea id="message" name="message" placeholder="Your comment..." required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> [Your Name]. All rights reserved.</p>
+            <p>Powered by passion and a lot of coffee.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
