@@ -3,172 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kerwin J. Jones</title>
-    <!-- Use Tailwind CSS for rapid styling and a clean aesthetic -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom CSS to ensure the body and main content areas fill the viewport */
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-        }
-        body {
-            background-color: #000;
-            color: #e5e7eb; /* Light gray text for contrast */
-            display: flex;
-            flex-direction: column;
-        }
-        /* Custom class to hide pages. Tailwind's hidden class could also be used. */
-        .page {
-            display: none;
-        }
-        /* Show the active page */
-        .page.active {
-            display: block;
-        }
-    </style>
+    <title>Welcome to My Digital Domain</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-black text-gray-200">
+<body>
 
-    <!-- Header and Navigation -->
-    <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="#" class="text-3xl font-bold text-white hover:text-gray-400 transition-colors duration-300">Kerwin J. Jones</a>
-            <div class="flex space-x-6">
-                <!-- Navigation links that trigger page changes via JavaScript -->
-                <a href="#home" class="nav-link text-white hover:text-gray-400 transition-colors duration-300 font-medium">Home</a>
-                <a href="#about" class="nav-link text-white hover:text-gray-400 transition-colors duration-300 font-medium">About</a>
-                <a href="#portfolio" class="nav-link text-white hover:text-gray-400 transition-colors duration-300 font-medium">Portfolio</a>
-                <a href="#contact" class="nav-link text-white hover:text-gray-400 transition-colors duration-300 font-medium">Contact</a>
-            </div>
-        </nav>
+    <header>
+        <div class="container">
+            <h1>Kerwin J. Jones</h1>
+            <p class="tagline">Tech Enthusiast | Music Lover | Builder of Worlds</p>
+        </div>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="flex-grow container mx-auto px-6 py-12">
-        
-        <!-- Home Page -->
-        <section id="home" class="page active" data-page="home">
-            <div class="text-center py-20 bg-gray-800 rounded-xl shadow-2xl p-8 transform transition-transform hover:scale-105 duration-500">
-                <h1 class="text-5xl font-extrabold text-white mb-4 animate-fadeIn">Welcome to My Bio Website</h1>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">I am passionate About Technology and this is a showcase of my work and skills. Feel free to explore!</p>
-            </div>
-        </section>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#tech">Tech Corner</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#chat">Chat Room</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- About Page -->
-        <section id="about" class="page" data-page="about">
-            <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform transition-transform hover:scale-105 duration-500">
-                <h2 class="text-4xl font-bold text-white mb-6">About Me</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p class="text-gray-300 leading-relaxed mb-4">Hello! I'm a full-stack developer with a strong passion for creating elegant and efficient web applications. I specialize in front-end technologies like React and Tailwind CSS, and back-end services with Node.js and Python.</p>
-                        <p class="text-gray-300 leading-relaxed">I love solving complex problems and continuously learning new technologies to improve my craft. In my spare time, I enjoy hiking, playing chess, and contributing to open-source projects.</p>
-                    </div>
-                    <div class="flex justify-center">
-                        <!-- Placeholder image using Tailwind's background color -->
-                        <div class="w-64 h-64 bg-gray-600 rounded-full flex items-center justify-center">
-                            <span class="text-gray-200 text-sm">Your Photo</span>
-                        </div>
-                    </div>
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="images/profile-pic.jpg" alt="Your Profile Picture" class="profile-pic">
+                <p>
+                    Greetings! I'm a seasoned explorer of the digital realm, with a passion for all things tech and a deep appreciation for the raw energy of rock and gothic music. At 60, I've seen the evolution of technology firsthand and continue to be fascinated by its possibilities. I enjoy diving into new gadgets, understanding how things work, and sharing my insights. More than anything, I cherish engaging in good conversations, whether it's about the latest processor or the lyrics of a classic rock anthem. Welcome to my corner of the web!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" class="section dark-bg">
+        <div class="container">
+            <h2>Tech Corner</h2>
+            <p>
+                From vintage computing to cutting-edge AI, I'm always tinkering. Here you'll find my thoughts on hardware, software, and the ever-evolving tech landscape.
+            </p>
+            <!-- You can add more tech-related content here, like blog posts, reviews, etc. -->
+            <div class="tech-article">
+                <h3>My Thoughts on [Current Tech Trend]</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#" class="read-more">Read More &gt;&gt;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2>Gallery of Wonders</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery-img1.jpg" alt="Gallery Image 1">
+                    <p>Caption for Image 1</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Page -->
-        <section id="portfolio" class="page" data-page="portfolio">
-            <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform transition-transform hover:scale-105 duration-500">
-                <h2 class="text-4xl font-bold text-white mb-6">My Portfolio</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="bg-gray-700 rounded-lg p-6 hover:bg-gray-600 transition-colors duration-300">
-                        <h3 class="text-2xl font-bold text-white mb-2">Project One</h3>
-                        <p class="text-gray-400 mb-4">A brief description of my first amazing project. I used React and Tailwind CSS to build a responsive single-page application.</p>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">View Project &rarr;</a>
-                    </div>
-                    <!-- Project Card 2 -->
-                    <div class="bg-gray-700 rounded-lg p-6 hover:bg-gray-600 transition-colors duration-300">
-                        <h3 class="text-2xl font-bold text-white mb-2">Project Two</h3>
-                        <p class="text-gray-400 mb-4">A social media clone built with Node.js, Express, and MongoDB. It features user authentication and a real-time chat.</p>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">View Project &rarr;</a>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="bg-gray-700 rounded-lg p-6 hover:bg-gray-600 transition-colors duration-300">
-                        <h3 class="text-2xl font-bold text-white mb-2">Project Three</h3>
-                        <p class="text-gray-400 mb-4">A data visualization tool using D3.js and Python. It helps users analyze complex datasets and discover new insights.</p>
-                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300">View Project &rarr;</a>
-                    </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-img2.jpg" alt="Gallery Image 2">
+                    <p>Caption for Image 2</p>
                 </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-img3.jpg" alt="Gallery Image 3">
+                    <p>Caption for Image 3</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-img4.jpg" alt="Gallery Image 4">
+                    <p>Caption for Image 4</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-img5.jpg" alt="Gallery Image 4">
+                    <p>Caption for Image 5</p>
+                </div>
+                <!-- Add more gallery items as needed -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Page -->
-        <section id="contact" class="page" data-page="contact">
-            <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform transition-transform hover:scale-105 duration-500">
-                <h2 class="text-4xl font-bold text-white mb-6">Contact Me</h2>
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-white">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-white">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
-                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-white"></textarea>
-                    </div>
-                    <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition-colors duration-300">Send Message</button>
-                </form>
+    <section id="chat" class="section dark-bg">
+        <div class="container">
+            <h2>Join the Conversation</h2>
+            <p>
+                Step into my virtual den and let's chat! Connect with me and others in our IRC channel.
+            </p>
+            <div id="irc-container">
+                <!-- This is where the IRC client will be embedded. -->
+                <p>Loading chat client...</p>
+                <!-- We'll use JavaScript to embed an IRC client here. -->
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-center py-4 mt-12">
-        <p class="text-gray-400 text-sm">© 2025 Kerwin J. Jones. All rights reserved.</p>
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> [Your Name/Username]. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- JavaScript for page navigation -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const pages = document.querySelectorAll('.page');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            // Function to show the correct page and update the URL hash
-            const showPage = (pageId) => {
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                const activePage = document.querySelector(pageId);
-                if (activePage) {
-                    activePage.classList.add('active');
-                    // Update URL without reloading the page
-                    window.location.hash = pageId.replace('#', '');
-                }
-            };
-
-            // Handle initial page load based on URL hash
-            const initialHash = window.location.hash || '#home';
-            showPage(initialHash);
-
-            // Add click event listeners to all navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = link.getAttribute('href');
-                    showPage(pageId);
-                });
-            });
-
-            // Handle browser's back/forward buttons
-            window.addEventListener('hashchange', () => {
-                const newHash = window.location.hash || '#home';
-                showPage(newHash);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
