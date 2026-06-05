@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerwin | AI, Tech & Nu Metal</title>
+    <meta name="description" content="Personal bio of Kerwin. 60 years of AI, Technology, and Nu Metal.">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #09090b;
+            --bg-card: #18181b;
+            --bg-card-hover: #27272a;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent: #7f1d1d; /* Dark Crimson / Nu Metal vibe */
+            --accent-light: #991b1b;
+            --border: #27272a;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- MOODY GEOMETRIC BACKGROUND --- */
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(9, 9, 11, 0.94), rgba(9, 9, 11, 0.98)),
+                url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80'), /* Dark abstract geometric image */
+                linear-gradient(rgba(127, 29, 29, 0.08) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(127, 29, 29, 0.08) 2px, transparent 2px);
+            background-size: cover, cover, 80px 80px, 80px 80px;
+            background-position: center, center, 0 0, 0 0;
+            background-attachment: fixed;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo .fa-yin-yang {
+            color: var(--accent-light);
+            font-size: 1.6rem;
+            animation: spin 12s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 6rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header i {
+            color: var(--accent-light);
+            font-size: 1.8rem;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tag {
+            background: rgba(24, 24, 27, 0.8);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .tag i {
+            color: var(--accent-light);
+        }
+
+        /* --- ABOUT --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            aspect-ratio: 3/4;
+        }
+
+        .about-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .about-image-container:hover .about-photo {
+            transform: scale(1.05);
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* --- LIFE AT 60 --- */
+        .life-60-wrapper {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 3.5rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .yin-yang-large {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-size: 15rem;
+            color: rgba(127, 29, 29, 0.05);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .life-60-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .life-60-content blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid var(--accent-light);
+        }
+
+        .life-60-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- NOTICE BOARD --- */
+        .notice-board-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2.5rem;
+        }
+
+        .notice-form {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-light);
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.3s, transform 0.1s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-light);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .notices-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        /* Custom Scrollbar */
+        .notices-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .notices-list::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+            border-radius: 3px;
+        }
+        .notices-list::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .notice-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .notice-card:hover {
+            border-color: var(--accent-light);
+        }
+
+        .notice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-date-badge {
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            background: rgba(127, 29, 29, 0.15);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .notice-tracker {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .notice-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-message {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .delete-notice {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        .delete-notice:hover {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* --- GALLERIES --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            aspect-ratio: 16/10;
+            background: var(--bg-card);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            filter: grayscale(30%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 9, 11, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            font-size: 2rem;
+            color: white;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay i {
+            transform: scale(1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Video Gallery */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- CHAT SECTION --- */
+        .chat-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .chat-container iframe {
+            display: block;
+            border: none;
+        }
+
+        /* --- MENTAL HEALTH --- */
+        .mental-health-wrapper {
+            background: linear-gradient(135deg, rgba(127, 29, 29, 0.15) 0%, rgba(24, 24, 27, 0.9) 100%);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .mental-health-wrapper .section-header {
+            justify-content: center;
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+
+        .mental-health-wrapper p {
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.05rem;
+        }
+
+        .support-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .support-card {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-light);
+        }
+
+        .support-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-primary);
+        }
+
+        .support-card h3 i {
+            color: var(--accent-light);
+        }
+
+        .support-card a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .support-card a:hover {
+            color: var(--accent-light);
+        }
+
+        .support-card .ext-link {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: rgba(9, 9, 11, 0.9);
+            border-top: 1px solid var(--border);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            text-decoration: none; /* FIX: Removes the broken default underline under icons */
+        }
+
+        .social-links a:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .copyright i {
+            color: var(--accent-light);
+        }
+
+        /* --- BACK TO TOP --- */
+        #backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(127, 29, 29, 0.4);
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #backToTop:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .notice-board-container {
+                grid-template-columns: 1fr;
+            }
+            .notice-form {
+                position: static;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .about-image-container {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 73px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 73px);
+                background: rgba(9, 9, 11, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 3rem;
+                transition: right 0.3s ease;
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .life-60-wrapper {
+                padding: 2rem;
+            }
+
+            .yin-yang-large {
+                font-size: 10rem;
+            }
+
+            .mental-health-wrapper {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-yin-yang"></i> Kerwin
+            </a>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" onclick="closeMenu()">About</a></li>
+                    <li><a href="#life60" onclick="closeMenu()">Life at 60</a></li>
+                    <li><a href="#notices" onclick="closeMenu()">Notice Board</a></li>
+                    <li><a href="#photos" onclick="closeMenu()">Photos</a></li>
+                    <li><a href="#videos" onclick="closeMenu()">Videos</a></li>
+                    <li><a href="#chat" onclick="closeMenu()">Chat</a></li>
+                    <li><a href="#support" onclick="closeMenu()">Support</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Embracing the Chaos<br>and the Code.</h1>
+        <p>60 years young. Navigating the intersection of Artificial Intelligence, cutting-edge Technology, and the raw, unapologetic energy of Nu Metal.</p>
+        <div class="hero-tags">
+            <span class="tag"><i class="fa-solid fa-microchip"></i> AI Enthusiast</span>
+            <span class="tag"><i class="fa-solid fa-laptop-code"></i> Technology</span>
+            <span class="tag"><i class="fa-solid fa-guitar"></i> Nu Metal</span>
+            <span class="tag"><i class="fa-solid fa-yin-yang"></i> Balance</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <h2>About Kerwin</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-image-container">
+                <!-- ========================================== -->
+                <!-- CHANGE THE PHOTO BELOW: Replace the 'src'  -->
+                <!-- URL with your own image path or URL.       -->
+                <!-- ========================================== -->
+                <img src="images/profileabout.jpg" 
+                     alt="Kerwin" 
+                     class="about-photo" 
+                     id="aboutPhoto">
+            </div>
+            <div class="about-text">
+                <p>Welcome to my digital space. I'm a 60-year-old technologist, lifelong learner, and avid fan of heavy riffs. My journey has taken me from the early days of dial-up internet and clunky HTML to the forefront of artificial intelligence, all while maintaining a deep appreciation for the cathartic power of Nu Metal rock.</p>
+                <p>I believe in the balance of life—much like the Yin and Yang. The chaos of a distorted guitar solo perfectly complements the structured logic of machine learning algorithms. This site is a reflection of my passions, my memories, and my ongoing journey through the digital age.</p>
+                <p>When I'm not experimenting with new AI models, coding, or tweaking my home server, you'll find me digging through vinyl records, attending live gigs, or mentoring the next generation of tech enthusiasts. Life is about finding the harmony in the noise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life at 60 Section -->
+    <section id="life60">
+        <div class="section-header">
+            <i class="fa-solid fa-hourglass-half"></i>
+            <h2>What Life Has Meant for Me</h2>
+        </div>
+        <div class="life-60-wrapper">
+            <!-- Large Yin Yang symbol in the body as requested -->
+            <div class="yin-yang-large">
+                <i class="fa-solid fa-yin-yang"></i>
+            </div>
+            <div class="life-60-content">
+                <blockquote>
+                    "At sixty, life isn't about winding down; it's about synthesizing everything you've learned into something meaningful. The urgency of youth has been replaced by the clarity of experience."
+                </blockquote>
+                <p>
+                    I've watched technology evolve from room-sized computers to AI that can write poetry, generate art, and compose music. Yet, the human element remains irreplaceable. The angst and energy of Nu Metal taught me that it's okay to feel deeply, to be angry, and to challenge the status quo. Technology taught me that the future is malleable and built by those willing to learn.
+                </p>
+                <p>
+                    Today, my focus is on balance: staying physically active, keeping my mind sharp with new coding challenges, supporting my community, and always leaving room for a loud, unapologetic guitar riff. Life at 60 is not an ending; it's a masterclass in appreciation. It's about knowing who you are, what you love, and having the courage to pursue it unapologetically.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Board Section -->
+    <section id="notices">
+        <div class="section-header">
+            <i class="fa-solid fa-thumbtack"></i>
+            <h2>Embedded Notice Board</h2>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">A personal space to track important dates, reminders, and thoughts. Data is saved locally in your browser and tracks time automatically.</p>
+        
+        <div class="notice-board-container">
+            <div class="notice-form">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-plus-circle" style="color: var(--accent-light);"></i> Add New Notice
+                </h3>
+                <form id="noticeForm">
+                    <div class="form-group">
+                        <label for="noticeDate">Date</label>
+                        <input type="date" id="noticeDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="noticeTitle">Title</label>
+                        <input type="text" id="noticeTitle" placeholder="e.g., Band Gig, Project Deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="noticeMessage">Message</label>
+                        <textarea id="noticeMessage" rows="4" placeholder="Enter details..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fa-solid fa-floppy-disk"></i> Save Notice</button>
+                </form>
+            </div>
+            
+            <div class="notices-list" id="noticesList">
+                <!-- Notices will be injected here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="photos">
+        <div class="section-header">
+            <i class="fa-solid fa-camera-retro"></i>
+            <h2>Photo Gallery</h2>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Click any image to enlarge.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Tech">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Concert Crowd">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitar">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coding">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Moody Abstract">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tech Setup">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)"><i class="fa-solid fa-xmark"></i></button>
+        <img src="" alt="Enlarged view" id="lightbox-img">
+    </div>
+
+    <!-- Video Gallery Section -->
+    <section id="videos">
+        <div class="section-header">
+            <i class="fa-brands fa-youtube"></i>
+            <h2>Video Gallery</h2>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">A curated selection of tech insights and musical energy.</p>
+        <div class="video-grid">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video 1" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" title="YouTube video 2" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="YouTube video 3" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="YouTube video 4" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" title="YouTube video 5" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 6" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chat">
+        <div class="section-header">
+            <i class="fa-solid fa-comments"></i>
+            <h2>Live Chat</h2>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Drop a message, say hello, or share your thoughts.</p>
+        <div class="chat-container">
+            <iframe src="https://www3.cbox.ws/box/?boxid=3555789&boxtag=csn0TI" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
+        </div>
+    </section>
+
+    <!-- Mental Health Support Section -->
+    <section id="support">
+        <div class="mental-health-wrapper">
+            <div class="section-header">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <h2>Mental Health Support</h2>
+            </div>
+            <p>If you or someone you know is struggling, you are not alone. Reach out to these free, confidential Australian national support services. Your life has immense value, and help is always available.</p>
+            
+            <div class="support-links">
+                <div class="support-card">
+                    <h3><i class="fa-solid fa-phone-volume"></i> Lifeline</h3>
+                    <a href="tel:131114">13 11 14</a>
+                    <a href="https://www.lifeline.org.au" target="_blank" rel="noopener" class="ext-link">www.lifeline.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                </div>
+                
+                <div class="support-card">
+                    <h3><i class="fa-solid fa-cloud-sun"></i> Beyond Blue</h3>
+                    <a href="tel:1300224636">1300 22 4636</a>
+                    <a href="https://www.beyondblue.org.au" target="_blank" rel="noopener" class="ext-link">www.beyondblue.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                </div>
+                
+                <div class="support-card">
+                    <h3><i class="fa-solid fa-hands-holding-circle"></i> Suicide Call Back Service</h3>
+                    <a href="tel:1300659467">1300 659 467</a>
+                    <a href="https://www.suicidecallbackservice.org.au" target="_blank" rel="noopener" class="ext-link">www.suicidecallbackservice.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                </div>
+
+                <div class="support-card">
+                    <h3><i class="fa-solid fa-person-circle-question"></i> MensLine Australia</h3>
+                    <a href="tel:1300789978">1300 78 99 78</a>
+                    <a href="https://www.mensline.org.au" target="_blank" rel="noopener" class="ext-link">www.mensline.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                </div>
+
+                <!-- NEW CONTACT 1 -->
+                <div class="support-card">
+                    <h3><i class="fa-solid fa-hand-holding-heart"></i> SANE Australia</h3>
+                    <a href="tel:134672">13 46 72</a>
+                    <a href="https://www.sane.org" target="_blank" rel="noopener" class="ext-link">www.sane.org <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                </div>
+
+                <!-- NEW CONTACT 2 -->
+                <div class="support-card">
+                    <h3><i class="fa-solid fa-people-group"></i> Open Arms</h3>
+                    <a href="tel:1800011046">1800 011 046</a>
+                    <a href="https://www.openarms.gov.au" target="_blank" rel="noopener" class="ext-link">www.openarms.gov.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com" target="_blank" rel="noopener" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="mailto:kerwin@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 Kerwin. All Rights Reserved. | Built with <i class="fa-solid fa-code"></i> and <i class="fa-solid fa-music"></i></p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // --- Mobile Navigation ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+
+        // --- Back to Top Button ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- Notice Board (LocalStorage) ---
+        const noticeForm = document.getElementById('noticeForm');
+        const noticesList = document.getElementById('noticesList');
+
+        function loadNotices() {
+            const notices = JSON.parse(localStorage.getItem('kerwinNotices')) || [];
+            noticesList.innerHTML = '';
+            
+            // Sort by date descending (newest first)
+            notices.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (notices.length === 0) {
+                noticesList.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 12px; border: 1px dashed var(--border);">No notices yet. Add one to get started!</p>';
+                return;
+            }
+
+            notices.forEach((notice, index) => {
+                const card = document.createElement('div');
+                card.className = 'notice-card';
+                
+                const timeTracker = getTimeDifference(notice.date);
+                
+                card.innerHTML = `
+                    <button class="delete-notice" onclick="deleteNotice(${index})" title="Delete notice">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div class="notice-header">
+                        <div class="notice-date-badge">
+                            <i class="fa-solid fa-calendar-days"></i> ${formatDate(notice.date)}
+                        </div>
+                        <div class="notice-tracker">${timeTracker}</div>
+                    </div>
+                    <div class="notice-title">${escapeHtml(notice.title)}</div>
+                    <div class="notice-message">${escapeHtml(notice.message)}</div>
+                `;
+                noticesList.appendChild(card);
+            });
+        }
+
+        function saveNotice(date, title, message) {
+            const notices = JSON.parse(localStorage.getItem('kerwinNotices')) || [];
+            notices.push({ date, title, message });
+            localStorage.setItem('kerwinNotices', JSON.stringify(notices));
+            loadNotices();
+        }
+
+        function deleteNotice(index) {
+            if (confirm('Are you sure you want to delete this notice?')) {
+                const notices = JSON.parse(localStorage.getItem('kerwinNotices')) || [];
+                notices.splice(index, 1);
+                localStorage.setItem('kerwinNotices', JSON.stringify(notices));
+                loadNotices();
+            }
+        }
+
+        function getTimeDifference(dateStr) {
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const noticeDate = new Date(dateStr);
+            noticeDate.setHours(0,0,0,0);
+            const diffTime = noticeDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) return "Today";
+            if (diffDays > 0) return `In ${diffDays} days`;
+            return `${Math.abs(diffDays)} days ago`;
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-AU', options);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        noticeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const date = document.getElementById('noticeDate').value;
+            const title = document.getElementById('noticeTitle').value;
+            const message = document.getElementById('noticeMessage').value;
+            
+            saveNotice(date, title, message);
+            noticeForm.reset();
+            
+            // Reset date to today after submission
+            document.getElementById('noticeDate').valueAsDate = new Date();
+        });
+
+        // Set default date to today on load
+        document.getElementById('noticeDate').valueAsDate = new Date();
+        loadNotices();
+
+        // --- Lightbox Gallery ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            // Request higher resolution for lightbox
+            lightboxImg.src = img.src.replace('w=800', 'w=1600'); 
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeLightbox(event) {
+            // Close if clicking the background or the close button
+            if (event.target === lightbox || event.target.closest('.lightbox-close')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // --- Error Checking / Console Validation ---
+        console.log("Website loaded successfully. Current Year:", new Date().getFullYear());
+        console.log("LocalStorage available:", !!window.localStorage);
+    </script>
+</body>
+</html>
