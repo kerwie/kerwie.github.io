@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kerwin's Domain - A personal space exploring AI, Technology, Nu Metal, and meaningful conversations.">
+    <meta name="description" content="Kerwin's Domain - A personal space exploring AI, Technology, Nu Metal, Food, and meaningful conversations.">
     <title>Kerwin's Domain</title>
     
     <!-- 
@@ -69,6 +69,7 @@
             filter: drop-shadow(0 0 8px var(--purple-accent));
         }
 
+        /* Section Titles: Original style + Flanking Decorations */
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
@@ -80,16 +81,33 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(to right, transparent, var(--purple-accent), transparent) 1;
+        }
+
+        .section-title::before {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(calc(-100% - 15px), -50%);
+            -webkit-text-fill-color: var(--purple-accent);
+            font-size: 1rem;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 4px var(--purple-accent));
         }
 
         .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--purple-accent);
-            margin: 10px auto 0;
-            border-radius: 2px;
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(15px, -50%);
+            -webkit-text-fill-color: var(--purple-accent);
+            font-size: 1rem;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 4px var(--purple-accent));
         }
 
         section {
@@ -223,64 +241,73 @@
         }
 
         /* =========================================
-           ABOUT SECTION
+           ABOUT SECTION (Single Large Image, Compact Grid)
            ========================================= */
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start; /* Changed from center to accommodate new text */
-        }
-
-        .about-image {
-            position: sticky;
-            top: 100px;
+            gap: 3rem;
+            align-items: start;
         }
 
         .about-image img {
             width: 100%;
             max-width: 500px;
+            height: 450px; /* Substantial height to balance the text block */
+            object-fit: cover;
             border-radius: 12px;
             border: 2px solid var(--purple-deep);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2);
+            transition: var(--transition);
             display: block;
             margin: 0 auto;
         }
 
+        .about-image img:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple-accent);
+        }
+
         .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
             color: var(--purple-accent);
         }
 
-        .about-text p {
+        .about-text > p {
             color: var(--text-muted);
             margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
 
+        /* Compact 2x2 Grid for "Things I Love" */
         .love-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
             list-style: none;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
         .love-list li {
-            margin-bottom: 1rem;
             background: rgba(26, 11, 46, 0.6);
-            border-left: 4px solid var(--purple-accent);
+            border-left: 3px solid var(--purple-accent);
             border-radius: 0 8px 8px 0;
             transition: var(--transition);
+            height: 100%;
         }
 
         .love-list li:hover {
             background: rgba(74, 20, 140, 0.4);
-            transform: translateX(5px);
+            transform: translateY(-3px);
         }
 
         .love-link {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 1rem;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            padding: 0.85rem;
             text-decoration: none;
             color: inherit;
             width: 100%;
@@ -289,32 +316,32 @@
 
         .love-link > i:first-child {
             color: var(--purple-glow);
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-            flex-shrink: 0;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
         }
 
         .love-link strong {
             display: block;
-            margin-bottom: 4px;
             color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.2;
         }
 
         .love-link p {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            margin-bottom: 0;
-            line-height: 1.4;
+            margin: 0;
+            line-height: 1.3;
         }
 
         .click-hint {
             color: var(--purple-accent) !important;
-            font-size: 0.8rem !important;
+            font-size: 0.75rem !important;
             margin-top: 6px;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            font-weight: 600;
         }
 
         /* =========================================
@@ -502,7 +529,7 @@
         .video-modal-content {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             background: var(--bg-dark);
             border: 1px solid var(--purple-primary);
             border-radius: 12px;
@@ -657,13 +684,16 @@
                 gap: 2rem;
             }
 
-            .about-image {
-                position: relative;
-                top: 0;
+            .about-image img {
+                height: 350px; /* Slightly smaller on mobile */
+            }
+
+            .love-list {
+                grid-template-columns: 1fr;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .video-grid, .gallery-grid {
@@ -720,8 +750,8 @@
         <h2 class="section-title">About Kerwin</h2>
         <div class="about-container">
             <div class="about-image">
-                <!-- REPLACE THE SRC BELOW WITH YOUR OWN PHOTO URL -->
-                <img src="images/profile-photo.jpg" alt="Kerwin">
+                <!-- REPLACE THE SRC BELOW WITH YOUR OWN MAIN PHOTO URL -->
+                <img src="https://placehold.co/600x600/1a0b2e/9c27b0?text=Kerwin's+Main+Photo" alt="Kerwin">
             </div>
             <div class="about-text">
                 <h3>What Life Has Meant For Me</h3>
@@ -734,31 +764,33 @@
                     <li>
                         <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer" class="love-link">
                             <i class="fas fa-microchip"></i>
-                            <div>
-                                <strong>Artificial Intelligence & Technology</strong>
-                                <p>Fascinated by machine learning, neural networks, and how tech shapes our future.</p>
-                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
-                            </div>
+                            <strong>Artificial Intelligence & Technology</strong>
+                            <p>Fascinated by machine learning, neural networks, and how tech shapes our future.</p>
+                            <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
                         </a>
                     </li>
                     <li>
                         <a href="https://en.wikipedia.org/wiki/Nu_metal" target="_blank" rel="noopener noreferrer" class="love-link">
                             <i class="fas fa-guitar"></i>
-                            <div>
-                                <strong>Nu Metal Rock Music</strong>
-                                <p>The raw energy of Korn, Linkin Park, Deftones, and System of a Down never gets old.</p>
-                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
-                            </div>
+                            <strong>Nu Metal Rock Music</strong>
+                            <p>The raw energy of Korn, Linkin Park, Deftones, and System of a Down never gets old.</p>
+                            <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.reddit.com/r/CasualConversation/" target="_blank" rel="noopener noreferrer" class="love-link">
                             <i class="fas fa-comments"></i>
-                            <div>
-                                <strong>A Good Chat</strong>
-                                <p>Meaningful conversations about life, philosophy, music, and the mysteries of the universe.</p>
-                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
-                            </div>
+                            <strong>A Good Chat</strong>
+                            <p>Meaningful conversations about life, philosophy, music, and the mysteries of the universe.</p>
+                            <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.seriouseats.com/" target="_blank" rel="noopener noreferrer" class="love-link">
+                            <i class="fas fa-utensils"></i>
+                            <strong>The Love of Food</strong>
+                            <p>Exploring culinary arts, bold flavors, and the joy of a perfectly crafted meal.</p>
+                            <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
                         </a>
                     </li>
                 </ul>
@@ -768,7 +800,7 @@
 
     <!-- VIDEO GALLERY SECTION -->
     <section id="videos">
-        <h2 class="section-title">Curated Video Gallery</h2>
+        <h2 class="section-title">Some of my favourite YouTube Videos</h2>
         <div class="video-grid">
             <!-- Video 1 -->
             <div class="video-card" onclick="openVideoModal('kXYiU_JCYtU', 'Linkin Park - Numb (Official Music Video)')">
@@ -975,13 +1007,13 @@
             modalImage.src = src;
             modalImageCaption.textContent = caption;
             imageModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeImageModal() {
             modalImage.src = ''; 
             imageModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto';
         }
 
         function closeImageModalOnBackground(event) {
