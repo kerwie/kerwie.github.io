@@ -3,24 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kerwin | AI, Tech & Nu Metal</title>
-    <meta name="description" content="Personal bio of Kerwin. 60 years of AI, Technology, and Nu Metal.">
+    <meta name="description" content="Kerwin's Domain - A personal space exploring AI, Technology, Nu Metal, and meaningful conversations.">
+    <title>Kerwin's Domain</title>
     
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 
+      EDITABLE FAVICON: 
+      Currently set to an inline SVG Yin Yang. 
+      To change this later, delete the "data:image..." string and replace with your file path.
+      Example: <link rel="icon" type="image/png" href="images/my-custom-favicon.png">
+    -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a0a0a' stroke='%237c43bd' stroke-width='3'/><path d='M50,2 A48,48 0 0,1 50,98 A24,24 0 0,1 50,50 A24,24 0 0,0 50,2' fill='%237c43bd'/><circle cx='50' cy='26' r='9' fill='%237c43bd'/><circle cx='50' cy='74' r='9' fill='%230a0a0a'/></svg>">
     
+    <!-- Google Fonts: Inter for clean, readable, modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* =========================================
+           CSS VARIABLES & RESET (Dark Moody Palette)
+           ========================================= */
         :root {
-            --bg-dark: #09090b;
-            --bg-card: #18181b;
-            --bg-card-hover: #27272a;
-            --text-primary: #f4f4f5;
-            --text-secondary: #a1a1aa;
-            --accent: #7f1d1d; /* Dark Crimson / Nu Metal vibe */
-            --accent-light: #991b1b;
-            --border: #27272a;
-            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            --bg-deep: #050505;
+            --bg-dark: #0a0a0a;
+            --purple-deep: #1a0b2e;
+            --purple-primary: #4a148c;
+            --purple-accent: #7c43bd;
+            --purple-glow: #9c27b0;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --gradient-bg: linear-gradient(135deg, #050505 0%, #1a0b2e 50%, #000000 100%);
+            --gradient-text: linear-gradient(90deg, #9c27b0, #7c43bd);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -33,49 +50,69 @@
             scroll-behavior: smooth;
         }
 
-        /* --- MOODY GEOMETRIC BACKGROUND --- */
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-bg);
+            background-attachment: fixed;
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* =========================================
+           UTILITIES & DECORATION
+           ========================================= */
+        .yin-yang {
+            width: 50px;
+            height: 50px;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 8px var(--purple-accent));
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             position: relative;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
+            display: inline-block;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: var(--bg-dark);
-            background-image: 
-                linear-gradient(rgba(9, 9, 11, 0.94), rgba(9, 9, 11, 0.98)),
-                url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80'), /* Dark abstract geometric image */
-                linear-gradient(rgba(127, 29, 29, 0.08) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(127, 29, 29, 0.08) 2px, transparent 2px);
-            background-size: cover, cover, 80px 80px, 80px 80px;
-            background-position: center, center, 0 0, 0 0;
-            background-attachment: fixed;
         }
 
-        /* --- NAVIGATION --- */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--purple-accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(124, 67, 189, 0.2);
             z-index: 1000;
             padding: 1rem 0;
         }
 
-        .nav-container {
+        .header-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
@@ -86,81 +123,62 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
+            font-weight: 700;
+            color: var(--text-main);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            letter-spacing: -0.5px;
+            gap: 12px;
         }
 
-        .logo .fa-yin-yang {
-            color: var(--accent-light);
-            font-size: 1.6rem;
-            animation: spin 12s linear infinite;
+        .logo span {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--purple-accent);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        .nav-links {
+        nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-links a {
-            color: var(--text-secondary);
+        nav a {
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* --- SECTIONS GENERAL --- */
-        section {
-            padding: 6rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
+            gap: 8px;
+            transition: var(--transition);
         }
 
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        nav a i {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.1rem;
         }
 
-        .section-header i {
-            color: var(--accent-light);
-            font-size: 1.8rem;
+        nav a:hover {
+            color: var(--text-main);
+            transform: translateY(-2px);
         }
 
-        /* --- HERO --- */
-        .hero {
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        #home {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -168,288 +186,218 @@
             align-items: center;
             text-align: center;
             padding-top: 80px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            letter-spacing: -2px;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
 
-        .hero-tags {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--purple-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1px solid var(--purple-accent);
+            box-shadow: 0 4px 15px rgba(124, 67, 189, 0.3);
         }
 
-        .tag {
-            background: rgba(24, 24, 27, 0.8);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            backdrop-filter: blur(4px);
+        .cta-button:hover {
+            background: var(--purple-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(124, 67, 189, 0.5);
         }
 
-        .tag i {
-            color: var(--accent-light);
-        }
-
-        /* --- ABOUT --- */
-        .about-content {
+        /* =========================================
+           ABOUT SECTION
+           ========================================= */
+        .about-container {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-            align-items: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start; /* Changed from center to accommodate new text */
         }
 
-        .about-image-container {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            aspect-ratio: 3/4;
-        }
-
-        .about-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-            filter: grayscale(20%) contrast(1.1);
-        }
-
-        .about-image-container:hover .about-photo {
-            transform: scale(1.05);
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        /* --- LIFE AT 60 --- */
-        .life-60-wrapper {
-            position: relative;
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 3.5rem;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .yin-yang-large {
-            position: absolute;
-            top: -40px;
-            right: -40px;
-            font-size: 15rem;
-            color: rgba(127, 29, 29, 0.05);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .life-60-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .life-60-content blockquote {
-            font-size: 1.4rem;
-            font-style: italic;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-left: 2rem;
-            border-left: 3px solid var(--accent-light);
-        }
-
-        .life-60-content p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            margin-bottom: 1rem;
-        }
-
-        /* --- NOTICE BOARD --- */
-        .notice-board-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2.5rem;
-        }
-
-        .notice-form {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            height: fit-content;
+        .about-image {
             position: sticky;
             top: 100px;
         }
 
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
+        .about-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            border: 2px solid var(--purple-deep);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2);
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--purple-accent);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .love-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .love-list li {
+            margin-bottom: 1rem;
+            background: rgba(26, 11, 46, 0.6);
+            border-left: 4px solid var(--purple-accent);
+            border-radius: 0 8px 8px 0;
+            transition: var(--transition);
+        }
+
+        .love-list li:hover {
+            background: rgba(74, 20, 140, 0.4);
+            transform: translateX(5px);
+        }
+
+        .love-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem;
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+            height: 100%;
+        }
+
+        .love-link > i:first-child {
+            color: var(--purple-glow);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .love-link strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .love-link p {
             font-size: 0.9rem;
-            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.4;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            font-size: 0.95rem;
-            transition: border-color 0.3s;
+        .click-hint {
+            color: var(--purple-accent) !important;
+            font-size: 0.8rem !important;
+            margin-top: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-light);
+        /* =========================================
+           VIDEO GALLERY SECTION
+           ========================================= */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
         }
 
-        .btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+        .video-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(124, 67, 189, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background 0.3s, transform 0.1s;
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple-accent);
+            box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2);
+        }
+
+        .thumbnail {
+            position: relative;
             width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: var(--purple-deep);
+        }
+
+        .thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .video-card:hover .thumbnail img {
+            opacity: 1;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(124, 67, 189, 0.9);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(124, 67, 189, 0.6);
         }
 
-        .btn:hover {
-            background: var(--accent-light);
+        .video-info {
+            padding: 1rem;
         }
 
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        .notices-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            max-height: 600px;
-            overflow-y: auto;
-            padding-right: 0.5rem;
-        }
-
-        /* Custom Scrollbar */
-        .notices-list::-webkit-scrollbar {
-            width: 6px;
-        }
-        .notices-list::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-            border-radius: 3px;
-        }
-        .notices-list::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 3px;
-        }
-
-        .notice-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            position: relative;
-            transition: border-color 0.3s;
-        }
-
-        .notice-card:hover {
-            border-color: var(--accent-light);
-        }
-
-        .notice-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        .video-info h4 {
+            font-size: 1rem;
             margin-bottom: 0.5rem;
+            color: var(--text-main);
         }
 
-        .notice-date-badge {
-            font-size: 0.8rem;
-            color: var(--accent-light);
-            font-weight: 600;
-            background: rgba(127, 29, 29, 0.15);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
+        .video-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
-        .notice-tracker {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .notice-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .notice-message {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .delete-notice {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: color 0.3s, background 0.3s;
-        }
-
-        .delete-notice:hover {
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        /* --- GALLERIES --- */
+        /* =========================================
+           PHOTO GALLERY SECTION
+           ========================================= */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -460,114 +408,106 @@
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(124, 67, 189, 0.2);
             cursor: pointer;
-            aspect-ratio: 16/10;
-            background: var(--bg-card);
+            transition: var(--transition);
+            aspect-ratio: 4/3;
+            background: var(--purple-deep);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple-accent);
+            box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease, filter 0.5s ease;
-            filter: grayscale(30%);
+            transition: var(--transition);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: grayscale(0%);
+            transform: scale(1.05);
+            opacity: 0.7;
         }
 
         .gallery-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(9, 9, 11, 0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: var(--transition);
+            color: white;
+            font-size: 1.5rem;
+            background: rgba(124, 67, 189, 0.85);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            box-shadow: 0 0 15px rgba(124, 67, 189, 0.6);
         }
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
 
-        .gallery-overlay i {
-            font-size: 2rem;
-            color: white;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay i {
-            transform: scale(1);
-        }
-
-        /* Lightbox */
-        .lightbox {
+        /* =========================================
+           MODALS (Video & Image)
+           ========================================= */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(5, 5, 5, 0.96);
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
         }
 
-        .lightbox.active {
+        .image-modal-content {
+            position: relative;
+            max-width: 85vw; 
+            max-height: 80vh; 
             display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 8px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox.active img {
-            transform: scale(1);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
         }
 
-        .lightbox-close:hover {
-            background: rgba(255,255,255,0.2);
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--purple-primary);
+            box-shadow: 0 0 50px rgba(124, 67, 189, 0.3);
         }
 
-        /* Video Gallery */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
+        .modal-caption {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 80vw;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: var(--bg-dark);
+            border: 1px solid var(--purple-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(124, 67, 189, 0.3);
         }
 
         .video-container {
@@ -575,9 +515,6 @@
             padding-bottom: 56.25%; /* 16:9 */
             height: 0;
             overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
         }
 
         .video-container iframe {
@@ -589,685 +526,523 @@
             border: none;
         }
 
-        /* --- CHAT SECTION --- */
-        .chat-container {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .chat-container iframe {
-            display: block;
-            border: none;
-        }
-
-        /* --- MENTAL HEALTH --- */
-        .mental-health-wrapper {
-            background: linear-gradient(135deg, rgba(127, 29, 29, 0.15) 0%, rgba(24, 24, 27, 0.9) 100%);
-            border: 1px solid var(--accent);
-            border-radius: 16px;
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .mental-health-wrapper .section-header {
-            justify-content: center;
-            border-bottom: none;
-            margin-bottom: 1rem;
-        }
-
-        .mental-health-wrapper p {
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 1.05rem;
-        }
-
-        .support-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .support-card {
-            background: var(--bg-dark);
+        .video-modal-caption {
             padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: transform 0.3s, border-color 0.3s;
-            text-align: left;
-        }
-
-        .support-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-light);
-        }
-
-        .support-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--text-primary);
-        }
-
-        .support-card h3 i {
-            color: var(--accent-light);
-        }
-
-        .support-card a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.25rem;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .support-card a:hover {
-            color: var(--accent-light);
-        }
-
-        .support-card .ext-link {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: rgba(9, 9, 11, 0.9);
-            border-top: 1px solid var(--border);
-            padding: 3rem 1.5rem;
             text-align: center;
-            margin-top: 4rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            border-top: 1px solid rgba(124, 67, 189, 0.2);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links a {
-            color: var(--text-secondary);
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--text-main);
             font-size: 1.5rem;
-            transition: color 0.3s, transform 0.3s;
-            width: 50px;
-            height: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+            background: rgba(5, 5, 5, 0.8);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            text-decoration: none; /* FIX: Removes the broken default underline under icons */
+            border: 1px solid var(--purple-accent);
         }
 
-        .social-links a:hover {
-            color: var(--text-primary);
-            border-color: var(--accent-light);
-            transform: translateY(-3px);
+        .close-modal:hover {
+            background: var(--purple-primary);
+            transform: scale(1.1);
         }
 
-        .copyright {
-            color: var(--text-secondary);
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background: var(--bg-deep);
+            border-top: 1px solid rgba(124, 67, 189, 0.2);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        .copyright i {
-            color: var(--accent-light);
+        footer .footer-socials {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
         }
 
-        /* --- BACK TO TOP --- */
+        footer .footer-socials a {
+            color: var(--purple-accent);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        footer .footer-socials a:hover {
+            color: var(--purple-glow);
+            transform: translateY(-3px);
+            filter: drop-shadow(0 0 8px var(--purple-glow));
+        }
+
+        /* =========================================
+           BACK TO TOP BUTTON
+           ========================================= */
         #backToTop {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--accent);
-            color: white;
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
+            background: var(--purple-primary);
+            color: white;
             border: none;
+            border-radius: 50%;
             cursor: pointer;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
             z-index: 999;
-            box-shadow: 0 4px 15px rgba(127, 29, 29, 0.4);
-        }
-
-        #backToTop.show {
-            opacity: 1;
-            visibility: visible;
+            border: 1px solid var(--purple-accent);
         }
 
         #backToTop:hover {
-            background: var(--accent-light);
+            background: var(--purple-accent);
             transform: translateY(-3px);
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .notice-board-container {
-                grid-template-columns: 1fr;
-            }
-            .notice-form {
-                position: static;
-            }
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            .about-image-container {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-        }
-
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 73px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 73px);
-                background: rgba(9, 9, 11, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 3rem;
-                transition: right 0.3s ease;
-                border-top: 1px solid var(--border);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .hamburger {
+            .menu-toggle {
                 display: block;
             }
 
-            .hero h1 {
-                font-size: 2.8rem;
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(5, 5, 5, 0.98);
+                border-bottom: 1px solid var(--purple-primary);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            nav.active {
+                max-height: 400px;
             }
 
-            section {
-                padding: 4rem 1.5rem;
+            nav ul {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
             }
 
-            .section-header h2 {
-                font-size: 1.6rem;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
 
-            .life-60-wrapper {
-                padding: 2rem;
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .yin-yang-large {
-                font-size: 10rem;
+            .about-image {
+                position: relative;
+                top: 0;
             }
 
-            .mental-health-wrapper {
-                padding: 2rem;
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .video-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal {
+                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- HEADER & NAVIGATION -->
     <header>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-yin-yang"></i> Kerwin
+        <div class="header-container">
+            <a href="#home" class="logo">
+                <svg class="yin-yang" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="48" fill="#0a0a0a" stroke="#7c43bd" stroke-width="3"/>
+                    <path d="M50,2 A48,48 0 0,1 50,98 A24,24 0 0,1 50,50 A24,24 0 0,0 50,2" fill="#7c43bd"/>
+                    <circle cx="50" cy="26" r="9" fill="#7c43bd"/>
+                    <circle cx="50" cy="74" r="9" fill="#0a0a0a"/>
+                </svg>
+                <div>
+                    Kerwin's Domain
+                </div>
             </a>
-            <nav>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#about" onclick="closeMenu()">About</a></li>
-                    <li><a href="#life60" onclick="closeMenu()">Life at 60</a></li>
-                    <li><a href="#notices" onclick="closeMenu()">Notice Board</a></li>
-                    <li><a href="#photos" onclick="closeMenu()">Photos</a></li>
-                    <li><a href="#videos" onclick="closeMenu()">Videos</a></li>
-                    <li><a href="#chat" onclick="closeMenu()">Chat</a></li>
-                    <li><a href="#support" onclick="closeMenu()">Support</a></li>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-user-astronaut"></i> About</a></li>
+                    <li><a href="#videos"><i class="fas fa-film"></i> Videos</a></li>
+                    <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
                 </ul>
-                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Embracing the Chaos<br>and the Code.</h1>
-        <p>60 years young. Navigating the intersection of Artificial Intelligence, cutting-edge Technology, and the raw, unapologetic energy of Nu Metal.</p>
-        <div class="hero-tags">
-            <span class="tag"><i class="fa-solid fa-microchip"></i> AI Enthusiast</span>
-            <span class="tag"><i class="fa-solid fa-laptop-code"></i> Technology</span>
-            <span class="tag"><i class="fa-solid fa-guitar"></i> Nu Metal</span>
-            <span class="tag"><i class="fa-solid fa-yin-yang"></i> Balance</span>
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Welcome to <span style="color: var(--purple-accent);">Kerwin's Domain</span></h1>
+            <p>A personal sanctuary exploring the frontiers of Artificial Intelligence, the raw energy of Nu Metal, and the art of a genuine conversation.</p>
+            <a href="#about" class="cta-button">Discover More</a>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT SECTION -->
     <section id="about">
-        <div class="section-header">
-            <i class="fa-solid fa-user-astronaut"></i>
-            <h2>About Kerwin</h2>
-        </div>
-        <div class="about-content">
-            <div class="about-image-container">
-                <!-- ========================================== -->
-                <!-- CHANGE THE PHOTO BELOW: Replace the 'src'  -->
-                <!-- URL with your own image path or URL.       -->
-                <!-- ========================================== -->
-                <img src="images/profileabout.jpg" 
-                     alt="Kerwin" 
-                     class="about-photo" 
-                     id="aboutPhoto">
+        <h2 class="section-title">About Kerwin</h2>
+        <div class="about-container">
+            <div class="about-image">
+                <!-- REPLACE THE SRC BELOW WITH YOUR OWN PHOTO URL -->
+                <img src="https://placehold.co/600x600/1a0b2e/9c27b0?text=Kerwin's+Photo" alt="Kerwin">
             </div>
             <div class="about-text">
-                <p>Welcome to my digital space. I'm a 60-year-old technologist, lifelong learner, and avid fan of heavy riffs. My journey has taken me from the early days of dial-up internet and clunky HTML to the forefront of artificial intelligence, all while maintaining a deep appreciation for the cathartic power of Nu Metal rock.</p>
-                <p>I believe in the balance of life—much like the Yin and Yang. The chaos of a distorted guitar solo perfectly complements the structured logic of machine learning algorithms. This site is a reflection of my passions, my memories, and my ongoing journey through the digital age.</p>
-                <p>When I'm not experimenting with new AI models, coding, or tweaking my home server, you'll find me digging through vinyl records, attending live gigs, or mentoring the next generation of tech enthusiasts. Life is about finding the harmony in the noise.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Life at 60 Section -->
-    <section id="life60">
-        <div class="section-header">
-            <i class="fa-solid fa-hourglass-half"></i>
-            <h2>What Life Has Meant for Me</h2>
-        </div>
-        <div class="life-60-wrapper">
-            <!-- Large Yin Yang symbol in the body as requested -->
-            <div class="yin-yang-large">
-                <i class="fa-solid fa-yin-yang"></i>
-            </div>
-            <div class="life-60-content">
-                <blockquote>
-                    "At sixty, life isn't about winding down; it's about synthesizing everything you've learned into something meaningful. The urgency of youth has been replaced by the clarity of experience."
-                </blockquote>
+                <h3>What Life Has Meant For Me</h3>
                 <p>
-                    I've watched technology evolve from room-sized computers to AI that can write poetry, generate art, and compose music. Yet, the human element remains irreplaceable. The angst and energy of Nu Metal taught me that it's okay to feel deeply, to be angry, and to challenge the status quo. Technology taught me that the future is malleable and built by those willing to learn.
+                    Life has been a profound journey of contrasts and harmonies. From the early days of dial-up internet to the dawn of generative AI, I've watched technology evolve from a mere novelty into a fundamental extension of human creativity. Similarly, the raw, emotive power of Nu Metal taught me that there is profound beauty in chaos and catharsis. Today, my life is about bridging these worlds: embracing the logical precision of code while never losing the soulful, rebellious spirit of a good guitar riff and an honest conversation.
                 </p>
-                <p>
-                    Today, my focus is on balance: staying physically active, keeping my mind sharp with new coding challenges, supporting my community, and always leaving room for a loud, unapologetic guitar riff. Life at 60 is not an ending; it's a masterclass in appreciation. It's about knowing who you are, what you love, and having the courage to pursue it unapologetically.
-                </p>
+
+                <h3>Things I Love</h3>
+                <ul class="love-list">
+                    <li>
+                        <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer" class="love-link">
+                            <i class="fas fa-microchip"></i>
+                            <div>
+                                <strong>Artificial Intelligence & Technology</strong>
+                                <p>Fascinated by machine learning, neural networks, and how tech shapes our future.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://en.wikipedia.org/wiki/Nu_metal" target="_blank" rel="noopener noreferrer" class="love-link">
+                            <i class="fas fa-guitar"></i>
+                            <div>
+                                <strong>Nu Metal Rock Music</strong>
+                                <p>The raw energy of Korn, Linkin Park, Deftones, and System of a Down never gets old.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.reddit.com/r/CasualConversation/" target="_blank" rel="noopener noreferrer" class="love-link">
+                            <i class="fas fa-comments"></i>
+                            <div>
+                                <strong>A Good Chat</strong>
+                                <p>Meaningful conversations about life, philosophy, music, and the mysteries of the universe.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Notice Board Section -->
-    <section id="notices">
-        <div class="section-header">
-            <i class="fa-solid fa-thumbtack"></i>
-            <h2>Embedded Notice Board</h2>
-        </div>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">A personal space to track important dates, reminders, and thoughts. Data is saved locally in your browser and tracks time automatically.</p>
-        
-        <div class="notice-board-container">
-            <div class="notice-form">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fa-solid fa-plus-circle" style="color: var(--accent-light);"></i> Add New Notice
-                </h3>
-                <form id="noticeForm">
-                    <div class="form-group">
-                        <label for="noticeDate">Date</label>
-                        <input type="date" id="noticeDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="noticeTitle">Title</label>
-                        <input type="text" id="noticeTitle" placeholder="e.g., Band Gig, Project Deadline" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="noticeMessage">Message</label>
-                        <textarea id="noticeMessage" rows="4" placeholder="Enter details..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn"><i class="fa-solid fa-floppy-disk"></i> Save Notice</button>
-                </form>
-            </div>
-            
-            <div class="notices-list" id="noticesList">
-                <!-- Notices will be injected here by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Photo Gallery Section -->
-    <section id="photos">
-        <div class="section-header">
-            <i class="fa-solid fa-camera-retro"></i>
-            <h2>Photo Gallery</h2>
-        </div>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Click any image to enlarge.</p>
-        <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Tech">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Concert Crowd">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guitar">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coding">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Moody Abstract">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tech Setup">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox(event)"><i class="fa-solid fa-xmark"></i></button>
-        <img src="" alt="Enlarged view" id="lightbox-img">
-    </div>
-
-    <!-- Video Gallery Section -->
+    <!-- VIDEO GALLERY SECTION -->
     <section id="videos">
-        <div class="section-header">
-            <i class="fa-brands fa-youtube"></i>
-            <h2>Video Gallery</h2>
-        </div>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">A curated selection of tech insights and musical energy.</p>
+        <h2 class="section-title">Curated Video Gallery</h2>
         <div class="video-grid">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video 1" allowfullscreen loading="lazy"></iframe>
+            <!-- Video 1 -->
+            <div class="video-card" onclick="openVideoModal('kXYiU_JCYtU', 'Linkin Park - Numb (Official Music Video)')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Linkin Park Numb">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Nu Metal Classics</h4>
+                    <p>Linkin Park - Numb</p>
+                </div>
             </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" title="YouTube video 2" allowfullscreen loading="lazy"></iframe>
+
+            <!-- Video 2 -->
+            <div class="video-card" onclick="openVideoModal('xOq8hK_vB6Fw', 'Korn - Freak on a Leash (Official Video)')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/xOq8hK_vB6Fw/mqdefault.jpg" alt="Korn Freak on a Leash">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Nu Metal Classics</h4>
+                    <p>Korn - Freak on a Leash</p>
+                </div>
             </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/kXYiU_JCYtU" title="YouTube video 3" allowfullscreen loading="lazy"></iframe>
+
+            <!-- Video 3 -->
+            <div class="video-card" onclick="openVideoModal('h3jN-kwHX4I', 'Deftones - Change (In the House of Flies)')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/h3jN-kwHX4I/mqdefault.jpg" alt="Deftones Change">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Nu Metal Classics</h4>
+                    <p>Deftones - Change</p>
+                </div>
             </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/9bZkp7q19f0" title="YouTube video 4" allowfullscreen loading="lazy"></iframe>
+
+            <!-- Video 4 -->
+            <div class="video-card" onclick="openVideoModal('CSvFpBOe8eY', 'System Of A Down - Chop Suey!')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/CSvFpBOe8eY/mqdefault.jpg" alt="System Of A Down Chop Suey">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Nu Metal Classics</h4>
+                    <p>System Of A Down - Chop Suey!</p>
+                </div>
             </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" title="YouTube video 5" allowfullscreen loading="lazy"></iframe>
+
+            <!-- Video 5 -->
+            <div class="video-card" onclick="openVideoModal('airI65U5a5M', 'The Future of AI Technology')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/airI65U5a5M/mqdefault.jpg" alt="Future of AI">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Technology & AI</h4>
+                    <p>The Future of Artificial Intelligence</p>
+                </div>
             </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 6" allowfullscreen loading="lazy"></iframe>
+
+            <!-- Video 6 -->
+            <div class="video-card" onclick="openVideoModal('JfVOs4VSpmA', 'Neural Networks Explained by 3Blue1Brown')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/JfVOs4VSpmA/mqdefault.jpg" alt="Neural Networks Explained">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Technology & AI</h4>
+                    <p>Neural Networks Explained Simply</p>
+                </div>
+            </div>
+
+            <!-- Video 7 -->
+            <div class="video-card" onclick="openVideoModal('5NgNic3yqf0', 'Lex Fridman Podcast: AI and the Future of Humanity')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/5NgNic3yqf0/mqdefault.jpg" alt="Lex Fridman AI Podcast">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Discussions</h4>
+                    <p>Lex Fridman: AI and Humanity</p>
+                </div>
+            </div>
+
+            <!-- Video 8 -->
+            <div class="video-card" onclick="openVideoModal('1La4QzGeaaQ', 'The Social Dilemma - Official Trailer')">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/1La4QzGeaaQ/mqdefault.jpg" alt="The Social Dilemma">
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Discussions</h4>
+                    <p>The Philosophy of Modern Technology</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Chat Section -->
-    <section id="chat">
-        <div class="section-header">
-            <i class="fa-solid fa-comments"></i>
-            <h2>Live Chat</h2>
-        </div>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Drop a message, say hello, or share your thoughts.</p>
-        <div class="chat-container">
-            <iframe src="https://www3.cbox.ws/box/?boxid=3555789&boxtag=csn0TI" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
-        </div>
-    </section>
-
-    <!-- Mental Health Support Section -->
-    <section id="support">
-        <div class="mental-health-wrapper">
-            <div class="section-header">
-                <i class="fa-solid fa-heart-pulse"></i>
-                <h2>Mental Health Support</h2>
+    <!-- PHOTO GALLERY SECTION -->
+    <section id="gallery">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gallery-grid">
+            <!-- Image 1 -->
+            <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Photo+1', 'A moody landscape or tech setup')">
+                <img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Photo+1" alt="Gallery Image 1">
+                <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
             </div>
-            <p>If you or someone you know is struggling, you are not alone. Reach out to these free, confidential Australian national support services. Your life has immense value, and help is always available.</p>
-            
-            <div class="support-links">
-                <div class="support-card">
-                    <h3><i class="fa-solid fa-phone-volume"></i> Lifeline</h3>
-                    <a href="tel:131114">13 11 14</a>
-                    <a href="https://www.lifeline.org.au" target="_blank" rel="noopener" class="ext-link">www.lifeline.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
-                </div>
-                
-                <div class="support-card">
-                    <h3><i class="fa-solid fa-cloud-sun"></i> Beyond Blue</h3>
-                    <a href="tel:1300224636">1300 22 4636</a>
-                    <a href="https://www.beyondblue.org.au" target="_blank" rel="noopener" class="ext-link">www.beyondblue.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
-                </div>
-                
-                <div class="support-card">
-                    <h3><i class="fa-solid fa-hands-holding-circle"></i> Suicide Call Back Service</h3>
-                    <a href="tel:1300659467">1300 659 467</a>
-                    <a href="https://www.suicidecallbackservice.org.au" target="_blank" rel="noopener" class="ext-link">www.suicidecallbackservice.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
-                </div>
-
-                <div class="support-card">
-                    <h3><i class="fa-solid fa-person-circle-question"></i> MensLine Australia</h3>
-                    <a href="tel:1300789978">1300 78 99 78</a>
-                    <a href="https://www.mensline.org.au" target="_blank" rel="noopener" class="ext-link">www.mensline.org.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
-                </div>
-
-                <!-- NEW CONTACT 1 -->
-                <div class="support-card">
-                    <h3><i class="fa-solid fa-hand-holding-heart"></i> SANE Australia</h3>
-                    <a href="tel:134672">13 46 72</a>
-                    <a href="https://www.sane.org" target="_blank" rel="noopener" class="ext-link">www.sane.org <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
-                </div>
-
-                <!-- NEW CONTACT 2 -->
-                <div class="support-card">
-                    <h3><i class="fa-solid fa-people-group"></i> Open Arms</h3>
-                    <a href="tel:1800011046">1800 011 046</a>
-                    <a href="https://www.openarms.gov.au" target="_blank" rel="noopener" class="ext-link">www.openarms.gov.au <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
-                </div>
+            <!-- Image 2 -->
+            <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Photo+2', 'Concert or music memory')">
+                <img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Photo+2" alt="Gallery Image 2">
+                <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+            </div>
+            <!-- Image 3 -->
+            <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Photo+3', 'AI or coding workspace')">
+                <img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Photo+3" alt="Gallery Image 3">
+                <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+            </div>
+            <!-- Image 4 -->
+            <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Photo+4', 'Travel or nature shot')">
+                <img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Photo+4" alt="Gallery Image 4">
+                <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+            </div>
+            <!-- Image 5 -->
+            <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Photo+5', 'Vinyl collection or instruments')">
+                <img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Photo+5" alt="Gallery Image 5">
+                <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+            </div>
+            <!-- Image 6 -->
+            <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Photo+6', 'Personal milestone or hobby')">
+                <img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Photo+6" alt="Gallery Image 6">
+                <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="social-links">
-            <a href="https://x.com" target="_blank" rel="noopener" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="mailto:kerwin@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <div class="footer-socials">
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:kerwin@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="copyright">&copy; 2026 Kerwin. All Rights Reserved. | Built with <i class="fa-solid fa-code"></i> and <i class="fa-solid fa-music"></i></p>
+        <p>&copy; 2026 Kerwin's Domain. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Designed with balance in mind.</p>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" aria-label="Back to top">
-        <i class="fa-solid fa-arrow-up"></i>
+    <!-- IMAGE MODAL -->
+    <div id="imageModal" class="modal" onclick="closeImageModalOnBackground(event)">
+        <div class="image-modal-content">
+            <span class="close-modal" onclick="closeImageModal()" aria-label="Close image">&times;</span>
+            <img id="modalImage" src="" alt="Enlarged Gallery Image">
+            <p id="modalImageCaption" class="modal-caption"></p>
+        </div>
+    </div>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="modal" onclick="closeVideoModalOnBackground(event)">
+        <div class="video-modal-content">
+            <span class="close-modal" onclick="closeVideoModal()" aria-label="Close video">&times;</span>
+            <div class="video-container">
+                <iframe id="youtubePlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p id="videoModalCaption" class="video-modal-caption"></p>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- JavaScript -->
+    <!-- JAVASCRIPT -->
     <script>
-        // --- Mobile Navigation ---
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.getElementById('mainNav');
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = hamburger.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
                 icon.classList.add('fa-bars');
-            }
-        });
-
-        function closeMenu() {
-            navLinks.classList.remove('active');
-            const icon = hamburger.querySelector('i');
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }
-
-        // --- Back to Top Button ---
-        const backToTopBtn = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // --- Notice Board (LocalStorage) ---
-        const noticeForm = document.getElementById('noticeForm');
-        const noticesList = document.getElementById('noticesList');
-
-        function loadNotices() {
-            const notices = JSON.parse(localStorage.getItem('kerwinNotices')) || [];
-            noticesList.innerHTML = '';
-            
-            // Sort by date descending (newest first)
-            notices.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (notices.length === 0) {
-                noticesList.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 12px; border: 1px dashed var(--border);">No notices yet. Add one to get started!</p>';
-                return;
-            }
-
-            notices.forEach((notice, index) => {
-                const card = document.createElement('div');
-                card.className = 'notice-card';
-                
-                const timeTracker = getTimeDifference(notice.date);
-                
-                card.innerHTML = `
-                    <button class="delete-notice" onclick="deleteNotice(${index})" title="Delete notice">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                    <div class="notice-header">
-                        <div class="notice-date-badge">
-                            <i class="fa-solid fa-calendar-days"></i> ${formatDate(notice.date)}
-                        </div>
-                        <div class="notice-tracker">${timeTracker}</div>
-                    </div>
-                    <div class="notice-title">${escapeHtml(notice.title)}</div>
-                    <div class="notice-message">${escapeHtml(notice.message)}</div>
-                `;
-                noticesList.appendChild(card);
+                icon.classList.remove('fa-times');
             });
-        }
-
-        function saveNotice(date, title, message) {
-            const notices = JSON.parse(localStorage.getItem('kerwinNotices')) || [];
-            notices.push({ date, title, message });
-            localStorage.setItem('kerwinNotices', JSON.stringify(notices));
-            loadNotices();
-        }
-
-        function deleteNotice(index) {
-            if (confirm('Are you sure you want to delete this notice?')) {
-                const notices = JSON.parse(localStorage.getItem('kerwinNotices')) || [];
-                notices.splice(index, 1);
-                localStorage.setItem('kerwinNotices', JSON.stringify(notices));
-                loadNotices();
-            }
-        }
-
-        function getTimeDifference(dateStr) {
-            const today = new Date();
-            today.setHours(0,0,0,0);
-            const noticeDate = new Date(dateStr);
-            noticeDate.setHours(0,0,0,0);
-            const diffTime = noticeDate - today;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
-            if (diffDays === 0) return "Today";
-            if (diffDays > 0) return `In ${diffDays} days`;
-            return `${Math.abs(diffDays)} days ago`;
-        }
-
-        function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-AU', options);
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        noticeForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const date = document.getElementById('noticeDate').value;
-            const title = document.getElementById('noticeTitle').value;
-            const message = document.getElementById('noticeMessage').value;
-            
-            saveNotice(date, title, message);
-            noticeForm.reset();
-            
-            // Reset date to today after submission
-            document.getElementById('noticeDate').valueAsDate = new Date();
         });
 
-        // Set default date to today on load
-        document.getElementById('noticeDate').valueAsDate = new Date();
-        loadNotices();
+        // ==========================================
+        // IMAGE MODAL LOGIC
+        // ==========================================
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalImageCaption = document.getElementById('modalImageCaption');
 
-        // --- Lightbox Gallery ---
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        function openLightbox(element) {
-            const img = element.querySelector('img');
-            // Request higher resolution for lightbox
-            lightboxImg.src = img.src.replace('w=800', 'w=1600'); 
-            lightbox.classList.add('active');
+        function openImageModal(src, caption) {
+            modalImage.src = src;
+            modalImageCaption.textContent = caption;
+            imageModal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
-        function closeLightbox(event) {
-            // Close if clicking the background or the close button
-            if (event.target === lightbox || event.target.closest('.lightbox-close')) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
+        function closeImageModal() {
+            modalImage.src = ''; 
+            imageModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        function closeImageModalOnBackground(event) {
+            if (event.target === imageModal) {
+                closeImageModal();
             }
         }
 
-        // Close lightbox with Escape key
+        // ==========================================
+        // VIDEO MODAL LOGIC
+        // ==========================================
+        const videoModal = document.getElementById('videoModal');
+        const player = document.getElementById('youtubePlayer');
+        const videoCaption = document.getElementById('videoModalCaption');
+
+        function openVideoModal(videoId, captionText) {
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            videoCaption.textContent = captionText;
+            videoModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            player.src = ''; 
+            videoModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeVideoModalOnBackground(event) {
+            if (event.target === videoModal) {
+                closeVideoModal();
+            }
+        }
+
+        // Close any open modal with Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
+            if (e.key === 'Escape') {
+                if (imageModal.style.display === 'flex') closeImageModal();
+                if (videoModal.style.display === 'flex') closeVideoModal();
             }
         });
 
-        // --- Error Checking / Console Validation ---
-        console.log("Website loaded successfully. Current Year:", new Date().getFullYear());
-        console.log("LocalStorage available:", !!window.localStorage);
+        // ==========================================
+        // BACK TO TOP BUTTON LOGIC
+        // ==========================================
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'flex';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 </html>
