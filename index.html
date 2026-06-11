@@ -70,26 +70,15 @@
            UTILITIES & DECORATION
            ========================================= */
         .yin-yang {
-            width: 50px;
-            height: 50px;
-            opacity: 0.9;
+            width: 50px; height: 50px; opacity: 0.9;
             filter: drop-shadow(0 0 8px var(--purple-accent));
         }
 
-        /* Section Titles: Clean with underline only (No ✦ symbols) */
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            padding-bottom: 12px;
-            border-bottom: 3px solid transparent;
+            font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem;
+            background: var(--gradient-text); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; position: relative; display: inline-block;
+            width: 100%; padding-bottom: 12px; border-bottom: 3px solid transparent;
             border-image: linear-gradient(to right, transparent, var(--purple-accent), transparent) 1;
         }
 
@@ -100,8 +89,7 @@
            ========================================= */
         header {
             position: fixed; top: 0; width: 100%;
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(124, 67, 189, 0.2);
             z-index: 1000; padding: 1rem 0;
         }
@@ -163,17 +151,9 @@
         /* =========================================
            ABOUT SECTION (Stacked Images, Compact Grid)
            ========================================= */
-        .about-container {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
-        }
-
-        .about-images-stack {
-            display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
-        }
-
-        .about-main-img, .about-secondary-img {
-            cursor: pointer; transition: var(--transition);
-        }
+        .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .about-images-stack { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .about-main-img, .about-secondary-img { cursor: pointer; transition: var(--transition); }
 
         .about-main-img {
             width: 100%; max-width: 500px; height: 400px; object-fit: cover;
@@ -187,23 +167,16 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2);
         }
 
-        .about-main-img:hover, .about-secondary-img:hover {
-            transform: translateY(-5px); border-color: var(--purple-accent);
-        }
+        .about-main-img:hover, .about-secondary-img:hover { transform: translateY(-5px); border-color: var(--purple-accent); }
 
         .about-text h3 { font-size: 1.6rem; margin-bottom: 0.8rem; color: var(--purple-accent); }
         .about-text > p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
 
-        .love-list {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-            list-style: none; margin-top: 1rem;
-        }
-
+        .love-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; margin-top: 1rem; }
         .love-list li {
             background: rgba(26, 11, 46, 0.6); border-left: 3px solid var(--purple-accent);
             border-radius: 0 8px 8px 0; transition: var(--transition); height: 100%;
         }
-
         .love-list li:hover { background: rgba(74, 20, 140, 0.4); transform: translateY(-3px); }
 
         .love-link {
@@ -224,16 +197,11 @@
            VIDEO GALLERY SECTION
            ========================================= */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-
         .video-card {
             background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(124, 67, 189, 0.2);
             border-radius: 12px; overflow: hidden; cursor: pointer; transition: var(--transition);
         }
-
-        .video-card:hover {
-            transform: translateY(-5px); border-color: var(--purple-accent);
-            box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2);
-        }
+        .video-card:hover { transform: translateY(-5px); border-color: var(--purple-accent); box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2); }
 
         .thumbnail { position: relative; width: 100%; padding-top: 56.25%; background: var(--purple-deep); }
         .thumbnail img {
@@ -257,23 +225,17 @@
            PHOTO GALLERY SECTION
            ========================================= */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-
         .gallery-item {
             position: relative; border-radius: 12px; overflow: hidden;
             border: 1px solid rgba(124, 67, 189, 0.2); cursor: pointer;
             transition: var(--transition); aspect-ratio: 4/3; background: var(--purple-deep);
         }
-
-        .gallery-item:hover {
-            transform: translateY(-5px); border-color: var(--purple-accent);
-            box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2);
-        }
+        .gallery-item:hover { transform: translateY(-5px); border-color: var(--purple-accent); box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2); }
 
         .gallery-item img {
             width: 100%; height: 100%; object-fit: cover; transition: var(--transition);
             -webkit-user-select: none; user-select: none; -webkit-user-drag: none;
         }
-
         .gallery-item:hover img { transform: scale(1.05); opacity: 0.7; }
 
         .gallery-overlay {
@@ -283,11 +245,10 @@
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 15px rgba(124, 67, 189, 0.6);
         }
-
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
         /* =========================================
-           MODALS (Video & Image) - MADE SMALLER FOR BUTTON VISIBILITY
+           MODALS (Video & Image)
            ========================================= */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -296,28 +257,23 @@
         }
 
         .image-modal-content {
-            position: relative; max-width: 70vw; max-height: 75vh; /* Reduced for better fit */
+            position: relative; max-width: 70vw; max-height: 75vh; 
             display: flex; flex-direction: column; align-items: center;
         }
 
         .image-modal-content img {
-            max-width: 100%; max-height: 50vh; /* Reduced to guarantee button visibility */
-            object-fit: contain; border-radius: 8px; border: 1px solid var(--purple-primary);
-            box-shadow: 0 0 50px rgba(124, 67, 189, 0.3);
+            max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px;
+            border: 1px solid var(--purple-primary); box-shadow: 0 0 50px rgba(124, 67, 189, 0.3);
             -webkit-user-select: none; user-select: none; -webkit-user-drag: none;
         }
 
-        .modal-caption {
-            margin-top: 1rem; color: var(--text-muted); font-size: 1.1rem;
-            text-align: center; max-width: 80vw;
-        }
+        .modal-caption { margin-top: 1rem; color: var(--text-muted); font-size: 1.1rem; text-align: center; max-width: 80vw; }
 
         .wallpaper-controls {
             display: none; flex-direction: column; align-items: center;
             margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.3);
             width: 100%; gap: 0.5rem;
         }
-
         .wallpaper-controls p {
             color: var(--text-muted); font-size: 0.9rem; text-align: center;
             display: flex; align-items: center; gap: 8px; margin: 0;
@@ -328,14 +284,9 @@
             border: 1px solid var(--purple-primary); border-radius: 12px;
             overflow: hidden; box-shadow: 0 0 40px rgba(124, 67, 189, 0.3);
         }
-
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        .video-modal-caption {
-            padding: 1.5rem; text-align: center; color: var(--text-muted);
-            font-size: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.2);
-        }
+        .video-modal-caption { padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.2); }
 
         .close-modal {
             position: absolute; top: 10px; right: 10px; color: var(--text-main);
@@ -343,7 +294,6 @@
             background: rgba(5, 5, 5, 0.8); width: 40px; height: 40px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; border: 1px solid var(--purple-accent);
         }
-
         .close-modal:hover { background: var(--purple-primary); transform: scale(1.1); }
 
         /* =========================================
@@ -353,25 +303,20 @@
             background: var(--bg-deep); border-top: 1px solid rgba(124, 67, 189, 0.2);
             padding: 2.5rem 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;
         }
-
         footer .footer-socials { margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 2rem; }
         footer .footer-socials a { color: var(--purple-accent); font-size: 1.5rem; transition: var(--transition); }
-        footer .footer-socials a:hover {
-            color: var(--purple-glow); transform: translateY(-3px);
-            filter: drop-shadow(0 0 8px var(--purple-glow));
-        }
+        footer .footer-socials a:hover { color: var(--purple-glow); transform: translateY(-3px); filter: drop-shadow(0 0 8px var(--purple-glow)); }
 
         /* =========================================
-           BACK TO TOP BUTTON
+           BACK TO TOP BUTTON (Moved up to avoid overlapping BMC Widget)
            ========================================= */
         #backToTop {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            position: fixed; bottom: 110px; right: 30px; width: 50px; height: 50px;
             background: var(--purple-primary); color: white; border: none; border-radius: 50%;
             cursor: pointer; display: none; align-items: center; justify-content: center;
             font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             transition: var(--transition); z-index: 999; border: 1px solid var(--purple-accent);
         }
-
         #backToTop:hover { background: var(--purple-accent); transform: translateY(-3px); }
 
         /* =========================================
@@ -395,6 +340,7 @@
             .video-grid, .gallery-grid { grid-template-columns: 1fr; }
             .image-modal-content { max-width: 90vw; max-height: 80vh; }
             .image-modal-content img { max-height: 55vh; }
+            #backToTop { bottom: 100px; right: 20px; }
         }
     </style>
 </head>
@@ -424,7 +370,6 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT WRAPPER (Good for SEO) -->
     <main>
         <!-- HERO SECTION -->
         <section id="home">
@@ -432,6 +377,13 @@
                 <h1>Welcome to <span style="color: var(--purple-accent);">Kerwin's Domain</span></h1>
                 <p>A personal sanctuary exploring the frontiers of Artificial Intelligence, the raw energy of Nu Metal, and the art of a genuine conversation.</p>
                 <a href="#about" class="cta-button">Discover More</a>
+                
+                <!-- ==========================================
+                     BUY ME A COFFEE WIDGET
+                     This script loads the floating support button.
+                     It anchors to the bottom-right of the screen.
+                     ========================================== -->
+                <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
             </div>
         </section>
 
@@ -440,21 +392,13 @@
             <h2 class="section-title">About Kerwin</h2>
             <div class="about-container">
                 <div class="about-images-stack">
-                    <!-- ==========================================
-                         EDITABLE: MAIN PHOTO 1 
-                         Replace 'src' with your image path (e.g., "images/photo1.jpg").
-                         Right-click is disabled to prevent saving.
-                         ========================================== -->
+                    <!-- EDITABLE: MAIN PHOTO 1 -->
                     <img src="images/kerwincartoon04.png" 
                          alt="Kerwin Main Portrait" class="about-main-img" 
                          onclick="openImageModal('images/kerwincartoon04.png', 'Main Photo', false)" 
                          oncontextmenu="return false;">
                     
-                    <!-- ==========================================
-                         EDITABLE: MAIN PHOTO 2 (WALLPAPER)
-                         Replace 'src' with your 1920x1080 wallpaper image path.
-                         Opens with download instructions and button.
-                         ========================================== -->
+                    <!-- EDITABLE: MAIN PHOTO 2 (WALLPAPER) -->
                     <img src="images/ryzen.jpg" 
                          alt="Kerwin 1920x1080 Desktop Wallpaper" class="about-secondary-img" 
                          onclick="openImageModal('images/ryzen.jpg', '1920 x 1080 Desktop Wallpaper', true)" 
@@ -462,14 +406,14 @@
                 </div>
                 <div class="about-text">
                     <h3>What Life Has Meant For Me</h3>
-                    <!-- EDITABLE: Update this paragraph with your personal story -->
+                    <!-- EDITABLE: Update this paragraph -->
                     <p>
                         Life has been a profound journey of contrasts and harmonies. From the early days of dial-up internet to the dawn of generative AI, I've watched technology evolve from a mere novelty into a fundamental extension of human creativity. Similarly, the raw, emotive power of Nu Metal taught me that there is profound beauty in chaos and catharsis. Today, my life is about bridging these worlds: embracing the logical precision of code while never losing the soulful, rebellious spirit of a good guitar riff and an honest conversation.
                     </p>
 
                     <h3>Things I Love</h3>
                     <ul class="love-list">
-                        <!-- EDITABLE: Update href links, titles, and descriptions for each box -->
+                        <!-- EDITABLE: Update href links, titles, and descriptions -->
                         <li>
                             <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer" class="love-link">
                                 <i class="fas fa-microchip"></i>
@@ -511,61 +455,37 @@
         <section id="videos">
             <h2 class="section-title">Some of my favourite YouTube Videos</h2>
             <div class="video-grid">
-                <!-- EDITABLE: Replace the YouTube Video ID (e.g., 'kXYiU_JCYtU') and the caption text for each card -->
+                <!-- EDITABLE: Replace YouTube Video IDs and captions -->
                 <div class="video-card" onclick="openVideoModal('kXYiU_JCYtU', 'Linkin Park - Numb (Official Music Video)')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Linkin Park Numb">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Linkin Park Numb"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Nu Metal Classics</h4><p>Linkin Park - Numb</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('xOq8hK_vB6Fw', 'Korn - Freak on a Leash (Official Video)')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/xOq8hK_vB6Fw/mqdefault.jpg" alt="Korn Freak on a Leash">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/xOq8hK_vB6Fw/mqdefault.jpg" alt="Korn Freak on a Leash"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Nu Metal Classics</h4><p>Korn - Freak on a Leash</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('h3jN-kwHX4I', 'Deftones - Change (In the House of Flies)')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/h3jN-kwHX4I/mqdefault.jpg" alt="Deftones Change">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/h3jN-kwHX4I/mqdefault.jpg" alt="Deftones Change"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Nu Metal Classics</h4><p>Deftones - Change</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('CSvFpBOe8eY', 'System Of A Down - Chop Suey!')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/CSvFpBOe8eY/mqdefault.jpg" alt="System Of A Down Chop Suey">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/CSvFpBOe8eY/mqdefault.jpg" alt="System Of A Down Chop Suey"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Nu Metal Classics</h4><p>System Of A Down - Chop Suey!</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('airI65U5a5M', 'The Future of AI Technology')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/airI65U5a5M/mqdefault.jpg" alt="Future of AI">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/airI65U5a5M/mqdefault.jpg" alt="Future of AI"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Technology & AI</h4><p>The Future of Artificial Intelligence</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('JfVOs4VSpmA', 'Neural Networks Explained by 3Blue1Brown')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/JfVOs4VSpmA/mqdefault.jpg" alt="Neural Networks Explained">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/JfVOs4VSpmA/mqdefault.jpg" alt="Neural Networks Explained"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Technology & AI</h4><p>Neural Networks Explained Simply</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('5NgNic3yqf0', 'Lex Fridman Podcast: AI and the Future of Humanity')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/5NgNic3yqf0/mqdefault.jpg" alt="Lex Fridman AI Podcast">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/5NgNic3yqf0/mqdefault.jpg" alt="Lex Fridman AI Podcast"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Discussions</h4><p>Lex Fridman: AI and Humanity</p></div>
                 </div>
                 <div class="video-card" onclick="openVideoModal('1La4QzGeaaQ', 'The Social Dilemma - Official Trailer')">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/1La4QzGeaaQ/mqdefault.jpg" alt="The Social Dilemma">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/1La4QzGeaaQ/mqdefault.jpg" alt="The Social Dilemma"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
                     <div class="video-info"><h4>Discussions</h4><p>The Philosophy of Modern Technology</p></div>
                 </div>
             </div>
@@ -575,12 +495,12 @@
         <section id="gallery">
             <h2 class="section-title">Photo Gallery</h2>
             <div class="gallery-grid">
-                <!-- EDITABLE: Replace 'src', 'onclick' URL, and caption for each gallery image. Right-click is disabled. -->
+                <!-- EDITABLE: Replace 'src', 'onclick' URL, and caption. Right-click disabled. -->
                 <div class="gallery-item" onclick="openImageModal('images/desktopsetup.png', 'My Tech Setup', false)">
                     <img src="images/desktopsetup.png" alt="Gallery Image 1" oncontextmenu="return false;">
                     <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
                 </div>
-                <div class="gallery-item" onclick="openImageModal('images/1559011.jpg', 'My Pride 140XLE', false)">
+                <div class="gallery-item" onclick="openImageModal('images/1559011.jpg', 'Concert or music memory', false)">
                     <img src="images/1559011.jpg" alt="Gallery Image 2" oncontextmenu="return false;">
                     <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
                 </div>
@@ -606,12 +526,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <!-- EDITABLE: Update the href links below with your actual social media profile URLs and email address -->
+        <!-- EDITABLE: Update social media links and email -->
         <div class="footer-socials">
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="mailto:kerwin@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://discord.com/users/458800939831263243" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/playlist?list=PLbF8aINl-mMUI1v3VyAJnMsUQe7GKkwB2" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/kerwin.jones" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:kerwin65@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         <p>&copy; 2026 Kerwin's Domain. All rights reserved.</p>
         <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Designed with balance in mind.</p>
@@ -623,13 +543,9 @@
             <span class="close-modal" onclick="closeImageModal()" aria-label="Close image">&times;</span>
             <img id="modalImage" src="" alt="Enlarged Image" oncontextmenu="return false;">
             <p id="modalImageCaption" class="modal-caption"></p>
-            
-            <!-- Wallpaper Download Controls (Hidden by default, shown via JS) -->
             <div id="wallpaperControls" class="wallpaper-controls">
                 <p><i class="fas fa-info-circle"></i> This is a 1920 x 1080 desktop wallpaper. Click the button below to download it to your device.</p>
-                <button class="cta-button" onclick="downloadWallpaper()">
-                    <i class="fas fa-download"></i> Download Wallpaper
-                </button>
+                <button class="cta-button" onclick="downloadWallpaper()"><i class="fas fa-download"></i> Download Wallpaper</button>
             </div>
         </div>
     </div>
@@ -638,31 +554,25 @@
     <div id="videoModal" class="modal" onclick="closeVideoModalOnBackground(event)">
         <div class="video-modal-content">
             <span class="close-modal" onclick="closeVideoModal()" aria-label="Close video">&times;</span>
-            <div class="video-container">
-                <iframe id="youtubePlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+            <div class="video-container"><iframe id="youtubePlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             <p id="videoModalCaption" class="video-modal-caption"></p>
         </div>
     </div>
 
     <!-- BACK TO TOP BUTTON -->
-    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- JAVASCRIPT -->
     <script>
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const mainNav = document.getElementById('mainNav');
-
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             const icon = menuToggle.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
         });
-
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 mainNav.classList.remove('active');
@@ -672,9 +582,7 @@
             });
         });
 
-        // ==========================================
         // IMAGE MODAL & DOWNLOAD LOGIC
-        // ==========================================
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const modalImageCaption = document.getElementById('modalImageCaption');
@@ -684,7 +592,6 @@
         function openImageModal(src, caption, isWallpaper = false) {
             modalImage.src = src;
             modalImageCaption.textContent = caption;
-            
             if (isWallpaper) {
                 wallpaperControls.style.display = 'flex';
                 currentWallpaperUrl = src;
@@ -692,9 +599,7 @@
                 wallpaperControls.style.display = 'none';
                 currentWallpaperUrl = '';
             }
-            
-            modalImage.oncontextmenu = function() { return false; }; // Disable right-click in modal
-            
+            modalImage.oncontextmenu = function() { return false; };
             imageModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -709,7 +614,6 @@
             if (event.target === imageModal) closeImageModal();
         }
 
-        // Robust download function (handles CORS fallback gracefully)
         async function downloadWallpaper() {
             if (!currentWallpaperUrl) return;
             try {
@@ -724,14 +628,11 @@
                 document.body.removeChild(link);
                 window.URL.revokeObjectURL(url);
             } catch (error) {
-                // Fallback for cross-origin placeholder images: opens in new tab
                 window.open(currentWallpaperUrl, '_blank');
             }
         }
 
-        // ==========================================
         // VIDEO MODAL LOGIC
-        // ==========================================
         const videoModal = document.getElementById('videoModal');
         const player = document.getElementById('youtubePlayer');
         const videoCaption = document.getElementById('videoModalCaption');
@@ -753,7 +654,6 @@
             if (event.target === videoModal) closeVideoModal();
         }
 
-        // Close any open modal with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (imageModal.style.display === 'flex') closeImageModal();
@@ -761,11 +661,8 @@
             }
         });
 
-        // ==========================================
         // BACK TO TOP BUTTON LOGIC
-        // ==========================================
         const backToTopBtn = document.getElementById('backToTop');
-
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.style.display = 'flex';
