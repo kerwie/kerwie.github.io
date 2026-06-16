@@ -4,25 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ==========================================
-         EDITABLE: ADVANCED SEO METADATA
-         ========================================== -->
     <title>Kerwin's Domain | AI, Nu Metal & Technology Enthusiast</title>
     <meta name="description" content="Welcome to Kerwin's Domain. A personal portfolio exploring Artificial Intelligence, Nu Metal Rock Music, Technology, Culinary Arts, and meaningful conversations.">
-    <meta name="keywords" content="Kerwin, AI, Artificial Intelligence, Nu Metal, Technology, Personal Website, Portfolio, Rock Music, Tech Enthusiast, NDIS, Second Life, Linux">
+    <meta name="keywords" content="Kerwin, AI, Artificial Intelligence, Nu Metal, Technology, Personal Website, Portfolio, Rock Music, Tech Enthusiast, NDIS, Second Life, Linux, Open Source">
     <meta name="author" content="Kerwin">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://kerwie.github.io/">
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kerwie.github.io/">
     <meta property="og:title" content="Kerwin's Domain | AI, Nu Metal & Technology Enthusiast">
     <meta property="og:description" content="A personal sanctuary exploring Artificial Intelligence, Nu Metal, and genuine conversation.">
-    <meta property="og:image" content="https://kerwie.github.io/images/og-image.png">
+    <meta property="og:image" content="https://kerwie.github.io/images/og-image.jpg">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kerwin's Domain | AI, Nu Metal & Technology Enthusiast">
     <meta name="twitter:description" content="A personal sanctuary exploring Artificial Intelligence, Nu Metal, and genuine conversation.">
-    <meta name="twitter:image" content="https://kerwie.github.io/images/og-image.png">
+    <meta name="twitter:image" content="https://kerwie.github.io/images/og-image.jpg">
+    
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a0a0a' stroke='%237c43bd' stroke-width='3'/><path d='M50,2 A48,48 0 0,1 50,98 A24,24 0 0,1 50,50 A24,24 0 0,0 50,2' fill='%237c43bd'/><circle cx='50' cy='26' r='9' fill='%237c43bd'/><circle cx='50' cy='74' r='9' fill='%230a0a0a'/></svg>">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -43,10 +44,10 @@
           "name": "Kerwin",
           "url": "https://kerwie.github.io/",
           "image": "https://kerwie.github.io/images/kerwin-main.jpg",
-          "description": "A technology and AI enthusiast, Nu Metal rock music fan, Linux lover, and advocate for NDIS support.",
+          "description": "A technology and AI enthusiast, Nu Metal rock music fan, and advocate for meaningful conversation and NDIS support.",
           "sameAs": [
-            "https://youtube.com/@kerwie",
-            "https://facebook.com/kerwin.jones",
+            "https://www.youtube.com/channel/UCGbP4OLSZIHWx_nX6IM5TwA",
+            "https://www.facebook.com/kerwin.jones",
             "https://discord.com/users/458800939831263243"
           ]
         }
@@ -72,33 +73,40 @@
             background-attachment: fixed; color: var(--text-main); line-height: 1.6; overflow-x: hidden;
         }
 
-        .bg-silhouette {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 100%; display: flex; flex-direction: row; justify-content: center; align-items: center;
-            gap: 4vw; z-index: 0; pointer-events: none; overflow: hidden; padding: 0 2vw;
+        /* Global Static Background Watermark */
+        .global-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12rem;
+            font-weight: 700;
+            color: var(--purple-accent);
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: -1;
+            white-space: nowrap;
+            user-select: none;
+            letter-spacing: 1rem;
         }
-        .bg-silhouette span {
-            font-size: min(28vw, 18rem); color: var(--purple-primary); opacity: 0.07;
-            font-family: "KaiTi", "STKaiti", "Ma Shan Zheng", "SimSun", serif; line-height: 1;
-            filter: blur(2px); text-shadow: 0 0 40px rgba(74, 20, 140, 0.6); white-space: nowrap;
-        }
-        main, footer, header { position: relative; z-index: 1; }
 
         .yin-yang { width: 50px; height: 50px; opacity: 0.9; filter: drop-shadow(0 0 8px var(--purple-accent)); }
 
         .section-title {
             font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem;
             background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            position: relative; display: inline-block; width: 100%; padding-bottom: 12px;
+            position: relative; display: flex; justify-content: center; align-items: center; width: 100%; padding-bottom: 12px;
             border-bottom: 3px solid transparent;
             border-image: linear-gradient(to right, transparent, var(--purple-accent), transparent) 1;
         }
-        .section-title::before { content: '✦ '; -webkit-text-fill-color: var(--purple-accent); opacity: 0.8; font-size: 0.8em; vertical-align: middle; }
-        .section-title::after { content: ' ✦'; -webkit-text-fill-color: var(--purple-accent); opacity: 0.8; font-size: 0.8em; vertical-align: middle; }
-
-        .about-text h3 { font-size: 1.6rem; margin-top: 0; margin-bottom: 1rem; color: var(--purple-accent); display: inline-block; }
-        .about-text h3::before { content: '✦ '; font-size: 0.7em; vertical-align: middle; opacity: 0.9; }
-        .about-text h3::after { content: ' ✦'; font-size: 0.7em; vertical-align: middle; opacity: 0.9; }
+        
+        .section-title::before, .section-title::after {
+            content: "✦";
+            color: var(--purple-accent);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            -webkit-text-fill-color: var(--purple-accent);
+        }
 
         section { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
 
@@ -107,126 +115,249 @@
             backdrop-filter: blur(10px); border-bottom: 1px solid rgba(124, 67, 189, 0.2);
             z-index: 1000; padding: 1rem 0;
         }
-        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 12px; cursor: default; }
-        .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
-        .site-title { font-size: 1.5rem; }
-        .site-tagline { font-size: 0.75rem; font-weight: 400; color: var(--purple-accent); letter-spacing: 1px; margin-top: 2px; }
+
+        .header-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--text-main);
+            display: flex; align-items: center; gap: 12px;
+        }
 
         .menu-toggle { display: none; background: none; border: none; color: var(--purple-accent); font-size: 1.5rem; cursor: pointer; }
         nav ul { display: flex; list-style: none; gap: 2rem; }
-        nav a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+        nav a {
+            color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            display: flex; align-items: center; gap: 8px; transition: var(--transition);
+        }
         nav a i { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.1rem; }
         nav a:hover { color: var(--text-main); transform: translateY(-2px); }
 
-        #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 80px; }
+        #home {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding-top: 80px;
+        }
+
         .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
         .hero-content p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
-        .cta-button { display: inline-block; padding: 12px 30px; background: var(--purple-primary); color: white; text-decoration: none; border-radius: 30px; font-weight: 600; transition: var(--transition); border: 1px solid var(--purple-accent); box-shadow: 0 4px 15px rgba(124, 67, 189, 0.3); cursor: pointer; }
+
+        .cta-button {
+            display: inline-block; padding: 12px 30px; background: var(--purple-primary);
+            color: white; text-decoration: none; border-radius: 30px; font-weight: 600;
+            transition: var(--transition); border: 1px solid var(--purple-accent);
+            box-shadow: 0 4px 15px rgba(124, 67, 189, 0.3); cursor: pointer;
+        }
         .cta-button:hover { background: var(--purple-accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(124, 67, 189, 0.5); }
 
         .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
         .about-images-stack { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-        .about-main-img, .about-secondary-img { cursor: pointer; transition: var(--transition); }
-        .about-main-img { width: 100%; max-width: 500px; height: 400px; object-fit: cover; border-radius: 12px; border: 2px solid var(--purple-deep); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2); }
-        .about-secondary-img { width: 100%; max-width: 350px; height: 220px; object-fit: cover; border-radius: 12px; border: 2px solid var(--purple-deep); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2); }
-        .about-main-img:hover, .about-secondary-img:hover { transform: translateY(-5px); border-color: var(--purple-accent); }
+        .about-main-img, .about-secondary-img { transition: var(--transition); }
 
-        .wallpaper-info-box { width: 100%; max-width: 350px; background: rgba(10, 10, 10, 0.85); border: 1px solid rgba(124, 67, 189, 0.4); border-radius: 10px; padding: 1.25rem; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .about-main-img {
+            width: 100%; max-width: 500px; height: 400px; object-fit: cover;
+            border-radius: 12px; 
+            border: 3px solid var(--purple-accent); /* Permanent border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2);
+        }
+
+        /* Stop the main photo from bouncing on hover */
+        .about-main-img:hover {
+            transform: none;
+        }
+
+        .about-secondary-img {
+            width: 100%; max-width: 350px; height: 220px; object-fit: cover;
+            border-radius: 12px; border: 2px solid var(--purple-deep);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(124, 67, 189, 0.2);
+            cursor: pointer;
+        }
+
+        .about-secondary-img:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--purple-accent); 
+        }
+
+        .wallpaper-info-box {
+            width: 100%; max-width: 350px;
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(124, 67, 189, 0.4);
+            border-radius: 10px; padding: 1.25rem; text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
         .wallpaper-info-box .info-title { color: var(--purple-accent); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; }
-        .wallpaper-info-box .info-instruction { color: var(--text-main); font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .wallpaper-info-box .info-instruction {
+            color: var(--text-main); font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
         .wallpaper-info-box .info-instruction i { color: var(--purple-glow); font-size: 0.9rem; }
-        .wallpaper-info-box .info-update { color: var(--text-muted); font-size: 0.8rem; line-height: 1.5; border-top: 1px solid rgba(124, 67, 189, 0.3); padding-top: 0.75rem; margin: 0; }
-        .about-text > p { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem; }
+        .wallpaper-info-box .info-update {
+            color: var(--text-muted); font-size: 0.8rem; line-height: 1.5;
+            border-top: 1px solid rgba(124, 67, 189, 0.3); padding-top: 0.75rem; margin: 0;
+        }
 
-        .love-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; margin-top: 0; }
-        .love-list li { background: rgba(26, 11, 46, 0.6); border-left: 3px solid var(--purple-accent); border-radius: 0 8px 8px 0; transition: var(--transition); height: 100%; }
+        .about-text h3 { 
+            font-size: 1.6rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--purple-accent); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        /* Decorations for subheadings */
+        .about-text h3::before, .about-text h3::after {
+            content: "✦";
+            color: var(--purple-accent);
+            font-size: 1.2rem;
+            margin: 0 12px;
+        }
+
+        .about-text > p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+
+        .love-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; margin-top: 1rem; }
+        .love-list li {
+            background: rgba(26, 11, 46, 0.6); border-left: 3px solid var(--purple-accent);
+            border-radius: 0 8px 8px 0; transition: var(--transition); height: 100%;
+        }
         .love-list li:hover { background: rgba(74, 20, 140, 0.4); transform: translateY(-3px); }
-        .love-link { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 0.85rem; text-decoration: none; color: inherit; width: 100%; height: 100%; }
-        .love-link > i:first-child { color: var(--purple-glow); font-size: 1.2rem; margin-bottom: 4px; }
+
+        .love-link {
+            display: flex; flex-direction: column; justify-content: center; gap: 4px;
+            padding: 0.85rem; text-decoration: none; color: inherit; width: 100%; height: 100%;
+        }
+        .love-link > i:first-child { color: var(--purple-glow); font-size: 1.1rem; margin-bottom: 2px; }
         .love-link strong { display: block; color: var(--text-main); font-size: 0.95rem; line-height: 1.2; }
         .love-link p { font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.3; }
-        .click-hint { color: var(--purple-accent) !important; font-size: 0.75rem !important; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+        .click-hint {
+            color: var(--purple-accent) !important; font-size: 0.75rem !important;
+            margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; font-weight: 600;
+        }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-        .video-card { background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(124, 67, 189, 0.2); border-radius: 12px; overflow: hidden; cursor: pointer; transition: var(--transition); }
+        .video-card {
+            background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(124, 67, 189, 0.2);
+            border-radius: 12px; overflow: hidden; cursor: pointer; transition: var(--transition);
+        }
         .video-card:hover { transform: translateY(-5px); border-color: var(--purple-accent); box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2); }
         .thumbnail { position: relative; width: 100%; padding-top: 56.25%; background: var(--purple-deep); }
         .thumbnail img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition); }
         .video-card:hover .thumbnail img { opacity: 1; }
-        .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: rgba(124, 67, 189, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; box-shadow: 0 0 15px rgba(124, 67, 189, 0.6); }
+        .play-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 50px; height: 50px; background: rgba(124, 67, 189, 0.9); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: white;
+            font-size: 1.2rem; box-shadow: 0 0 15px rgba(124, 67, 189, 0.6);
+        }
         .video-info { padding: 1rem; }
         .video-info h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main); }
         .video-info p { font-size: 0.85rem; color: var(--text-muted); }
 
-        .video-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.96); z-index: 2000; justify-content: center; align-items: center; padding: 2rem; }
-        .video-modal-content { position: relative; width: 100%; max-width: 900px; background: var(--bg-dark); border: 1px solid var(--purple-primary); border-radius: 12px; overflow: hidden; box-shadow: 0 0 50px rgba(124, 67, 189, 0.4); }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .video-modal-caption { padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.2); }
-        .close-modal { position: absolute; top: 10px; right: 10px; color: var(--text-main); font-size: 1.5rem; cursor: pointer; transition: var(--transition); z-index: 2001; background: rgba(5, 5, 5, 0.8); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--purple-accent); }
-        .close-modal:hover { background: var(--purple-primary); transform: scale(1.1); }
-
-        /* IMAGE MODAL & CLOSE BUTTON (Mandatory Close) */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.96); z-index: 2000; justify-content: center; align-items: center; padding: 2rem; }
-        .image-modal-content { position: relative; max-width: 70vw; max-height: 75vh; display: flex; flex-direction: column; align-items: center; padding-top: 1rem; }
-        .modal-close-btn {
-            position: absolute; top: 0; right: -20px;
-            background: rgba(10, 10, 10, 0.9); color: var(--text-main);
-            border: 1px solid var(--purple-accent); border-radius: 50%;
-            width: 44px; height: 44px; font-size: 1.6rem; line-height: 1;
-            cursor: pointer; transition: var(--transition);
-            display: flex; align-items: center; justify-content: center; z-index: 10;
-        }
-        .modal-close-btn:hover { background: var(--purple-primary); transform: scale(1.15); }
-        .image-modal-content img { max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px; border: 1px solid var(--purple-primary); box-shadow: 0 0 50px rgba(124, 67, 189, 0.3); -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
-        .modal-caption { margin-top: 1rem; color: var(--text-muted); font-size: 1.1rem; text-align: center; max-width: 80vw; }
-        .wallpaper-controls { display: none; flex-direction: column; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.3); width: 100%; gap: 0.5rem; }
-        .wallpaper-controls p { color: var(--text-muted); font-size: 0.9rem; text-align: center; display: flex; align-items: center; gap: 8px; margin: 0; }
-
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(124, 67, 189, 0.2); cursor: pointer; transition: var(--transition); aspect-ratio: 4/3; background: var(--purple-deep); }
+        .gallery-item {
+            position: relative; border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(124, 67, 189, 0.2); cursor: pointer;
+            transition: var(--transition); aspect-ratio: 4/3; background: var(--purple-deep);
+        }
         .gallery-item:hover { transform: translateY(-5px); border-color: var(--purple-accent); box-shadow: 0 10px 25px rgba(124, 67, 189, 0.2); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         .gallery-item:hover img { transform: scale(1.05); opacity: 0.7; }
-        .gallery-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: var(--transition); color: white; font-size: 1.5rem; background: rgba(124, 67, 189, 0.85); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(124, 67, 189, 0.6); }
+        .gallery-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            opacity: 0; transition: var(--transition); color: white; font-size: 1.5rem;
+            background: rgba(124, 67, 189, 0.85); width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(124, 67, 189, 0.6);
+        }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-        footer { background: var(--bg-deep); border-top: 1px solid rgba(124, 67, 189, 0.2); padding: 2.5rem 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 5, 0.96); z-index: 2000;
+            justify-content: center; align-items: center; padding: 2rem;
+        }
+        .image-modal-content { position: relative; max-width: 70vw; max-height: 75vh; display: flex; flex-direction: column; align-items: center; }
+        .image-modal-content img {
+            max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px;
+            border: 1px solid var(--purple-primary); box-shadow: 0 0 50px rgba(124, 67, 189, 0.3);
+            -webkit-user-select: none; user-select: none; -webkit-user-drag: none;
+        }
+        .modal-caption { margin-top: 1rem; color: var(--text-muted); font-size: 1.1rem; text-align: center; max-width: 80vw; }
+        .wallpaper-controls {
+            display: none; flex-direction: column; align-items: center;
+            margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.3);
+            width: 100%; gap: 0.5rem;
+        }
+        .wallpaper-controls p { color: var(--text-muted); font-size: 0.9rem; text-align: center; display: flex; align-items: center; gap: 8px; margin: 0; }
+        .video-modal-content {
+            position: relative; width: 100%; max-width: 800px; background: var(--bg-dark);
+            border: 1px solid var(--purple-primary); border-radius: 12px;
+            overflow: hidden; box-shadow: 0 0 40px rgba(124, 67, 189, 0.3);
+        }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-modal-caption { padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 1rem; border-top: 1px solid rgba(124, 67, 189, 0.2); }
+        .close-modal {
+            position: absolute; top: 10px; right: 10px; color: var(--text-main);
+            font-size: 1.5rem; cursor: pointer; transition: var(--transition); z-index: 2001;
+            background: rgba(5, 5, 5, 0.8); width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 1px solid var(--purple-accent);
+            font-family: inherit; padding: 0;
+        }
+        .close-modal:hover { background: var(--purple-primary); transform: scale(1.1); }
+
+        footer {
+            background: var(--bg-deep); border-top: 1px solid rgba(124, 67, 189, 0.2);
+            padding: 2.5rem 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;
+        }
         footer .footer-socials { margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 2rem; }
         footer .footer-socials a { color: var(--purple-accent); font-size: 1.5rem; transition: var(--transition); }
         footer .footer-socials a:hover { color: var(--purple-glow); transform: translateY(-3px); filter: drop-shadow(0 0 8px var(--purple-glow)); }
 
-        #backToTop { position: fixed; bottom: 110px; right: 30px; width: 50px; height: 50px; background: var(--purple-primary); color: white; border: none; border-radius: 50%; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); transition: var(--transition); z-index: 999; border: 1px solid var(--purple-accent); }
+        #backToTop {
+            position: fixed; bottom: 110px; right: 30px; width: 50px; height: 50px;
+            background: var(--purple-primary); color: white; border: none; border-radius: 50%;
+            cursor: pointer; display: none; align-items: center; justify-content: center;
+            font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: var(--transition); z-index: 999; border: 1px solid var(--purple-accent);
+        }
         #backToTop:hover { background: var(--purple-accent); transform: translateY(-3px); }
 
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
-            nav { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(5, 5, 5, 0.98); border-bottom: 1px solid var(--purple-primary); max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+            nav {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(5, 5, 5, 0.98); border-bottom: 1px solid var(--purple-primary);
+                max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            }
             nav.active { max-height: 400px; }
             nav ul { flex-direction: column; padding: 1.5rem; gap: 1.5rem; }
             .hero-content h1 { font-size: 2.5rem; }
+            .global-watermark { font-size: 6rem; letter-spacing: 0.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .section-title::before, .section-title::after { font-size: 1.2rem; margin: 0 10px; }
             .about-container { grid-template-columns: 1fr; gap: 2rem; }
             .about-main-img { height: 350px; }
             .about-secondary-img { height: 200px; max-width: 100%; }
             .wallpaper-info-box { max-width: 100%; padding: 1rem; }
             .love-list { grid-template-columns: 1fr; }
-            .section-title { font-size: 1.8rem; }
             .video-grid, .gallery-grid { grid-template-columns: 1fr; }
-            .video-modal-content { max-width: 95vw; }
-            .image-modal-content { max-width: 90vw; max-height: 80vh; padding-top: 2.5rem; }
+            .image-modal-content { max-width: 90vw; max-height: 80vh; }
             .image-modal-content img { max-height: 55vh; }
-            .modal-close-btn { top: 5px; right: 5px; } /* Moved inside for mobile */
             #backToTop { bottom: 100px; right: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-silhouette" aria-hidden="true"><span>爱</span><span>力</span><span>韧</span></div>
+    <!-- Static Full-Website Background Watermark -->
+    <div class="global-watermark">爱力韧</div>
 
     <header>
         <div class="header-container">
+            <!-- Changed from <a> to <div> so it is no longer clickable -->
             <div class="logo">
                 <svg class="yin-yang" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="48" fill="#0a0a0a" stroke="#7c43bd" stroke-width="3"/>
@@ -234,7 +365,10 @@
                     <circle cx="50" cy="26" r="9" fill="#7c43bd"/>
                     <circle cx="50" cy="74" r="9" fill="#0a0a0a"/>
                 </svg>
-                <div class="logo-text"><span class="site-title">Kerwin's Domain</span><span class="site-tagline">Love ~ Strength ~ Resilience</span></div>
+                <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                    <span>Kerwin's Domain</span>
+                    <span style="font-size: 0.7rem; color: var(--purple-accent); font-weight: 400; letter-spacing: 1px;">Love ~ Strength ~ Resilience</span>
+                </div>
             </div>
             <button class="menu-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             <nav id="mainNav">
@@ -254,7 +388,6 @@
                 <h1>Welcome to <span style="color: var(--purple-accent);">Kerwin's Domain</span></h1>
                 <p>A personal sanctuary exploring the frontiers of Artificial Intelligence, the raw energy of Nu Metal, and the art of a genuine conversation.</p>
                 <a href="#about" class="cta-button">Discover More</a>
-                <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
             </div>
         </section>
 
@@ -262,8 +395,16 @@
             <h2 class="section-title">About Kerwin</h2>
             <div class="about-container">
                 <div class="about-images-stack">
-                    <img src="images/kerwincartoon04.png" alt="Kerwin Main Portrait" class="about-main-img" width="600" height="600" loading="eager" onclick="openImageModal('images/kerwincartoon04.png', 'Main Photo', false)" oncontextmenu="return false;">
-                    <img src="images/ryzen.jpg" alt="Kerwin 1920x1080 Desktop Wallpaper" class="about-secondary-img" width="1920" height="1080" loading="lazy" onclick="openImageModal('images/ryzen.jpg', '1920 x 1080 Desktop Wallpaper', true)" oncontextmenu="return false;">
+                    <!-- MAIN PHOTO: Unclickable, cannot be dragged or right-click saved, permanent border, no bounce -->
+                    <img src="images/kerwincartoon04.png" 
+                         alt="Kerwin Main Portrait" class="about-main-img" width="600" height="600" loading="eager"
+                         draggable="false" oncontextmenu="return false;">
+                    
+                    <img src="images/ryzen.jpg" 
+                         alt="Kerwin 1920x1080 Desktop Wallpaper" class="about-secondary-img" width="1920" height="1080" loading="lazy"
+                         onclick="openImageModal('images/ryzen.jpg', '1920 x 1080 Desktop Wallpaper', true, 'Kerwin-Wallpaper-1920x1080.jpg', 'This is a Random Desktop Wallpaper for download. New wallpaper will be uploaded every month.')" 
+                         draggable="false" oncontextmenu="return false;">
+                    
                     <div class="wallpaper-info-box">
                         <p class="info-title">This is a Random Desktop Wallpaper for download</p>
                         <p class="info-instruction"><i class="fas fa-download"></i> Click the Image to Download to your Device</p>
@@ -272,15 +413,61 @@
                 </div>
                 <div class="about-text">
                     <h3>What Life Has Meant For Me</h3>
-                    <p>Life has been a profound journey of contrasts and harmonies. From the early days of dial-up internet to the dawn of generative AI, I've watched technology evolve from a mere novelty into a fundamental extension of human creativity. Similarly, the raw, emotive power of Nu Metal taught me that there is profound beauty in chaos and catharsis. Today, my life is about bridging these worlds: embracing the logical precision of code while never losing the soulful, rebellious spirit of a good guitar riff and an honest conversation.</p>
+                    <p>
+                        Life has been a profound journey of contrasts and harmonies. From the early days of dial-up internet to the dawn of generative AI, I've watched technology evolve from a mere novelty into a fundamental extension of human creativity. Similarly, the raw, emotive power of Nu Metal taught me that there is profound beauty in chaos and catharsis. Today, my life is about bridging these worlds: embracing the logical precision of code while never losing the soulful, rebellious spirit of a good guitar riff and an honest conversation.
+                    </p>
+
                     <h3>Things I Love</h3>
                     <ul class="love-list">
-                        <li><a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer" class="love-link"><i class="fas fa-microchip"></i><strong>Artificial Intelligence & Web Development</strong><p>Deeply passionate about all things technology, from coding and web development to the endless possibilities of AI.</p><span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span></a></li>
-                        <li><a href="https://en.wikipedia.org/wiki/Nu_metal" target="_blank" rel="noopener noreferrer" class="love-link"><i class="fas fa-guitar"></i><strong>Nu Metal Rock Music</strong><p>The raw energy of Korn, Linkin Park, Tool, and Limp Bizkit never gets old.</p><span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span></a></li>
-                        <li><a href="https://opensource.org/" target="_blank" rel="noopener noreferrer" class="love-link"><i class="fab fa-linux"></i><strong>Linux and Free Open Source Software</strong><p>Embracing the freedom of open-source, customizing my system, and the power of the Linux community.</p><span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span></a></li>
-                        <li><a href="https://www.seriouseats.com/" target="_blank" rel="noopener noreferrer" class="love-link"><i class="fas fa-utensils"></i><strong>The Love of Food</strong><p>Exploring culinary arts, bold flavors, and the joy of a perfectly crafted meal.</p><span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span></a></li>
-                        <li><a href="https://secondlife.com" target="_blank" rel="noopener noreferrer" class="love-link"><i class="fas fa-vr-cardboard"></i><strong>My Second Life</strong><p>Exploring virtual worlds, connecting with a global community, and experiencing digital creativity.</p><span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span></a></li>
-                        <li><a href="https://www.ndis.gov.au/" target="_blank" rel="noopener noreferrer" class="love-link"><i class="fas fa-hand-holding-heart"></i><strong>NDIS Support & Care</strong><p>Deeply grateful for the wonderful care and support I receive every week that helps me thrive.</p><span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span></a></li>
+                        <li>
+                            <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener noreferrer" class="love-link">
+                                <i class="fas fa-microchip"></i>
+                                <strong>Artificial Intelligence & Web Development</strong>
+                                <p>Deeply passionate about all things technology, from coding and web development to the endless possibilities of AI.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://en.wikipedia.org/wiki/Nu_metal" target="_blank" rel="noopener noreferrer" class="love-link">
+                                <i class="fas fa-guitar"></i>
+                                <strong>Nu Metal Rock Music</strong>
+                                <p>The raw energy of Korn, Linkin Park, Tool, and Limp Bizkit never gets old.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://opensource.org/" target="_blank" rel="noopener noreferrer" class="love-link">
+                                <i class="fab fa-linux"></i>
+                                <strong>My Love of Linux and Free Open Source Software</strong>
+                                <p>Embracing the freedom of open-source, customizing my system, and the power of the Linux community.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.seriouseats.com/" target="_blank" rel="noopener noreferrer" class="love-link">
+                                <i class="fas fa-utensils"></i>
+                                <strong>The Love of Food</strong>
+                                <p>Exploring culinary arts, bold flavors, and the joy of a perfectly crafted meal.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://secondlife.com" target="_blank" rel="noopener noreferrer" class="love-link">
+                                <i class="fas fa-vr-cardboard"></i>
+                                <strong>My Love for Second Life</strong>
+                                <p>Exploring virtual worlds, connecting with a global community, and experiencing digital creativity.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </a>
+                        </li>
+                        <li style="height: auto;">
+                            <!-- Forced flex-start and auto height to guarantee the icon is never clipped -->
+                            <a href="https://www.ndis.gov.au/" target="_blank" rel="noopener noreferrer" class="love-link" style="justify-content: flex-start !important; padding-top: 1.5rem !important; height: auto !important;">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <strong>NDIS Support & Care</strong>
+                                <p>Deeply grateful for the wonderful care and support I receive every week that helps me thrive.</p>
+                                <span class="click-hint">Click to explore <i class="fas fa-external-link-alt"></i></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -289,26 +476,74 @@
         <section id="videos">
             <h2 class="section-title">Some of my Favourite YouTube Videos</h2>
             <div class="video-grid">
-                <div class="video-card" onclick="openVideoModal('kXYiU_JCYtU', 'Linkin Park - Numb (Official Music Video)')"><div class="thumbnail"><img src="https://img.youtube.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Linkin Park Numb"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Nu Metal Classics</h4><p>Linkin Park - Numb</p></div></div>
-                <div class="video-card" onclick="openVideoModal('xOq8hK_vB6Fw', 'Korn - Freak on a Leash (Official Video)')"><div class="thumbnail"><img src="https://img.youtube.com/vi/xOq8hK_vB6Fw/mqdefault.jpg" alt="Korn Freak on a Leash"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Nu Metal Classics</h4><p>Korn - Freak on a Leash</p></div></div>
-                <div class="video-card" onclick="openVideoModal('h3jN-kwHX4I', 'Deftones - Change (In the House of Flies)')"><div class="thumbnail"><img src="https://img.youtube.com/vi/h3jN-kwHX4I/mqdefault.jpg" alt="Deftones Change"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Nu Metal Classics</h4><p>Deftones - Change</p></div></div>
-                <div class="video-card" onclick="openVideoModal('CSvFpBOe8eY', 'System Of A Down - Chop Suey!')"><div class="thumbnail"><img src="https://img.youtube.com/vi/CSvFpBOe8eY/mqdefault.jpg" alt="System Of A Down Chop Suey"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Nu Metal Classics</h4><p>System Of A Down - Chop Suey!</p></div></div>
-                <div class="video-card" onclick="openVideoModal('airI65U5a5M', 'The Future of AI Technology')"><div class="thumbnail"><img src="https://img.youtube.com/vi/airI65U5a5M/mqdefault.jpg" alt="Future of AI"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Technology & AI</h4><p>The Future of Artificial Intelligence</p></div></div>
-                <div class="video-card" onclick="openVideoModal('JfVOs4VSpmA', 'Neural Networks Explained by 3Blue1Brown')"><div class="thumbnail"><img src="https://img.youtube.com/vi/JfVOs4VSpmA/mqdefault.jpg" alt="Neural Networks Explained"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Technology & AI</h4><p>Neural Networks Explained Simply</p></div></div>
-                <div class="video-card" onclick="openVideoModal('5NgNic3yqf0', 'Lex Fridman Podcast: AI and the Future of Humanity')"><div class="thumbnail"><img src="https://img.youtube.com/vi/5NgNic3yqf0/mqdefault.jpg" alt="Lex Fridman AI Podcast"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Discussions</h4><p>Lex Fridman: AI and Humanity</p></div></div>
-                <div class="video-card" onclick="openVideoModal('1La4QzGeaaQ', 'The Social Dilemma - Official Trailer')"><div class="thumbnail"><img src="https://img.youtube.com/vi/1La4QzGeaaQ/mqdefault.jpg" alt="The Social Dilemma"><div class="play-overlay"><i class="fas fa-play"></i></div></div><div class="video-info"><h4>Discussions</h4><p>The Philosophy of Modern Technology</p></div></div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('kXYiU_JCYtU', 'Linkin Park - Numb (Official Music Video)')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/kXYiU_JCYtU/mqdefault.jpg" alt="Linkin Park Numb" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Nu Metal Classics</h4><p>Linkin Park - Numb</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('xOq8hK_vB6Fw', 'Korn - Freak on a Leash (Official Video)')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/xOq8hK_vB6Fw/mqdefault.jpg" alt="Korn Freak on a Leash" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Nu Metal Classics</h4><p>Korn - Freak on a Leash</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('h3jN-kwHX4I', 'Deftones - Change (In the House of Flies)')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/h3jN-kwHX4I/mqdefault.jpg" alt="Deftones Change" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Nu Metal Classics</h4><p>Deftones - Change</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('CSvFpBOe8eY', 'System Of A Down - Chop Suey!')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/CSvFpBOe8eY/mqdefault.jpg" alt="System Of A Down Chop Suey" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Nu Metal Classics</h4><p>System Of A Down - Chop Suey!</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('airI65U5a5M', 'The Future of AI Technology')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/airI65U5a5M/mqdefault.jpg" alt="Future of AI" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Technology & AI</h4><p>The Future of Artificial Intelligence</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('JfVOs4VSpmA', 'Neural Networks Explained by 3Blue1Brown')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/JfVOs4VSpmA/mqdefault.jpg" alt="Neural Networks Explained" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Technology & AI</h4><p>Neural Networks Explained Simply</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('5NgNic3yqf0', 'Lex Fridman Podcast: AI and the Future of Humanity')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/5NgNic3yqf0/mqdefault.jpg" alt="Lex Fridman AI Podcast" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Discussions</h4><p>Lex Fridman: AI and Humanity</p></div>
+                </div>
+                <div class="video-card" tabindex="0" role="button" onclick="openVideoModal('1La4QzGeaaQ', 'The Social Dilemma - Official Trailer')">
+                    <div class="thumbnail"><img src="https://img.youtube.com/vi/1La4QzGeaaQ/mqdefault.jpg" alt="The Social Dilemma" width="320" height="180" loading="lazy"><div class="play-overlay"><i class="fas fa-play"></i></div></div>
+                    <div class="video-info"><h4>Discussions</h4><p>The Philosophy of Modern Technology</p></div>
+                </div>
             </div>
         </section>
 
         <section id="gallery">
             <h2 class="section-title">Photo Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openImageModal('images/desktopsetup.png', 'My Tech Setup', false)"><img src="images/desktopsetup.png" alt="Gallery Image 1: A moody landscape or tech setup" width="800" height="600" loading="lazy" oncontextmenu="return false;"><div class="gallery-overlay"><i class="fas fa-expand"></i></div></div>
-                <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+2', 'Concert or music memory', false)"><img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+2" alt="Gallery Image 2: Concert or music memory" width="800" height="600" loading="lazy" oncontextmenu="return false;"><div class="gallery-overlay"><i class="fas fa-expand"></i></div></div>
-                <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+3', 'AI or coding workspace', false)"><img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+3" alt="Gallery Image 3: AI or coding workspace" width="800" height="600" loading="lazy" oncontextmenu="return false;"><div class="gallery-overlay"><i class="fas fa-expand"></i></div></div>
-                <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+4', 'Travel or nature shot', false)"><img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+4" alt="Gallery Image 4: Travel or nature shot" width="800" height="600" loading="lazy" oncontextmenu="return false;"><div class="gallery-overlay"><i class="fas fa-expand"></i></div></div>
-                <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+5', 'Vinyl collection or instruments', false)"><img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+5" alt="Gallery Image 5: Vinyl collection or instruments" width="800" height="600" loading="lazy" oncontextmenu="return false;"><div class="gallery-overlay"><i class="fas fa-expand"></i></div></div>
-                <div class="gallery-item" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+6', 'Personal milestone or hobby', false)"><img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+6" alt="Gallery Image 6: Personal milestone or hobby" width="800" height="600" loading="lazy" oncontextmenu="return false;"><div class="gallery-overlay"><i class="fas fa-expand"></i></div></div>
+                <!-- GALLERY IMAGE 1: Generic Placeholder -->
+                <div class="gallery-item" tabindex="0" role="button" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+1', 'Gallery Photo 1', true, 'Gallery-Photo-1.jpg', 'A placeholder for gallery photo number 1.')">
+                    <img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+1" alt="Gallery Photo 1" width="800" height="600" loading="lazy" draggable="false" oncontextmenu="return false;">
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <!-- GALLERY IMAGE 2: Generic Placeholder -->
+                <div class="gallery-item" tabindex="0" role="button" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+2', 'Gallery Photo 2', true, 'Gallery-Photo-2.jpg', 'A placeholder for gallery photo number 2.')">
+                    <img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+2" alt="Gallery Photo 2" width="800" height="600" loading="lazy" draggable="false" oncontextmenu="return false;">
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <!-- GALLERY IMAGE 3: Generic Placeholder -->
+                <div class="gallery-item" tabindex="0" role="button" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+3', 'Gallery Photo 3', true, 'Gallery-Photo-3.jpg', 'A placeholder for gallery photo number 3.')">
+                    <img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+3" alt="Gallery Photo 3" width="800" height="600" loading="lazy" draggable="false" oncontextmenu="return false;">
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <!-- GALLERY IMAGE 4: Generic Placeholder -->
+                <div class="gallery-item" tabindex="0" role="button" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+4', 'Gallery Photo 4', true, 'Gallery-Photo-4.jpg', 'A placeholder for gallery photo number 4.')">
+                    <img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+4" alt="Gallery Photo 4" width="800" height="600" loading="lazy" draggable="false" oncontextmenu="return false;">
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <!-- GALLERY IMAGE 5: Generic Placeholder -->
+                <div class="gallery-item" tabindex="0" role="button" onclick="openImageModal('https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+5', 'Gallery Photo 5', true, 'Gallery-Photo-5.jpg', 'A placeholder for gallery photo number 5.')">
+                    <img src="https://placehold.co/800x600/1a0b2e/9c27b0?text=Gallery+Photo+5" alt="Gallery Photo 5" width="800" height="600" loading="lazy" draggable="false" oncontextmenu="return false;">
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <!-- GALLERY IMAGE 6: Generic Placeholder -->
+                <div class="gallery-item" tabindex="0" role="button" onclick="openImageModal('https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+6', 'Gallery Photo 6', true, 'Gallery-Photo-6.jpg', 'A placeholder for gallery photo number 6.')">
+                    <img src="https://placehold.co/800x600/0a0a0a/7c43bd?text=Gallery+Photo+6" alt="Gallery Photo 6" width="800" height="600" loading="lazy" draggable="false" oncontextmenu="return false;">
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
             </div>
         </section>
     </main>
@@ -316,37 +551,38 @@
     <footer>
         <div class="footer-socials">
             <a href="https://discord.com/users/458800939831263243" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
-            <a href="https://youtube.com/@kerwie" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/kerwin.jones" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/channel/UCGbP4OLSZIHWx_nX6IM5TwA" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/kerwin.jones" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
             <a href="mailto:kerwin65@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         <p>&copy; 2026 Kerwin's Domain. All rights reserved.</p>
         <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Designed with balance in mind. Built with Pure HTML, CSS and JS</p>
     </footer>
 
-    <!-- VIDEO MODAL POPUP -->
-    <div id="videoModal" class="video-modal" onclick="closeVideoModalOnBackground(event)">
-        <div class="video-modal-content">
-            <span class="close-modal" onclick="closeVideoModal()" aria-label="Close video">&times;</span>
-            <div class="video-container"><iframe id="youtubePlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-            <p id="videoModalCaption" class="video-modal-caption"></p>
-        </div>
-    </div>
-
-    <!-- IMAGE MODAL (MANDATORY CLOSE BUTTON ONLY) -->
-    <div id="imageModal" class="modal">
+    <div id="imageModal" class="modal" onclick="closeImageModalOnBackground(event)">
         <div class="image-modal-content">
-            <button class="modal-close-btn" onclick="closeImageModal()" aria-label="Close popup">&times;</button>
-            <img id="modalImage" src="" alt="Enlarged Image" oncontextmenu="return false;">
+            <button class="close-modal" onclick="closeImageModal()" aria-label="Close image">&times;</button>
+            <img id="modalImage" src="" alt="Enlarged Image" oncontextmenu="return false;" draggable="false">
             <p id="modalImageCaption" class="modal-caption"></p>
-            <div id="wallpaperControls" class="wallpaper-controls">
-                <p><i class="fas fa-info-circle"></i> This is a 1920 x 1080 desktop wallpaper. Click the button below to download it to your device.</p>
-                <button class="cta-button" onclick="downloadWallpaper()"><i class="fas fa-download"></i> Download Wallpaper</button>
+            <p id="modalImageDescription" class="modal-caption" style="font-size: 0.95rem; margin-top: 0.5rem; font-style: italic;"></p>
+            <div id="downloadControls" class="wallpaper-controls">
+                <button class="cta-button" onclick="downloadCurrentImage()"><i class="fas fa-download"></i> Download Image</button>
             </div>
         </div>
     </div>
 
+    <div id="videoModal" class="modal" onclick="closeVideoModalOnBackground(event)">
+        <div class="video-modal-content">
+            <button class="close-modal" onclick="closeVideoModal()" aria-label="Close video">&times;</button>
+            <div class="video-container"><iframe id="youtubePlayer" src="" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <p id="videoModalCaption" class="video-modal-caption"></p>
+        </div>
+    </div>
+
     <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Buy Me a Coffee Widget -->
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
@@ -366,80 +602,109 @@
             });
         });
 
-        // VIDEO MODAL
-        const videoModal = document.getElementById('videoModal');
-        const player = document.getElementById('youtubePlayer');
-        const videoCaption = document.getElementById('videoModalCaption');
-        function openVideoModal(videoId, captionText) {
-            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-            videoCaption.textContent = captionText;
-            videoModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeVideoModal() {
-            player.src = ''; 
-            videoModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        function closeVideoModalOnBackground(event) {
-            if (event.target === videoModal) closeVideoModal();
-        }
-
-        // IMAGE MODAL (Close button is the ONLY way to close)
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const modalImageCaption = document.getElementById('modalImageCaption');
-        const wallpaperControls = document.getElementById('wallpaperControls');
-        let currentWallpaperUrl = '';
+        const modalImageDescription = document.getElementById('modalImageDescription');
+        const downloadControls = document.getElementById('downloadControls');
+        let currentDownloadUrl = '';
+        let currentDownloadFilename = '';
 
-        function openImageModal(src, caption, isWallpaper = false) {
+        function openImageModal(src, caption, isDownloadable = false, filename = '', description = '') {
             modalImage.src = src;
             modalImageCaption.textContent = caption;
-            if (isWallpaper) {
-                wallpaperControls.style.display = 'flex';
-                currentWallpaperUrl = src;
+            modalImageDescription.textContent = description;
+            
+            if (isDownloadable) {
+                downloadControls.style.display = 'flex';
+                currentDownloadUrl = src;
+                currentDownloadFilename = filename;
             } else {
-                wallpaperControls.style.display = 'none';
-                currentWallpaperUrl = '';
+                downloadControls.style.display = 'none';
+                currentDownloadUrl = '';
             }
-            modalImage.oncontextmenu = function() { return false; };
+            
             imageModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
+
         function closeImageModal() {
             modalImage.src = ''; 
             imageModal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // Download Function
-        async function downloadWallpaper() {
-            if (!currentWallpaperUrl) return;
+        function closeImageModalOnBackground(event) {
+            if (event.target === imageModal) closeImageModal();
+        }
+
+        async function downloadCurrentImage() {
+            if (!currentDownloadUrl) return;
             try {
-                const response = await fetch(currentWallpaperUrl);
+                const response = await fetch(currentDownloadUrl);
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = 'Kerwins-Domain-Wallpaper-1920x1080.jpg';
+                link.download = currentDownloadFilename || 'downloaded-image.jpg';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 window.URL.revokeObjectURL(url);
-            } catch (error) { window.open(currentWallpaperUrl, '_blank'); }
+            } catch (error) {
+                window.open(currentDownloadUrl, '_blank');
+            }
         }
 
-        // KEYBOARD: ESC only closes video modal. Image modal requires button.
+        const videoModal = document.getElementById('videoModal');
+        const player = document.getElementById('youtubePlayer');
+        const videoCaption = document.getElementById('videoModalCaption');
+
+        function openVideoModal(videoId, captionText) {
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            videoCaption.textContent = captionText;
+            videoModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            player.src = ''; 
+            videoModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeVideoModalOnBackground(event) {
+            if (event.target === videoModal) closeVideoModal();
+        }
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && videoModal.style.display === 'flex') closeVideoModal();
+            if (e.key === 'Escape') {
+                if (imageModal.style.display === 'flex') closeImageModal();
+                if (videoModal.style.display === 'flex') closeVideoModal();
+            }
         });
 
-        // BACK TO TOP
+        document.querySelectorAll('[role="button"]').forEach(el => {
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    el.click();
+                }
+            });
+        });
+
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            backToTopBtn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'flex';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
         });
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
