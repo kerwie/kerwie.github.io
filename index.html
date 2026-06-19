@@ -19,29 +19,29 @@
 <!-- Primary SEO Meta Tags -->
 <title>Kerwin's Domain — Love ~ Strength ~ Resilience</title>
 <meta name="title" content="Kerwin's Domain — Love ~ Strength ~ Resilience" />
-<meta name="description" content="Welcome to Kerwin's Domain - A creative journey through music, AI web development, Linux, and open-source technology. Discover videos, gallery, and passions." />
-<meta name="keywords" content="Kerwin, personal website, AI web development, Linux, Nu Metal, coding, open source, Second Life, medical cannabis, technology enthusiast" />
+<meta name="description" content="Welcome to Kerwin's Domain - A creative journey through music, AI web development, Linux, and open-source technology. Discover videos, wallpapers, and passions." />
+<meta name="keywords" content="Kerwin, personal website, AI web development, Linux, Nu Metal, coding, open source, Second Life, medical cannabis, technology enthusiast, desktop wallpapers" />
 <meta name="author" content="Kerwin" />
 <meta name="robots" content="index, follow" />
 <meta name="language" content="English" />
-<link rel="canonical" href="https://kerwie.github.io" />
+<link rel="canonical" href="https://www.kerwinsdomain.com" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://kerwie.github.io" />
+<meta property="og:url" content="https://www.kerwinsdomain.com" />
 <meta property="og:title" content="Kerwin's Domain — Love ~ Strength ~ Resilience" />
 <meta property="og:description" content="A creative journey through music, technology, and passion. Discover Kerwin's world of AI, Linux, coding, and Nu Metal." />
-<meta property="og:image" content="https://kerwie.github.io/images/og-image.jpg" />
+<meta property="og:image" content="https://www.kerwinsdomain.com/images/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="Kerwin's Domain" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://kerwie.github.io" />
+<meta property="twitter:url" content="https://www.kerwinsdomain.com" />
 <meta property="twitter:title" content="Kerwin's Domain — Love ~ Strength ~ Resilience" />
 <meta property="twitter:description" content="A creative journey through music, technology, and passion. Discover Kerwin's world of AI, Linux, coding, and Nu Metal." />
-<meta property="twitter:image" content="https://kerwie.github.io/images/twitter-image.jpg" />
+<meta property="twitter:image" content="https://www.kerwinsdomain.com/images/twitter-image.jpg" />
 
 <!-- ===================================================================
      STRUCTURED DATA / SCHEMA.ORG - EDIT THESE VALUES
@@ -58,11 +58,11 @@
   "@type": "Person",
   "name": "Kerwin",
   "description": "Creative technology enthusiast passionate about AI, Linux, coding, and music",
-  "url": "https://kerwie.github.io",
+  "url": "https://www.kerwinsdomain.com",
   "sameAs": [
-    "https://www.facebook.com/kerwin.jones",
-    "https://www.youtube.com/@kerwie",
-    "https://x.com/Kerwie1965"
+    "https://www.facebook.com/yourprofile",
+    "https://www.youtube.com/@yourchannel",
+    "https://twitter.com/yourhandle"
   ],
   "interests": [
     "Artificial Intelligence",
@@ -83,7 +83,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Kerwin's Domain",
-  "url": "https://kerwie.github.io",
+  "url": "https://www.kerwinsdomain.com",
   "description": "Personal portfolio showcasing interests in technology, music, and lifestyle"
 }
 </script>
@@ -516,15 +516,15 @@
   }
   .video-modal-close i { font-size: 1rem; }
 
-  /* ---------- Gallery ---------- */
+  /* ---------- Wallpaper Gallery ---------- */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
   .gallery-item {
     position: relative;
-    aspect-ratio: 1;
+    aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -541,64 +541,99 @@
     transition: transform 0.5s;
   }
   .gallery-item:hover img { transform: scale(1.1); }
-  .gallery-item .zoom-icon {
+  .gallery-item .download-icon {
     position: absolute;
     top: 10px; right: 10px;
     background: rgba(138, 63, 214, 0.85);
-    width: 36px; height: 36px;
+    width: 40px; height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
   }
-  .gallery-item:hover .zoom-icon { opacity: 1; }
-  .zoom-icon svg { width: 18px; height: 18px; fill: #fff; }
+  .gallery-item:hover .download-icon { opacity: 1; }
+  .download-icon svg { width: 20px; height: 20px; fill: #fff; }
 
-  /* ---------- Lightbox ---------- */
-  .lightbox {
+  /* ---------- Wallpaper Modal (Download Window) ---------- */
+  .wallpaper-modal {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(5, 0, 10, 0.95);
-    z-index: 2000;
+    z-index: 2001;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     padding: 20px;
   }
-  .lightbox.active { display: flex; }
-  .lightbox img {
-    max-width: 90%;
-    max-height: 75vh;
-    border-radius: 10px;
-    box-shadow: 0 0 50px rgba(180, 122, 255, 0.5);
-  }
-  .lightbox-controls {
-    margin-top: 20px;
+  .wallpaper-modal.active { display: flex; }
+  .wallpaper-modal-content {
+    position: relative;
+    background: #150820;
+    border: 2px solid #8a3fd6;
+    border-radius: 14px;
+    padding: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 60px rgba(180, 122, 255, 0.5);
   }
-  .lightbox-controls button {
-    background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
+  .wallpaper-modal-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain; /* Ensures the whole image is visible */
+    border-radius: 8px;
+    border: 1px solid #3d1760;
+  }
+  .wallpaper-modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #8a3fd6;
+    border: 2px solid #b47aff;
     color: #fff;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 25px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    transition: all 0.25s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   }
-  .lightbox-controls button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(180, 122, 255, 0.5);
+  .wallpaper-modal-close:hover {
+    background: #b47aff;
+    transform: scale(1.1);
   }
-  .lightbox-controls svg { width: 18px; height: 18px; fill: #fff; }
+  .wallpaper-download-btn {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(138, 63, 214, 0.4);
+  }
+  .wallpaper-download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(180, 122, 255, 0.6);
+    background: linear-gradient(135deg, #a055f0, #7a2fd6);
+  }
+  .wallpaper-download-btn i { font-size: 1.2rem; }
 
   /* ---------- Footer ---------- */
   footer {
@@ -664,7 +699,7 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 768px) {
     nav ul { gap: 15px; }
@@ -676,7 +711,6 @@
     #home h1 i { font-size: 0.65em; }
   }
   @media (max-width: 480px) {
-    .gallery-grid { grid-template-columns: 1fr; }
     .video-modal-close { padding: 6px 12px; font-size: 0.85rem; }
   }
 </style>
@@ -696,7 +730,7 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#videos">Videos</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#gallery">Wallpapers</a></li>
     </ul>
   </div>
 </nav>
@@ -712,7 +746,7 @@
     Love ~ Strength ~ Resilience
     <span class="chinese">爱 ~ 力量 ~ 坚韧</span>
   </div>
-  <p class="hero-sub">Welcome to a corner of the web dedicated to Music, Code, Linux and the relentless pursuit of creating something meaningful.</p>
+  <p class="hero-sub">Welcome to a corner of the web dedicated to music, code, Linux, and the relentless pursuit of creating something meaningful.</p>
 </section>
 
 <div class="divider"><span class="ornament">✦</span></div>
@@ -722,7 +756,7 @@
   <h2 class="section-title">About Kerwin</h2>
   <div class="about-content">
     <div class="about-img">
-      <img src="images/kerwin0626.png" alt="Kerwin - Technology enthusiast and creative soul" oncontextmenu="return false;" ondragstart="return false;" onerror="this.src='https://via.placeholder.com/300x380/3d1760/d4a5ff?text=Kerwin'">
+      <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=600&q=80" alt="Kerwin - Technology enthusiast and creative soul" oncontextmenu="return false;" ondragstart="return false;" onerror="this.src='https://via.placeholder.com/300x380/3d1760/d4a5ff?text=Kerwin'">
     </div>
     <div class="about-text">
       <h3>Hello, I'm Kerwin</h3>
@@ -776,12 +810,12 @@
 
 <div class="divider"><span class="ornament">✦</span></div>
 
-<!-- GALLERY -->
+<!-- WALLPAPER GALLERY -->
 <section id="gallery">
-  <h2 class="section-title">Photo Gallery</h2>
-  <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any image to enlarge and download.</p>
+  <h2 class="section-title">Wallpaper Gallery</h2>
+  <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to preview it, then download in full 1920 x 1080 HD resolution.</p>
   <div class="gallery-grid" id="galleryGrid">
-    <!-- Gallery injected via JS -->
+    <!-- Wallpapers injected via JS -->
   </div>
 </section>
 
@@ -798,18 +832,18 @@
   </div>
 </div>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <img id="lightboxImg" src="" alt="Enlarged photo">
-  <div class="lightbox-controls">
-    <button onclick="downloadImage()">
-      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-      Download
+<!-- Wallpaper Modal (Download Window) -->
+<div class="wallpaper-modal" id="wallpaperModal">
+  <div class="wallpaper-modal-content">
+    <button class="wallpaper-modal-close" onclick="closeWallpaperModal()" aria-label="Close wallpaper preview">
+      <i class="fa-solid fa-xmark"></i>
     </button>
-    <button onclick="closeLightbox()">
-      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-      Close
-    </button>
+    <!-- Right-click is enabled here so users can "Save image as..." -->
+    <img id="wallpaperModalImg" src="" alt="Wallpaper Preview">
+    <!-- Direct download link styled as a button -->
+    <a id="wallpaperDownloadBtn" class="wallpaper-download-btn" href="" download="kerwins-domain-wallpaper.jpg" target="_blank">
+      <i class="fa-solid fa-download"></i> Direct Download
+    </a>
   </div>
 </div>
 
@@ -889,89 +923,84 @@
    *    • Videos autoplay when opened in the modal
    * =================================================================== */
   const videos = [
-    { id: 'kXYiU_JCYtU', title: 'Linkin Park - Numb' },
+    { id: 'xCDjxI9Wv1Y', title: 'Linkin Park - Numb' },
     { id: 'eVTXPUF4Oz4', title: 'In The End - Linkin Park' },
-    { id: 'Nco_kh8xJDs', title: 'Alice In Chains - Would?' },
-    { id: 'AcN5ltm4BmQ', title: 'TOOL - FORTY SIX & 2' },
-    { id: 'Bmit1fFoYHQ', title: 'Jerry Cantrell - Afterglow (Official Music Video)' },
-    { id: 'xZi2Xpu6qKs', title: 'CortexUS - Not Broken' }
+    { id: 'r_2YifjTacU', title: 'Korn - Blind' },
+    { id: 'UrGS_El_XQM', title: 'Slipknot - Duality' },
+    { id: '6R1zfMXOy3w', title: 'Deftones - Change (In the House of Flies)' },
+    { id: 'wyx6JDQCslE', title: 'System of a Down - Chop Suey!' }
   ];
 
   /* ===================================================================
-   *  HOW TO MODIFY GALLERY IMAGES - DETAILED INSTRUCTIONS
+   *  HOW TO MODIFY WALLPAPERS - DETAILED INSTRUCTIONS
    * ===================================================================
-   *  The `gallery` array below controls every image in the photo gallery.
+   *  The `wallpapers` array below controls every wallpaper in the gallery.
    *
    *  FORMAT:
-   *    'FULL_URL_TO_YOUR_IMAGE'
+   *    'FULL_URL_TO_YOUR_1920x1080_IMAGE'
    *
    *  IMPORTANT — IMAGE REQUIREMENTS:
-   *    • Use SQUARE images for best results (e.g., 800x800 pixels)
-   *    • The CSS forces a 1:1 aspect ratio, so non-square images will be
-   *      cropped to fit. Portrait or landscape images will be center-cropped.
-   *    • Recommended size: 800x800 or 1000x1000 pixels
-   *    • Supported formats: JPG, PNG, WebP, GIF
+   *    • Use 1920x1080 (Full HD) images for best results.
+   *    • The CSS forces a 16:9 aspect ratio preview, so images will fit perfectly.
+   *    • Recommended size: exactly 1920x1080 pixels.
+   *    • Supported formats: JPG, PNG, WebP.
    *
-   *  WHERE TO GET IMAGES:
+   *  WHERE TO GET WALLPAPERS:
    *    1. Your own hosted images:
-   *       https://yourdomain.com/photos/my-photo.jpg
+   *       https://yourdomain.com/wallpapers/my-wallpaper.jpg
    *
    *    2. Picsum (free random placeholders):
-   *       https://picsum.photos/id/1015/800/800
+   *       https://picsum.photos/id/1015/1920/1080
    *       Change the ID number to get different images
    *
    *    3. Unsplash (free high-quality photos):
-   *       https://images.unsplash.com/photo-EXAMPLE?w=800
+   *       https://images.unsplash.com/photo-EXAMPLE?w=1920&q=80
    *       Go to unsplash.com, find a photo, right-click → "Copy image address"
-   *       Add ?w=800 to the end to resize to 800px width
+   *       Add ?w=1920&q=80 to the end to resize to 1920px width
    *
    *    4. Imgur (image hosting):
    *       Upload to imgur.com, right-click the image → "Copy image address"
    *       Use the direct link (ends in .jpg, .png, etc.)
    *
-   *    5. Cloudinary or other CDNs:
-   *       Any image CDN that allows hotlinking (direct linking)
-   *
-   *  TO ADD A NEW IMAGE:
+   *  TO ADD A NEW WALLPAPER:
    *    1. Copy one of the existing URL lines (including the comma)
-   *       Example: 'https://picsum.photos/id/1015/800/800',
+   *       Example: 'https://picsum.photos/id/1015/1920/1080',
    *    2. Paste it below the last entry in the array
-   *    3. Replace the URL with your new image URL
-   *       Example: 'https://yourdomain.com/photos/new-photo.jpg',
+   *    3. Replace the URL with your new wallpaper URL
+   *       Example: 'https://yourdomain.com/wallpapers/new-wallpaper.jpg',
    *    4. Make sure the line you just added ends with a comma
    *    5. The LAST line in the array must NOT have a trailing comma
    *
-   *  TO REMOVE AN IMAGE:
-   *    1. Find the line with the image URL you want to remove
+   *  TO REMOVE A WALLPAPER:
+   *    1. Find the line with the wallpaper URL you want to remove
    *    2. Delete the entire line (including the comma at the end)
    *    3. Make sure the line ABOVE the deleted line still ends with a comma
    *    4. The LAST line must NOT have a trailing comma
    *
-   *  TO REPLACE AN IMAGE:
-   *    1. Find the line with the image you want to change
-   *    2. Replace the entire URL with your new image URL
+   *  TO REPLACE A WALLPAPER:
+   *    1. Find the line with the wallpaper you want to change
+   *    2. Replace the entire URL with your new wallpaper URL
    *    3. Keep the single quotes and comma (unless it's the last item)
    *
    *  GRID LAYOUT:
-   *    • Desktop (wide screens): 4 columns
-   *    • Tablet (≤900px width): 2 columns
-   *    • Phone (≤480px width): 1 column
+   *    • Desktop (wide screens): 2 columns (16:9 ratio)
+   *    • Tablet & Phone (≤900px width): 1 column
    *
-   *  TIP: Use 4, 8, 12, 16... images for a perfectly even grid.
-   *       The gallery automatically adjusts to show all images beautifully.
+   *  TIP: Use 4, 8, 12... wallpapers for a perfectly even grid.
+   *       When clicked, the wallpaper opens in a preview window with a direct download button.
    *
-   *  EXAMPLE — Adding a new photo:
-   *    'https://images.unsplash.com/photo-example?w=800',
+   *  EXAMPLE — Adding a new wallpaper:
+   *    'https://images.unsplash.com/photo-example?w=1920&q=80',
    * =================================================================== */
-  const gallery = [
-    '/images/lsrwallpaper.pny',
-    'https://picsum.photos/id/1025/800/800',
-    'https://picsum.photos/id/1035/800/800',
-    'https://picsum.photos/id/1043/800/800',
-    'https://picsum.photos/id/1052/800/800',
-    'https://picsum.photos/id/1060/800/800',
-    'https://picsum.photos/id/1069/800/800',
-    'https://picsum.photos/id/1074/800/800'
+  const wallpapers = [
+    'https://picsum.photos/id/1015/1920/1080',
+    'https://picsum.photos/id/1025/1920/1080',
+    'https://picsum.photos/id/1035/1920/1080',
+    'https://picsum.photos/id/1043/1920/1080',
+    'https://picsum.photos/id/1052/1920/1080',
+    'https://picsum.photos/id/1060/1920/1080',
+    'https://picsum.photos/id/1069/1920/1080',
+    'https://picsum.photos/id/1074/1920/1080'
   ];
 
   /* ---------- Render Videos ---------- */
@@ -1013,53 +1042,56 @@
     if (e.target === videoModal) closeVideoModal();
   });
 
-  /* ---------- Render Gallery ---------- */
+  /* ---------- Render Wallpaper Gallery ---------- */
   const galleryGrid = document.getElementById('galleryGrid');
-  gallery.forEach(src => {
+  wallpapers.forEach(src => {
     const item = document.createElement('div');
     item.className = 'gallery-item';
-    item.onclick = () => openLightbox(src);
+    item.onclick = () => openWallpaperModal(src);
     item.innerHTML = `
-      <img src="${src}" alt="Gallery image" loading="lazy" oncontextmenu="return false;" ondragstart="return false;">
-      <div class="zoom-icon">
-        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <img src="${src}" alt="Desktop Wallpaper" loading="lazy" oncontextmenu="return false;" ondragstart="return false;">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
       </div>
     `;
     galleryGrid.appendChild(item);
   });
 
-  /* ---------- Lightbox ---------- */
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  let currentImgSrc = '';
+  /* ---------- Wallpaper Modal Functions ---------- */
+  const wallpaperModal = document.getElementById('wallpaperModal');
+  const wallpaperModalImg = document.getElementById('wallpaperModalImg');
+  const wallpaperDownloadBtn = document.getElementById('wallpaperDownloadBtn');
+  let currentWallpaperSrc = '';
 
-  function openLightbox(src) {
-    currentImgSrc = src;
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
+  function openWallpaperModal(src) {
+    currentWallpaperSrc = src;
+    wallpaperModalImg.src = src;
+    
+    // Set the direct download link
+    wallpaperDownloadBtn.href = src;
+    
+    // Extract a clean filename from the URL for the download
+    const urlParts = src.split('/');
+    const fileName = urlParts[urlParts.length - 1].split('?')[0] || 'kerwins-domain-wallpaper.jpg';
+    wallpaperDownloadBtn.download = fileName;
+    
+    wallpaperModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-  function closeLightbox() {
-    lightbox.classList.remove('active');
+
+  function closeWallpaperModal() {
+    wallpaperModal.classList.remove('active');
     document.body.style.overflow = '';
   }
-  function downloadImage() {
-    if (!currentImgSrc) return;
-    const a = document.createElement('a');
-    a.href = currentImgSrc;
-    a.download = 'kerwins-domain-photo.jpg';
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
+
+  wallpaperModal.addEventListener('click', (e) => {
+    if (e.target === wallpaperModal) closeWallpaperModal();
   });
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeLightbox();
       closeVideoModal();
+      closeWallpaperModal();
     }
   });
 
