@@ -24,24 +24,24 @@
 <meta name="author" content="Kerwin" />
 <meta name="robots" content="index, follow" />
 <meta name="language" content="English" />
-<link rel="canonical" href="https://www.kerwinsdomain.com" />
+<link rel="canonical" href="https://kerwie.github.io" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.kerwinsdomain.com" />
+<meta property="og:url" content="https://kerwie.github.io" />
 <meta property="og:title" content="Kerwin's Domain — Love ~ Strength ~ Resilience" />
 <meta property="og:description" content="A creative journey through music, technology, and passion. Discover Kerwin's world of AI, Linux, coding, and Nu Metal." />
-<meta property="og:image" content="https://www.kerwinsdomain.com/images/og-image.jpg" />
+<meta property="og:image" content="https://kerwie.github.io/images/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="Kerwin's Domain" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://www.kerwinsdomain.com" />
+<meta property="twitter:url" content="https://kerwie.github.io" />
 <meta property="twitter:title" content="Kerwin's Domain — Love ~ Strength ~ Resilience" />
 <meta property="twitter:description" content="A creative journey through music, technology, and passion. Discover Kerwin's world of AI, Linux, coding, and Nu Metal." />
-<meta property="twitter:image" content="https://www.kerwinsdomain.com/images/twitter-image.jpg" />
+<meta property="twitter:image" content="https://kerwie.github.io/images/twitter-image.jpg" />
 
 <!-- ===================================================================
      STRUCTURED DATA / SCHEMA.ORG - EDIT THESE VALUES
@@ -58,11 +58,11 @@
   "@type": "Person",
   "name": "Kerwin",
   "description": "Creative technology enthusiast passionate about AI, Linux, coding, and music",
-  "url": "https://www.kerwinsdomain.com",
+  "url": "https://kerwie.github.io",
   "sameAs": [
-    "https://www.facebook.com/yourprofile",
-    "https://www.youtube.com/@yourchannel",
-    "https://twitter.com/yourhandle"
+    "https://www.facebook.com/kerwin.jones",
+    "https://www.youtube.com/@kerwie",
+    "https://x.com/Kerwie1965"
   ],
   "interests": [
     "Artificial Intelligence",
@@ -83,7 +83,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Kerwin's Domain",
-  "url": "https://www.kerwinsdomain.com",
+  "url": "https://kerwie.github.io",
   "description": "Personal portfolio showcasing interests in technology, music, and lifestyle"
 }
 </script>
@@ -141,6 +141,7 @@
     align-items: center;
     padding: 0 30px;
   }
+  /* Logo is back to a non-clickable div */
   nav .logo {
     font-size: 1.4rem;
     font-weight: bold;
@@ -586,7 +587,7 @@
   .wallpaper-modal-content img {
     max-width: 100%;
     max-height: 70vh;
-    object-fit: contain; /* Ensures the whole image is visible */
+    object-fit: contain;
     border-radius: 8px;
     border: 1px solid #3d1760;
   }
@@ -725,6 +726,7 @@
 <!-- Navigation -->
 <nav>
   <div class="nav-inner">
+    <!-- Logo is back to a non-clickable div -->
     <div class="logo"><i class="fa-solid fa-yin-yang"></i> Kerwin's <span>Domain</span></div>
     <ul>
       <li><a href="#home">Home</a></li>
@@ -808,7 +810,7 @@
   </div>
 </section>
 
-<div class="divider"><span class="ornament">✦</span></div>
+<div class="divider"><span class="ornament"></span></div>
 
 <!-- WALLPAPER GALLERY -->
 <section id="gallery">
@@ -838,9 +840,7 @@
     <button class="wallpaper-modal-close" onclick="closeWallpaperModal()" aria-label="Close wallpaper preview">
       <i class="fa-solid fa-xmark"></i>
     </button>
-    <!-- Right-click is enabled here so users can "Save image as..." -->
     <img id="wallpaperModalImg" src="" alt="Wallpaper Preview">
-    <!-- Direct download link styled as a button -->
     <a id="wallpaperDownloadBtn" class="wallpaper-download-btn" href="" download="kerwins-domain-wallpaper.jpg" target="_blank">
       <i class="fa-solid fa-download"></i> Direct Download
     </a>
@@ -1067,10 +1067,8 @@
     currentWallpaperSrc = src;
     wallpaperModalImg.src = src;
     
-    // Set the direct download link
     wallpaperDownloadBtn.href = src;
     
-    // Extract a clean filename from the URL for the download
     const urlParts = src.split('/');
     const fileName = urlParts[urlParts.length - 1].split('?')[0] || 'kerwins-domain-wallpaper.jpg';
     wallpaperDownloadBtn.download = fileName;
