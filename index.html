@@ -6,17 +6,7 @@
 
 <!-- ===================================================================
      SEO CONFIGURATION - EDIT THESE VALUES
-     ===================================================================
-     INSTRUCTIONS:
-     1. Replace the content="" values with your actual information
-     2. Keep the quotes around all values
-     3. Description should be 150-160 characters max
-     4. Title should be 50-60 characters max
-     5. Keywords: use 5-10 relevant, comma-separated terms
-     6. Update URLs to your actual domain
      =================================================================== -->
-
-<!-- Primary SEO Meta Tags -->
 <title>Kerwin's Domain — Love ~ Strength ~ Resilience</title>
 <meta name="title" content="Kerwin's Domain — Love ~ Strength ~ Resilience" />
 <meta name="description" content="Welcome to Kerwin's Domain - A creative journey through music, AI web development, Linux, and open-source technology. Discover videos, wallpapers, and passions." />
@@ -307,9 +297,7 @@
     display: block;
     pointer-events: auto;
   }
-  .about-text {
-    text-align: center;
-  }
+  .about-text { text-align: center; }
   .about-text h3 {
     color: #d4a5ff;
     font-size: 1.8rem;
@@ -502,9 +490,7 @@
     cursor: pointer;
     transition: color 0.3s;
   }
-  .volume-control i:hover {
-    color: #fff;
-  }
+  .volume-control i:hover { color: #fff; }
   .volume-slider {
     -webkit-appearance: none;
     appearance: none;
@@ -539,9 +525,7 @@
     border: none;
     box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
   }
-  .volume-slider::-moz-range-thumb:hover {
-    background: #d4a5ff;
-  }
+  .volume-slider::-moz-range-thumb:hover { background: #d4a5ff; }
   .volume-value {
     color: #d4a5ff;
     font-size: 0.8rem;
@@ -563,10 +547,11 @@
     overflow: hidden;
     cursor: pointer;
     border: 2px solid #3d1760;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
   .gallery-item:hover {
     border-color: #b47aff;
+    box-shadow: 0 10px 30px rgba(180, 122, 255, 0.4);
   }
   .gallery-item img {
     width: 100%; height: 100%;
@@ -600,7 +585,6 @@
   .gallery-item:hover .download-btn {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
   }
   .gallery-item .download-btn:hover {
     background: linear-gradient(135deg, #a055f0, #7a2fd6);
@@ -608,13 +592,13 @@
   }
   .download-btn i { font-size: 1rem; }
 
-  /* ---------- Wallpaper Modal (SMALLER WINDOW) ---------- */
+  /* ---------- Wallpaper Modal (SMALLER COMPACT WINDOW) ---------- */
   .wallpaper-modal {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(5, 0, 10, 0.85);
+    background: rgba(5, 0, 10, 0.88);
     z-index: 2001;
     justify-content: center;
     align-items: center;
@@ -627,16 +611,21 @@
     border: 2px solid #8a3fd6;
     border-radius: 14px;
     padding: 20px;
-    max-width: 600px;
+    max-width: 500px;
     width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 0 60px rgba(180, 122, 255, 0.5);
+    animation: modalPop 0.3s ease;
+  }
+  @keyframes modalPop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
   }
   .wallpaper-modal-content img {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 300px;
     object-fit: contain;
     border-radius: 8px;
     border: 1px solid #3d1760;
@@ -699,7 +688,6 @@
     align-items: center;
   }
 
-  /* Love Box: Tight, centered, 2-column layout */
   .love-box {
     width: fit-content;
     max-width: 100%;
@@ -736,7 +724,6 @@
     font-weight: 600;
     margin: 0;
   }
-  
   .love-box ul {
     list-style: none;
     padding: 0;
@@ -768,7 +755,6 @@
     font-size: 0.85rem;
     font-weight: 500;
   }
-  
   .fav-link {
     font-size: 0.75rem;
     color: #b47aff;
@@ -786,7 +772,6 @@
     color: #fff;
     text-decoration: underline;
   }
-  
   .fav-link::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -892,6 +877,7 @@
       gap: 8px;
     }
     .volume-slider { width: 80px; }
+    .wallpaper-modal-content { max-width: 90%; }
   }
 </style>
 </head>
@@ -936,38 +922,20 @@
     </div>
     <div class="about-text">
       <h3>Hello, I'm Kerwin</h3>
-      
       <div class="bio-box">
         <p>A 60-year-old creative soul who believes the best years are the ones where you're still learning, still rocking, and still building. Life has taught me that passion doesn't have an expiration date — it only gets louder.</p>
         <p>When I'm not headbanging to Nu Metal riffs, you'll find me tinkering with AI to craft websites, exploring the endless universe of Linux distributions, and pushing the boundaries of what's possible with open-source tools.</p>
         <p>Every line of code, every riff, every distro I try — it's all part of the same journey. Love what you do. Stay strong when it breaks. Be resilient enough to try again.</p>
       </div>
-
       <div class="interests">
-        <a href="https://www.foodnetwork.com" target="_blank" rel="noopener noreferrer" title="Food Network">
-          <i class="fa-solid fa-utensils"></i> Food
-        </a>
-        <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" title="ChatGPT">
-          <i class="fa-solid fa-robot"></i> AI Web Building
-        </a>
-        <a href="https://www.linux.org" target="_blank" rel="noopener noreferrer" title="Linux.org">
-          <i class="fa-brands fa-linux"></i> Linux
-        </a>
-        <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" title="VS Code">
-          <i class="fa-solid fa-code"></i> Coding
-        </a>
-        <a href="https://www.rollingstone.com/music/" target="_blank" rel="noopener noreferrer" title="Rolling Stone Music">
-          <i class="fa-solid fa-guitar"></i> Rock Music
-        </a>
-        <a href="https://opensource.org" target="_blank" rel="noopener noreferrer" title="Open Source Initiative">
-          <i class="fa-solid fa-code-branch"></i> Open Source
-        </a>
-        <a href="https://secondlife.com" target="_blank" rel="noopener noreferrer" title="Second Life">
-          <i class="fa-solid fa-gamepad"></i> Second Life
-        </a>
-        <a href="https://www.tga.gov.au/resources/explore-topic/medicinal-cannabis-hub" target="_blank" rel="noopener noreferrer" title="TGA - Medical Cannabis">
-          <i class="fa-solid fa-cannabis"></i> Medical Cannabis
-        </a>
+        <a href="https://www.foodnetwork.com" target="_blank" rel="noopener noreferrer" title="Food Network"><i class="fa-solid fa-utensils"></i> Food</a>
+        <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" title="ChatGPT"><i class="fa-solid fa-robot"></i> AI Web Building</a>
+        <a href="https://www.linux.org" target="_blank" rel="noopener noreferrer" title="Linux.org"><i class="fa-brands fa-linux"></i> Linux</a>
+        <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" title="VS Code"><i class="fa-solid fa-code"></i> Coding</a>
+        <a href="https://www.rollingstone.com/music/" target="_blank" rel="noopener noreferrer" title="Rolling Stone Music"><i class="fa-solid fa-guitar"></i> Rock Music</a>
+        <a href="https://opensource.org" target="_blank" rel="noopener noreferrer" title="Open Source Initiative"><i class="fa-solid fa-code-branch"></i> Open Source</a>
+        <a href="https://secondlife.com" target="_blank" rel="noopener noreferrer" title="Second Life"><i class="fa-solid fa-gamepad"></i> Second Life</a>
+        <a href="https://www.tga.gov.au/resources/explore-topic/medicinal-cannabis-hub" target="_blank" rel="noopener noreferrer" title="TGA - Medical Cannabis"><i class="fa-solid fa-cannabis"></i> Medical Cannabis</a>
       </div>
     </div>
   </div>
@@ -978,17 +946,15 @@
 <section id="videos">
   <h2 class="section-title">Favourite Videos</h2>
   <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any video to play it right here with full controls and captions.</p>
-  <div class="videos-grid" id="videosGrid">
-  </div>
+  <div class="videos-grid" id="videosGrid"></div>
 </section>
 
-<div class="divider"><span class="ornament">✦</span></div>
+<div class="divider"><span class="ornament"></span></div>
 
 <section id="gallery">
   <h2 class="section-title">Wallpaper Gallery</h2>
   <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to preview it, then download in full 1920 x 1080 HD resolution.</p>
-  <div class="gallery-grid" id="galleryGrid">
-  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
 </section>
 
 <div class="video-modal" id="videoModal">
@@ -1008,15 +974,16 @@
   </div>
 </div>
 
+<!-- SMALLER WALLPAPER PREVIEW MODAL -->
 <div class="wallpaper-modal" id="wallpaperModal">
   <div class="wallpaper-modal-content">
     <button class="wallpaper-modal-close" onclick="closeWallpaperModal()" aria-label="Close wallpaper preview">
       <i class="fa-solid fa-xmark"></i>
     </button>
     <img id="wallpaperModalImg" src="" alt="Wallpaper Preview">
-    <a id="wallpaperDownloadBtn" class="wallpaper-download-btn" href="" download="kerwins-domain-wallpaper.jpg" target="_blank">
+    <button id="wallpaperDownloadBtn" class="wallpaper-download-btn" onclick="directDownload()">
       <i class="fa-solid fa-download"></i> Download Wallpaper
-    </a>
+    </button>
   </div>
 </div>
 
@@ -1027,50 +994,22 @@
       <h4>People I Love &amp; Respect</h4>
     </div>
     <ul>
-      <li>
-        <span class="person-name">Dezzie</span>
-        <a href="https://answersingenesis.org/" class="fav-link" data-tooltip="My Faith is My Strength" target="_blank" rel="noopener noreferrer">My Favourite Website</a>
-      </li>
-      <li>
-        <span class="person-name">Melly</span>
-        <a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a>
-      </li>
-      <li>
-        <span class="person-name">Stewie</span>
-        <a href="http://www.youtube.com" class="fav-link" data-tooltip="I Love Youtube" target="_blank" rel="noopener noreferrer">My Favourite Website</a>
-      </li>
-      <li>
-        <span class="person-name">Mel - NDIS</span>
-        <a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a>
-      </li>
-      <li>
-        <span class="person-name">Nicole - NDIS</span>
-        <a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a>
-      </li>
-      <li>
-        <span class="person-name">Name Six - TBA</span>
-        <a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a>
-      </li>
+      <li><span class="person-name">Dezzie</span><a href="https://answersingenesis.org/" class="fav-link" data-tooltip="My Faith is My Strength" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
+      <li><span class="person-name">Melly</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
+      <li><span class="person-name">Stewie</span><a href="http://www.youtube.com" class="fav-link" data-tooltip="I Love Youtube" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
+      <li><span class="person-name">Mel - NDIS</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
+      <li><span class="person-name">Nicole - NDIS</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
+      <li><span class="person-name">Name Six - TBA</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
     </ul>
   </div>
 
   <div class="footer-center">
     <div class="social-icons">
-      <a href="https://www.facebook.com/kerwin.jones" title="Facebook" aria-label="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
-      <a href="https://www.youtube.com/@kerwie" title="YouTube" aria-label="YouTube">
-        <i class="fa-brands fa-youtube"></i>
-      </a>
-      <a href="https://x.com/Kerwie1965" title="X / Twitter" aria-label="X">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-      <a href="https://www.tiktok.com/@kerwie" title="TikTok" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-tiktok"></i>
-      </a>
-      <a href="mailto:kerwin65@gmail.com" title="Email" aria-label="Email">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
+      <a href="https://www.facebook.com/kerwin.jones" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@kerwie" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://x.com/Kerwie1965" title="X / Twitter" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.tiktok.com/@kerwie" title="TikTok" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="mailto:kerwin65@gmail.com" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
     <p class="copyright">
       &copy; <span id="year"></span> <strong>Kerwin's Domain</strong>. All Rights Reserved.
@@ -1108,26 +1047,15 @@
   function changeVolume(value) {
     currentVolume = parseInt(value);
     document.getElementById('volumeValue').textContent = currentVolume + '%';
-    
     const iframe = document.getElementById('videoFrame');
     if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: 'setVolume',
-        args: [currentVolume]
-      }), '*');
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [currentVolume] }), '*');
     }
-    
     updateVolumeIcon();
-    
     if (isMuted && currentVolume > 0) {
       isMuted = false;
       if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage(JSON.stringify({
-          event: 'command',
-          func: 'unMute',
-          args: []
-        }), '*');
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
       }
     }
   }
@@ -1135,44 +1063,25 @@
   function toggleMute() {
     const iframe = document.getElementById('videoFrame');
     if (!iframe || !iframe.contentWindow) return;
-    
     isMuted = !isMuted;
-    
     if (isMuted) {
-      iframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: 'mute',
-        args: []
-      }), '*');
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
       document.getElementById('volumeSlider').value = 0;
       document.getElementById('volumeValue').textContent = '0%';
     } else {
-      iframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: 'unMute',
-        args: []
-      }), '*');
-      iframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: 'setVolume',
-        args: [currentVolume]
-      }), '*');
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [currentVolume] }), '*');
       document.getElementById('volumeSlider').value = currentVolume;
       document.getElementById('volumeValue').textContent = currentVolume + '%';
     }
-    
     updateVolumeIcon();
   }
 
   function updateVolumeIcon() {
     const icon = document.getElementById('volumeIcon');
-    if (isMuted || currentVolume === 0) {
-      icon.className = 'fa-solid fa-volume-xmark';
-    } else if (currentVolume < 50) {
-      icon.className = 'fa-solid fa-volume-low';
-    } else {
-      icon.className = 'fa-solid fa-volume-high';
-    }
+    if (isMuted || currentVolume === 0) icon.className = 'fa-solid fa-volume-xmark';
+    else if (currentVolume < 50) icon.className = 'fa-solid fa-volume-low';
+    else icon.className = 'fa-solid fa-volume-high';
   }
 
   /* ---------- Render Videos ---------- */
@@ -1199,7 +1108,6 @@
     videoModalTitle.textContent = title;
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
     isMuted = false;
     document.getElementById('volumeSlider').value = currentVolume;
     document.getElementById('volumeValue').textContent = currentVolume + '%';
@@ -1220,7 +1128,6 @@
   const galleryGrid = document.getElementById('galleryGrid');
   const wallpaperModal = document.getElementById('wallpaperModal');
   const wallpaperModalImg = document.getElementById('wallpaperModalImg');
-  const wallpaperDownloadBtn = document.getElementById('wallpaperDownloadBtn');
   let currentWallpaperSrc = '';
 
   wallpapers.forEach(src => {
@@ -1229,25 +1136,29 @@
     item.onclick = () => openWallpaperModal(src);
     item.innerHTML = `
       <img src="${src}" alt="Desktop Wallpaper" loading="lazy" oncontextmenu="return false;" ondragstart="return false;">
-      <a href="${src}" class="download-btn" onclick="event.stopPropagation(); downloadWallpaper('${src}');">
+      <a href="${src}" class="download-btn" onclick="event.stopPropagation(); triggerDirectDownload('${src}');">
         <i class="fa-solid fa-download"></i> Download
       </a>
     `;
     galleryGrid.appendChild(item);
   });
 
+  /* Opens the SMALL preview modal */
   function openWallpaperModal(src) {
     currentWallpaperSrc = src;
     wallpaperModalImg.src = src;
-    wallpaperDownloadBtn.href = src;
-    const urlParts = src.split('/');
-    const fileName = urlParts[urlParts.length - 1].split('?')[0] || 'kerwins-domain-wallpaper.jpg';
-    wallpaperDownloadBtn.download = fileName;
     wallpaperModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
-  function downloadWallpaper(src) {
+  /* Direct download from the modal's download button */
+  function directDownload() {
+    if (!currentWallpaperSrc) return;
+    triggerDirectDownload(currentWallpaperSrc);
+  }
+
+  /* Core download function */
+  function triggerDirectDownload(src) {
     const a = document.createElement('a');
     a.href = src;
     const urlParts = src.split('/');
