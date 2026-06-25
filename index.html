@@ -558,122 +558,34 @@
     object-fit: cover;
     display: block;
   }
-  /* Download button overlay - appears on hover */
-  .gallery-item .download-btn {
+  /* "Click to Download" hint overlay - appears on hover */
+  .gallery-item .preview-hint {
     position: absolute;
-    top: 50%;
+    bottom: 12px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
-    color: #fff;
-    border: 2px solid #b47aff;
-    padding: 10px 22px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    transform: translateX(-50%);
+    background: rgba(10, 0, 16, 0.85);
+    color: #d4a5ff;
+    border: 1px solid #b47aff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 15px rgba(180, 122, 255, 0.4);
+    transition: opacity 0.3s, visibility 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
     z-index: 5;
-    cursor: pointer;
-    text-decoration: none;
+    pointer-events: none;
   }
-  .gallery-item:hover .download-btn {
+  .gallery-item:hover .preview-hint {
     opacity: 1;
     visibility: visible;
   }
-  .gallery-item .download-btn:hover {
-    background: linear-gradient(135deg, #a055f0, #7a2fd6);
-    box-shadow: 0 6px 25px rgba(180, 122, 255, 0.6);
-  }
-  .download-btn i { font-size: 1rem; }
-
-  /* ---------- Wallpaper Modal (SMALLER COMPACT WINDOW) ---------- */
-  .wallpaper-modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(5, 0, 10, 0.88);
-    z-index: 2001;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  .wallpaper-modal.active { display: flex; }
-  .wallpaper-modal-content {
-    position: relative;
-    background: #150820;
-    border: 2px solid #8a3fd6;
-    border-radius: 14px;
-    padding: 20px;
-    max-width: 500px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 0 60px rgba(180, 122, 255, 0.5);
-    animation: modalPop 0.3s ease;
-  }
-  @keyframes modalPop {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  .wallpaper-modal-content img {
-    max-width: 100%;
-    max-height: 300px;
-    object-fit: contain;
-    border-radius: 8px;
-    border: 1px solid #3d1760;
-    margin-bottom: 15px;
-  }
-  .wallpaper-modal-close {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    background: #8a3fd6;
-    border: 2px solid #b47aff;
-    color: #fff;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.25s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  }
-  .wallpaper-modal-close:hover {
-    background: #b47aff;
-    transform: scale(1.1);
-  }
-  .wallpaper-download-btn {
-    background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(138, 63, 214, 0.4);
-  }
-  .wallpaper-download-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(180, 122, 255, 0.6);
-    background: linear-gradient(135deg, #a055f0, #7a2fd6);
-  }
-  .wallpaper-download-btn i { font-size: 1.1rem; }
+  .preview-hint i { font-size: 0.85rem; color: #b47aff; }
 
   /* ---------- Footer ---------- */
   footer {
@@ -877,7 +789,6 @@
       gap: 8px;
     }
     .volume-slider { width: 80px; }
-    .wallpaper-modal-content { max-width: 90%; }
   }
 </style>
 </head>
@@ -949,11 +860,11 @@
   <div class="videos-grid" id="videosGrid"></div>
 </section>
 
-<div class="divider"><span class="ornament"></span></div>
+<div class="divider"><span class="ornament">✦</span></div>
 
 <section id="gallery">
   <h2 class="section-title">Wallpaper Gallery</h2>
-  <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to preview it, then download in full 1920 x 1080 HD resolution.</p>
+  <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to download it in full 1920 x 1080 HD resolution.</p>
   <div class="gallery-grid" id="galleryGrid"></div>
 </section>
 
@@ -971,19 +882,6 @@
       </div>
     </div>
     <div class="video-modal-title" id="videoModalTitle"></div>
-  </div>
-</div>
-
-<!-- SMALLER WALLPAPER PREVIEW MODAL -->
-<div class="wallpaper-modal" id="wallpaperModal">
-  <div class="wallpaper-modal-content">
-    <button class="wallpaper-modal-close" onclick="closeWallpaperModal()" aria-label="Close wallpaper preview">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <img id="wallpaperModalImg" src="" alt="Wallpaper Preview">
-    <button id="wallpaperDownloadBtn" class="wallpaper-download-btn" onclick="directDownload()">
-      <i class="fa-solid fa-download"></i> Download Wallpaper
-    </button>
   </div>
 </div>
 
@@ -1124,64 +1022,103 @@
     if (e.target === videoModal) closeVideoModal();
   });
 
-  /* ---------- Render Wallpaper Gallery ---------- */
+  /* ---------- Render Wallpaper Gallery & Download Popup ---------- */
   const galleryGrid = document.getElementById('galleryGrid');
-  const wallpaperModal = document.getElementById('wallpaperModal');
-  const wallpaperModalImg = document.getElementById('wallpaperModalImg');
-  let currentWallpaperSrc = '';
 
   wallpapers.forEach(src => {
     const item = document.createElement('div');
     item.className = 'gallery-item';
-    item.onclick = () => openWallpaperModal(src);
+    item.onclick = () => openWallpaperPopup(src);
     item.innerHTML = `
       <img src="${src}" alt="Desktop Wallpaper" loading="lazy" oncontextmenu="return false;" ondragstart="return false;">
-      <a href="${src}" class="download-btn" onclick="event.stopPropagation(); triggerDirectDownload('${src}');">
-        <i class="fa-solid fa-download"></i> Download
-      </a>
+      <div class="preview-hint">
+        <i class="fa-solid fa-download"></i> Click to Download
+      </div>
     `;
     galleryGrid.appendChild(item);
   });
 
-  /* Opens the SMALL preview modal */
-  function openWallpaperModal(src) {
-    currentWallpaperSrc = src;
-    wallpaperModalImg.src = src;
-    wallpaperModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  /* Direct download from the modal's download button */
-  function directDownload() {
-    if (!currentWallpaperSrc) return;
-    triggerDirectDownload(currentWallpaperSrc);
-  }
-
-  /* Core download function */
-  function triggerDirectDownload(src) {
-    const a = document.createElement('a');
-    a.href = src;
+  /* Opens a smaller popup window with download controls */
+  function openWallpaperPopup(src) {
     const urlParts = src.split('/');
     const fileName = urlParts[urlParts.length - 1].split('?')[0] || 'kerwins-domain-wallpaper.jpg';
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    
+    const popup = window.open('', 'WallpaperDownload', 'width=400,height=280,scrollbars=no,resizable=no');
+    
+    if (popup) {
+      popup.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Download Wallpaper</title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+          <style>
+            body {
+              background: #150820;
+              color: #e6dcf5;
+              font-family: 'Segoe UI', sans-serif;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+              text-align: center;
+            }
+            h3 { color: #d4a5ff; margin-bottom: 10px; font-size: 1.3rem; }
+            p { color: #a89ab8; font-size: 0.9rem; margin-bottom: 25px; }
+            .btn {
+              background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
+              color: #fff;
+              border: none;
+              padding: 10px 24px;
+              border-radius: 25px;
+              font-size: 1rem;
+              font-weight: 600;
+              cursor: pointer;
+              margin: 5px;
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              transition: all 0.3s ease;
+              text-decoration: none;
+            }
+            .btn:hover { background: linear-gradient(135deg, #a055f0, #7a2fd6); transform: translateY(-2px); }
+            .close-btn { background: rgba(10, 0, 16, 0.85); border: 2px solid #b47aff; }
+            .close-btn:hover { background: #8a3fd6; }
+          </style>
+        </head>
+        <body>
+          <h3>Download Wallpaper</h3>
+          <p>Click below to save to your device.</p>
+          <div>
+            <button class="btn" onclick="downloadFile('${src}', '${fileName}')">
+              <i class="fa-solid fa-download"></i> Save to Device
+            </button>
+            <button class="btn close-btn" onclick="window.close()">
+              <i class="fa-solid fa-xmark"></i> Close
+            </button>
+          </div>
+          <script>
+            function downloadFile(url, name) {
+              var a = document.createElement('a');
+              a.href = url;
+              a.download = name;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            }
+          <\/script>
+        </body>
+        </html>
+      `);
+      popup.document.close();
+    }
   }
-
-  function closeWallpaperModal() {
-    wallpaperModal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  wallpaperModal.addEventListener('click', (e) => {
-    if (e.target === wallpaperModal) closeWallpaperModal();
-  });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeVideoModal();
-      closeWallpaperModal();
     }
   });
 
