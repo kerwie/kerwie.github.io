@@ -504,6 +504,77 @@
   }
   .video-modal-close i { font-size: 1rem; }
 
+  /* ---------- Volume Control ---------- */
+  .volume-control {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 0, 16, 0.9);
+    border: 1px solid #5a1f8a;
+    border-radius: 25px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  }
+  .volume-control i {
+    color: #d4a5ff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .volume-control i:hover {
+    color: #fff;
+  }
+  .volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 120px;
+    height: 4px;
+    background: #3d1760;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #b47aff;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
+  }
+  .volume-slider::-webkit-slider-thumb:hover {
+    background: #d4a5ff;
+    transform: scale(1.2);
+  }
+  .volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #b47aff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
+  }
+  .volume-slider::-moz-range-thumb:hover {
+    background: #d4a5ff;
+  }
+  .volume-value {
+    color: #d4a5ff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: right;
+  }
+
   /* ---------- Wallpaper Gallery ---------- */
   .gallery-grid {
     display: grid;
@@ -638,13 +709,13 @@
 
   /* Love Box: Tight, centered, 2-column layout */
   .love-box {
-    width: fit-content; /* Shrinks tightly around the content */
+    width: fit-content;
     max-width: 100%;
     background: rgba(21, 8, 32, 0.6);
     border: 1px solid #5a1f8a;
     border-radius: 10px;
     padding: 14px 20px;
-    margin: 0 auto 25px auto; /* Centers the box */
+    margin: 0 auto 25px auto;
   }
   .love-box-header {
     display: flex;
@@ -674,14 +745,13 @@
     margin: 0;
   }
   
-  /* 2-Column Grid for the list */
   .love-box ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px 24px; /* Vertical gap, Horizontal gap */
+    gap: 8px 24px;
   }
   .love-box ul li {
     display: flex;
@@ -689,7 +759,7 @@
     gap: 6px;
     position: relative;
     padding-left: 14px;
-    white-space: nowrap; /* Keeps name and link on one line */
+    white-space: nowrap;
   }
   .love-box ul li::before {
     content: '♥';
@@ -707,14 +777,13 @@
     font-weight: 500;
   }
   
-  /* Link styling with custom tooltip */
   .fav-link {
     font-size: 0.75rem;
     color: #b47aff;
     text-decoration: none;
     font-style: italic;
     transition: color 0.3s;
-    position: relative; /* Required for tooltip positioning */
+    position: relative;
   }
   .fav-link::before {
     content: '—';
@@ -726,7 +795,6 @@
     text-decoration: underline;
   }
   
-  /* Custom Tooltip Styling */
   .fav-link::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -749,14 +817,12 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     z-index: 100;
   }
-  /* Tooltip hover effect */
   .fav-link:hover::after {
     opacity: 1;
     visibility: visible;
-    bottom: calc(100% + 14px); /* Slight slide up animation */
+    bottom: calc(100% + 14px);
   }
 
-  /* Centered content in the footer */
   .footer-center {
     display: flex;
     flex-direction: column;
@@ -795,7 +861,6 @@
   }
   .copyright strong { color: #d4a5ff; }
 
-  /* ---------- Back to Top ---------- */
   #backToTop {
     position: fixed;
     bottom: 110px;
@@ -816,7 +881,6 @@
   #backToTop.visible { opacity: 1; visibility: visible; }
   #backToTop:hover { transform: translateY(-5px); }
 
-  /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
     .gallery-grid { grid-template-columns: 1fr; }
   }
@@ -831,22 +895,20 @@
   }
   @media (max-width: 480px) {
     .video-modal-close { padding: 6px 12px; font-size: 0.85rem; }
-    /* Stack the list to 1 column on very small screens so it doesn't squish */
     .love-box ul {
       grid-template-columns: 1fr;
       gap: 8px;
     }
+    .volume-slider { width: 80px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Background Chinese Silhouettes -->
 <div class="bg-silhouette" aria-hidden="true">
   <span>爱</span><span>力</span><span>韧</span>
 </div>
 
-<!-- Navigation -->
 <nav>
   <div class="nav-inner">
     <div class="logo"><i class="fa-solid fa-yin-yang"></i> Kerwin's <span>Domain</span></div>
@@ -859,7 +921,6 @@
   </div>
 </nav>
 
-<!-- HOME -->
 <section id="home">
   <h1>
     <i class="fa-solid fa-yin-yang"></i> 
@@ -875,7 +936,6 @@
 
 <div class="divider"><span class="ornament">✦</span></div>
 
-<!-- ABOUT -->
 <section id="about">
   <h2 class="section-title">About Kerwin</h2>
   <div class="about-content">
@@ -923,7 +983,6 @@
 
 <div class="divider"><span class="ornament">✦</span></div>
 
-<!-- VIDEOS -->
 <section id="videos">
   <h2 class="section-title">Favourite Videos</h2>
   <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any video to play it right here with full controls and captions.</p>
@@ -933,7 +992,6 @@
 
 <div class="divider"><span class="ornament">✦</span></div>
 
-<!-- WALLPAPER GALLERY -->
 <section id="gallery">
   <h2 class="section-title">Wallpaper Gallery</h2>
   <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to preview it, then download in full 1920 x 1080 HD resolution.</p>
@@ -941,7 +999,6 @@
   </div>
 </section>
 
-<!-- Video Modal -->
 <div class="video-modal" id="videoModal">
   <div class="video-modal-inner">
     <div class="video-frame-wrap">
@@ -949,12 +1006,16 @@
         <i class="fa-solid fa-xmark"></i> Close Window
       </button>
       <iframe id="videoFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <div class="volume-control">
+        <i class="fa-solid fa-volume-high" id="volumeIcon" onclick="toggleMute()"></i>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100" oninput="changeVolume(this.value)">
+        <span class="volume-value" id="volumeValue">100%</span>
+      </div>
     </div>
     <div class="video-modal-title" id="videoModalTitle"></div>
   </div>
 </div>
 
-<!-- Wallpaper Modal -->
 <div class="wallpaper-modal" id="wallpaperModal">
   <div class="wallpaper-modal-content">
     <button class="wallpaper-modal-close" onclick="closeWallpaperModal()" aria-label="Close wallpaper preview">
@@ -967,18 +1028,7 @@
   </div>
 </div>
 
-<!-- Footer -->
 <footer>
-
-  <!-- ===================================================================
-       LOVE & RESPECT LIST - EDIT THESE NAMES AND LINKS
-       ===================================================================
-       INSTRUCTIONS:
-       1. Replace each "Name One" etc. with a real name
-       2. Replace the href="#" with the actual website URL for that person
-       3. Edit the data-tooltip="..." text to change what the tooltip says
-       4. Keep the <li>, <span>, and <a> tags structure intact
-       =================================================================== -->
   <div class="love-box">
     <div class="love-box-header">
       <i class="fa-solid fa-heart"></i>
@@ -1012,7 +1062,6 @@
     </ul>
   </div>
 
-  <!-- Centered content: Social icons and copyright -->
   <div class="footer-center">
     <div class="social-icons">
       <a href="https://www.facebook.com/kerwin.jones" title="Facebook" aria-label="Facebook">
@@ -1032,10 +1081,8 @@
       &copy; <span id="year"></span> <strong>Kerwin's Domain</strong>. All Rights Reserved.
     </p>
   </div>
-
 </footer>
 
-<!-- Back to Top -->
 <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
@@ -1059,6 +1106,81 @@
     'images/undercons.png'
   ];
 
+  /* ---------- Volume Control ---------- */
+  let currentVolume = 100;
+  let isMuted = false;
+
+  function changeVolume(value) {
+    currentVolume = parseInt(value);
+    document.getElementById('volumeValue').textContent = currentVolume + '%';
+    
+    // Update iframe volume via postMessage
+    const iframe = document.getElementById('videoFrame');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'setVolume',
+        args: [currentVolume]
+      }), '*');
+    }
+    
+    updateVolumeIcon();
+    
+    if (isMuted && currentVolume > 0) {
+      isMuted = false;
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: 'unMute',
+          args: []
+        }), '*');
+      }
+    }
+  }
+
+  function toggleMute() {
+    const iframe = document.getElementById('videoFrame');
+    if (!iframe || !iframe.contentWindow) return;
+    
+    isMuted = !isMuted;
+    
+    if (isMuted) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'mute',
+        args: []
+      }), '*');
+      document.getElementById('volumeSlider').value = 0;
+      document.getElementById('volumeValue').textContent = '0%';
+    } else {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'unMute',
+        args: []
+      }), '*');
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'setVolume',
+        args: [currentVolume]
+      }), '*');
+      document.getElementById('volumeSlider').value = currentVolume;
+      document.getElementById('volumeValue').textContent = currentVolume + '%';
+    }
+    
+    updateVolumeIcon();
+  }
+
+  function updateVolumeIcon() {
+    const icon = document.getElementById('volumeIcon');
+    if (isMuted || currentVolume === 0) {
+      icon.className = 'fa-solid fa-volume-xmark';
+    } else if (currentVolume < 50) {
+      icon.className = 'fa-solid fa-volume-low';
+    } else {
+      icon.className = 'fa-solid fa-volume-high';
+    }
+  }
+
   /* ---------- Render Videos ---------- */
   const videosGrid = document.getElementById('videosGrid');
   const videoModal = document.getElementById('videoModal');
@@ -1071,7 +1193,7 @@
     card.onclick = () => openVideoModal(v.id, v.title);
     card.innerHTML = `
       <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/${v.id}" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/${v.id}?enablejsapi=1" loading="lazy" allowfullscreen></iframe>
         <div class="play-overlay">
           <div class="play-btn">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1084,16 +1206,24 @@
   });
 
   function openVideoModal(id, title) {
-    videoFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&cc_load_policy=1&modestbranding=1&rel=0`;
+    videoFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&cc_load_policy=1&modestbranding=1&rel=0&enablejsapi=1`;
     videoModalTitle.textContent = title;
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Reset volume UI
+    isMuted = false;
+    document.getElementById('volumeSlider').value = currentVolume;
+    document.getElementById('volumeValue').textContent = currentVolume + '%';
+    updateVolumeIcon();
   }
+
   function closeVideoModal() {
     videoModal.classList.remove('active');
     videoFrame.src = '';
     document.body.style.overflow = '';
   }
+
   videoModal.addEventListener('click', (e) => {
     if (e.target === videoModal) closeVideoModal();
   });
@@ -1113,7 +1243,6 @@
     galleryGrid.appendChild(item);
   });
 
-  /* ---------- Wallpaper Modal Functions ---------- */
   const wallpaperModal = document.getElementById('wallpaperModal');
   const wallpaperModalImg = document.getElementById('wallpaperModalImg');
   const wallpaperDownloadBtn = document.getElementById('wallpaperDownloadBtn');
@@ -1129,10 +1258,12 @@
     wallpaperModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+
   function closeWallpaperModal() {
     wallpaperModal.classList.remove('active');
     document.body.style.overflow = '';
   }
+
   wallpaperModal.addEventListener('click', (e) => {
     if (e.target === wallpaperModal) closeWallpaperModal();
   });
@@ -1144,7 +1275,6 @@
     }
   });
 
-  /* ---------- Back to Top ---------- */
   const backToTop = document.getElementById('backToTop');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) backToTop.classList.add('visible');
@@ -1154,11 +1284,9 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ---------- Year ---------- */
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-<!-- Buy Me a Coffee Widget -->
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 </body>
