@@ -384,10 +384,9 @@
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    transition: box-shadow 0.3s, border-color 0.3s;
   }
   .video-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(138, 63, 214, 0.5);
     border-color: #8a3fd6;
   }
@@ -401,31 +400,7 @@
     top: 0; left: 0;
     width: 100%; height: 100%;
     border: 0;
-    pointer-events: none;
   }
-  .video-card .play-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(10, 0, 16, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-  }
-  .video-card:hover .play-overlay { background: rgba(10, 0, 16, 0.15); }
-  .play-btn {
-    width: 70px; height: 70px;
-    border-radius: 50%;
-    background: rgba(138, 63, 214, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 20px rgba(180, 122, 255, 0.6);
-    transition: transform 0.3s;
-  }
-  .video-card:hover .play-btn { transform: scale(1.15); }
-  .play-btn svg { width: 30px; height: 30px; fill: #fff; margin-left: 4px; }
   .video-card .video-title {
     padding: 15px;
     color: #d4a5ff;
@@ -588,41 +563,58 @@
     overflow: hidden;
     cursor: pointer;
     border: 2px solid #3d1760;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: border-color 0.3s;
   }
   .gallery-item:hover {
-    transform: scale(1.03);
     border-color: #b47aff;
   }
   .gallery-item img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.5s;
+    display: block;
   }
-  .gallery-item:hover img { transform: scale(1.1); }
-  .gallery-item .download-icon {
+  /* Download button overlay - appears on hover */
+  .gallery-item .download-btn {
     position: absolute;
-    top: 10px; right: 10px;
-    background: rgba(138, 63, 214, 0.85);
-    width: 40px; height: 40px;
-    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
+    color: #fff;
+    border: 2px solid #b47aff;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
     opacity: 0;
-    transition: opacity 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 15px rgba(180, 122, 255, 0.4);
+    z-index: 5;
+    cursor: pointer;
+    text-decoration: none;
   }
-  .gallery-item:hover .download-icon { opacity: 1; }
-  .download-icon svg { width: 20px; height: 20px; fill: #fff; }
+  .gallery-item:hover .download-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .gallery-item .download-btn:hover {
+    background: linear-gradient(135deg, #a055f0, #7a2fd6);
+    box-shadow: 0 6px 25px rgba(180, 122, 255, 0.6);
+  }
+  .download-btn i { font-size: 1rem; }
 
-  /* ---------- Wallpaper Modal ---------- */
+  /* ---------- Wallpaper Modal (SMALLER WINDOW) ---------- */
   .wallpaper-modal {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(5, 0, 10, 0.95);
+    background: rgba(5, 0, 10, 0.85);
     z-index: 2001;
     justify-content: center;
     align-items: center;
@@ -635,8 +627,8 @@
     border: 2px solid #8a3fd6;
     border-radius: 14px;
     padding: 20px;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 600px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -644,10 +636,11 @@
   }
   .wallpaper-modal-content img {
     max-width: 100%;
-    max-height: 70vh;
+    max-height: 400px;
     object-fit: contain;
     border-radius: 8px;
     border: 1px solid #3d1760;
+    margin-bottom: 15px;
   }
   .wallpaper-modal-close {
     position: absolute;
@@ -671,14 +664,13 @@
     transform: scale(1.1);
   }
   .wallpaper-download-btn {
-    margin-top: 20px;
     background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
     color: #fff;
     text-decoration: none;
     border: none;
     padding: 12px 30px;
     border-radius: 30px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -692,7 +684,7 @@
     box-shadow: 0 8px 25px rgba(180, 122, 255, 0.6);
     background: linear-gradient(135deg, #a055f0, #7a2fd6);
   }
-  .wallpaper-download-btn i { font-size: 1.2rem; }
+  .wallpaper-download-btn i { font-size: 1.1rem; }
 
   /* ---------- Footer ---------- */
   footer {
@@ -1023,7 +1015,7 @@
     </button>
     <img id="wallpaperModalImg" src="" alt="Wallpaper Preview">
     <a id="wallpaperDownloadBtn" class="wallpaper-download-btn" href="" download="kerwins-domain-wallpaper.jpg" target="_blank">
-      <i class="fa-solid fa-download"></i> Direct Download
+      <i class="fa-solid fa-download"></i> Download Wallpaper
     </a>
   </div>
 </div>
@@ -1073,6 +1065,9 @@
       <a href="https://x.com/Kerwie1965" title="X / Twitter" aria-label="X">
         <i class="fa-brands fa-x-twitter"></i>
       </a>
+      <a href="https://www.tiktok.com/@kerwie" title="TikTok" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
       <a href="mailto:kerwin65@gmail.com" title="Email" aria-label="Email">
         <i class="fa-solid fa-envelope"></i>
       </a>
@@ -1114,7 +1109,6 @@
     currentVolume = parseInt(value);
     document.getElementById('volumeValue').textContent = currentVolume + '%';
     
-    // Update iframe volume via postMessage
     const iframe = document.getElementById('videoFrame');
     if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage(JSON.stringify({
@@ -1194,11 +1188,6 @@
     card.innerHTML = `
       <div class="video-wrap">
         <iframe src="https://www.youtube.com/embed/${v.id}?enablejsapi=1" loading="lazy" allowfullscreen></iframe>
-        <div class="play-overlay">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
       </div>
       <div class="video-title">${v.title}</div>
     `;
@@ -1211,7 +1200,6 @@
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Reset volume UI
     isMuted = false;
     document.getElementById('volumeSlider').value = currentVolume;
     document.getElementById('volumeValue').textContent = currentVolume + '%';
@@ -1230,23 +1218,23 @@
 
   /* ---------- Render Wallpaper Gallery ---------- */
   const galleryGrid = document.getElementById('galleryGrid');
+  const wallpaperModal = document.getElementById('wallpaperModal');
+  const wallpaperModalImg = document.getElementById('wallpaperModalImg');
+  const wallpaperDownloadBtn = document.getElementById('wallpaperDownloadBtn');
+  let currentWallpaperSrc = '';
+
   wallpapers.forEach(src => {
     const item = document.createElement('div');
     item.className = 'gallery-item';
     item.onclick = () => openWallpaperModal(src);
     item.innerHTML = `
       <img src="${src}" alt="Desktop Wallpaper" loading="lazy" oncontextmenu="return false;" ondragstart="return false;">
-      <div class="download-icon">
-        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-      </div>
+      <a href="${src}" class="download-btn" onclick="event.stopPropagation(); downloadWallpaper('${src}');">
+        <i class="fa-solid fa-download"></i> Download
+      </a>
     `;
     galleryGrid.appendChild(item);
   });
-
-  const wallpaperModal = document.getElementById('wallpaperModal');
-  const wallpaperModalImg = document.getElementById('wallpaperModalImg');
-  const wallpaperDownloadBtn = document.getElementById('wallpaperDownloadBtn');
-  let currentWallpaperSrc = '';
 
   function openWallpaperModal(src) {
     currentWallpaperSrc = src;
@@ -1257,6 +1245,17 @@
     wallpaperDownloadBtn.download = fileName;
     wallpaperModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+  }
+
+  function downloadWallpaper(src) {
+    const a = document.createElement('a');
+    a.href = src;
+    const urlParts = src.split('/');
+    const fileName = urlParts[urlParts.length - 1].split('?')[0] || 'kerwins-domain-wallpaper.jpg';
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   function closeWallpaperModal() {
