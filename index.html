@@ -432,14 +432,80 @@
     width: 100%; height: 100%;
     border: 0;
   }
-  .video-modal-title {
-    padding: 14px 20px;
-    color: #d4a5ff;
-    text-align: center;
-    font-weight: 500;
-    border-top: 1px solid #3d1760;
+  
+  /* Modal Footer / Caption Bar */
+  .video-modal-footer {
+    padding: 15px 20px;
     background: #0f0518;
+    border-top: 1px solid #3d1760;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
+  .video-modal-title {
+    color: #d4a5ff;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .modal-volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .modal-volume-control i {
+    color: #d4a5ff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .modal-volume-control i:hover { color: #fff; }
+  .modal-volume-control .volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 4px;
+    background: #3d1760;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .modal-volume-control .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #b47aff;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
+  }
+  .modal-volume-control .volume-slider::-webkit-slider-thumb:hover {
+    background: #d4a5ff;
+    transform: scale(1.2);
+  }
+  .modal-volume-control .volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #b47aff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
+  }
+  .modal-volume-control .volume-slider::-moz-range-thumb:hover { background: #d4a5ff; }
+  .modal-volume-control .volume-value {
+    color: #d4a5ff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: right;
+  }
+
   .video-modal-close {
     position: absolute;
     top: 12px;
@@ -467,73 +533,6 @@
     box-shadow: 0 6px 20px rgba(180, 122, 255, 0.7);
   }
   .video-modal-close i { font-size: 1rem; }
-
-  /* ---------- Volume Control ---------- */
-  .volume-control {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 0, 16, 0.9);
-    border: 1px solid #5a1f8a;
-    border-radius: 25px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 10;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  }
-  .volume-control i {
-    color: #d4a5ff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  .volume-control i:hover { color: #fff; }
-  .volume-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 120px;
-    height: 4px;
-    background: #3d1760;
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-  }
-  .volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #b47aff;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
-  }
-  .volume-slider::-webkit-slider-thumb:hover {
-    background: #d4a5ff;
-    transform: scale(1.2);
-  }
-  .volume-slider::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #b47aff;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 0 6px rgba(180, 122, 255, 0.6);
-  }
-  .volume-slider::-moz-range-thumb:hover { background: #d4a5ff; }
-  .volume-value {
-    color: #d4a5ff;
-    font-size: 0.8rem;
-    font-weight: 600;
-    min-width: 35px;
-    text-align: right;
-  }
 
   /* ---------- Wallpaper Gallery ---------- */
   .gallery-grid {
@@ -788,7 +787,6 @@
       grid-template-columns: 1fr;
       gap: 8px;
     }
-    .volume-slider { width: 80px; }
   }
 </style>
 </head>
@@ -875,13 +873,16 @@
         <i class="fa-solid fa-xmark"></i> Close Window
       </button>
       <iframe id="videoFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-      <div class="volume-control">
-        <i class="fa-solid fa-volume-high" id="volumeIcon" onclick="toggleMute()"></i>
-        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100" oninput="changeVolume(this.value)">
-        <span class="volume-value" id="volumeValue">100%</span>
+    </div>
+    <!-- Caption bar with Title and Volume Control centered -->
+    <div class="video-modal-footer">
+      <div class="video-modal-title" id="videoModalTitle"></div>
+      <div class="modal-volume-control">
+        <i class="fa-solid fa-volume-high" id="modalVolumeIcon" onclick="toggleMute()"></i>
+        <input type="range" class="volume-slider" id="modalVolumeSlider" min="0" max="100" value="100" oninput="changeVolume(this.value)">
+        <span class="volume-value" id="modalVolumeValue">100%</span>
       </div>
     </div>
-    <div class="video-modal-title" id="videoModalTitle"></div>
   </div>
 </div>
 
@@ -906,7 +907,7 @@
       <a href="https://www.facebook.com/kerwin.jones" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
       <a href="https://www.youtube.com/@kerwie" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
       <a href="https://x.com/Kerwie1965" title="X / Twitter" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="https://www.tiktok.com/@kerwie65" title="TikTok" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.tiktok.com/@kerwie" title="TikTok" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
       <a href="mailto:kerwin65@gmail.com" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
     <p class="copyright">
@@ -938,13 +939,13 @@
     'images/undercons.png'
   ];
 
-  /* ---------- Volume Control ---------- */
+  /* ---------- Volume Control Logic ---------- */
   let currentVolume = 100;
   let isMuted = false;
 
   function changeVolume(value) {
     currentVolume = parseInt(value);
-    document.getElementById('volumeValue').textContent = currentVolume + '%';
+    document.getElementById('modalVolumeValue').textContent = currentVolume + '%';
     const iframe = document.getElementById('videoFrame');
     if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [currentVolume] }), '*');
@@ -964,19 +965,19 @@
     isMuted = !isMuted;
     if (isMuted) {
       iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
-      document.getElementById('volumeSlider').value = 0;
-      document.getElementById('volumeValue').textContent = '0%';
+      document.getElementById('modalVolumeSlider').value = 0;
+      document.getElementById('modalVolumeValue').textContent = '0%';
     } else {
       iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
       iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [currentVolume] }), '*');
-      document.getElementById('volumeSlider').value = currentVolume;
-      document.getElementById('volumeValue').textContent = currentVolume + '%';
+      document.getElementById('modalVolumeSlider').value = currentVolume;
+      document.getElementById('modalVolumeValue').textContent = currentVolume + '%';
     }
     updateVolumeIcon();
   }
 
   function updateVolumeIcon() {
-    const icon = document.getElementById('volumeIcon');
+    const icon = document.getElementById('modalVolumeIcon');
     if (isMuted || currentVolume === 0) icon.className = 'fa-solid fa-volume-xmark';
     else if (currentVolume < 50) icon.className = 'fa-solid fa-volume-low';
     else icon.className = 'fa-solid fa-volume-high';
@@ -1006,9 +1007,11 @@
     videoModalTitle.textContent = title;
     videoModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Reset volume UI in modal
     isMuted = false;
-    document.getElementById('volumeSlider').value = currentVolume;
-    document.getElementById('volumeValue').textContent = currentVolume + '%';
+    document.getElementById('modalVolumeSlider').value = currentVolume;
+    document.getElementById('modalVolumeValue').textContent = currentVolume + '%';
     updateVolumeIcon();
   }
 
