@@ -677,6 +677,67 @@
     margin-bottom: 0;
     font-size: 1rem;
   }
+  
+  /* ---------- IRC Commands Reference Box - Centered & Compact ---------- */
+  .irc-commands-box {
+    background: rgba(10, 0, 16, 0.7);
+    border: 1px solid #5a1f8a;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 20px auto;
+    font-size: 0.85rem;
+    color: #c9bcd9;
+    line-height: 1.8;
+    width: fit-content;
+    max-width: 100%;
+    text-align: center;
+  }
+  .irc-commands-box h4 {
+    color: #d4a5ff;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .irc-commands-box h4 i {
+    color: #b47aff;
+    font-size: 0.9rem;
+  }
+  .irc-commands-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  .irc-commands-box ul li {
+    margin-bottom: 8px;
+    padding-left: 0;
+    position: relative;
+    text-align: center;
+  }
+  .irc-commands-box ul li::before {
+    content: '▸';
+    margin-right: 8px;
+    color: #8a3fd6;
+    font-weight: bold;
+  }
+  .irc-commands-box code {
+    background: rgba(138, 63, 214, 0.2);
+    color: #d4a5ff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    border: 1px solid rgba(138, 63, 214, 0.3);
+  }
+  .irc-commands-box .cmd-desc {
+    color: #a89ab8;
+    font-size: 0.8rem;
+    margin-left: 5px;
+  }
 
   /* ---------- Footer ---------- */
   footer {
@@ -882,6 +943,8 @@
     }
     .irc-chat-container iframe { height: 450px; min-height: 350px; }
     .irc-chat-container { padding: 15px; }
+    .irc-commands-box { font-size: 0.8rem; padding: 10px 15px; }
+    .irc-commands-box code { font-size: 0.8rem; }
   }
 </style>
 </head>
@@ -1014,6 +1077,25 @@
       </iframe>
     </div>
     
+    <!-- IRC COMMANDS REFERENCE BOX - Centered & Compact -->
+    <div class="irc-commands-box">
+      <h4><i class="fa-solid fa-terminal"></i> Basic IRC Chat Commands</h4>
+      <ul>
+        <li>
+          <code>/nick YourDesiredNickname</code>
+          <span class="cmd-desc">— Change your nickname</span>
+        </li>
+        <li>
+          <code>/msg NickServ REGISTER YourPassword youremail@example.com</code>
+          <span class="cmd-desc">— Register your nickname with NickServ</span>
+        </li>
+        <li>
+          <code>/msg NickServ IDENTIFY YourNickname YourPassword</code>
+          <span class="cmd-desc">— Identify yourself to NickServ after reconnecting</span>
+        </li>
+      </ul>
+    </div>
+    
     <!-- OFFLINE PLACEHOLDER - Shown when chat is disconnected -->
     <div id="ircOffline" class="irc-offline">
       <i class="fa-solid fa-comments"></i>
@@ -1031,7 +1113,7 @@
     <p class="irc-info" style="margin-top: 20px; margin-bottom: 0;">
       <strong>Trouble connecting?</strong> Make sure JavaScript is enabled in your browser.
       <br>
-      <small>Channel: #darkdomain | Server: web.libera.chat</small>
+      <small>Channel: #darkdomain | Server: irc.libera.chat</small>
     </p>
   </div>
 </section>
