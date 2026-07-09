@@ -1,33 +1,36 @@
 {
-  "networks": [
-    {
-      "name": "MyNetwork",
-      "server": {
-        "host": "irc.libera.chat",
-        "port": 6697,
-        "ssl": true
-      },
-      "nick": "YourNick",
-      "realname": "YourRealName",
-      "ident": "yourident",
-      "channels": [
-        "#mychannel",
-        "#anotherchannel"
-      ],
-      "websocket": {
-        "enabled": true,
-        "url": "wss://irc.libera.chat:6697"
-      }
-    }
-  ],
-  "defaults": {
-    "nick": "Guest{{rand}}",
-    "realname": "Guest {{rand}}",
-    "ident": "guest{{rand}}"
+  "windowTitle": "Kerwin's Domain Chat",
+  "startupOptions": {
+    "server": "irc.libera.chat",
+    "port": 6697,
+    "tls": true,
+    "channel": "#darkdomain",
+    "nick": "Kerwin_Guest",
+    "username": "kerwie",
+    "realname": "Kerwin's Domain User"
   },
-  "theme": "default",
-  "startup": {
-    "show_connect_window": true,
-    "connect_automatically": true
-  }
+  "showAutocomplete": true,
+  "allowThemeSwitching": true,
+  "theme": "Default",
+  "themes": [
+    { "name": "Default", "url": "static/themes/default" },
+    { "name": "Dark", "url": "static/themes/dark" },
+    { "name": "Relaxed", "url": "static/themes/relaxed" }
+  ],
+  "buffers": {
+    "messageLayout": "modern",
+    "showJoinParts": true,
+    "showTopics": true,
+    "showNickChanges": true,
+    "showModeChanges": true
+  },
+  "embedly": {
+    "enabled": true
+  },
+  "showSendButton": false,
+  "showEmojiPicker": true,
+  "restrictedServer": false,
+  "allowRegisterProtocolHandler": false,
+  "noticeActiveBuffer": true,
+  "muteSounds": false
 }
