@@ -229,12 +229,9 @@
     color: #d4a5ff;
     font-size: 0.75em;
     filter: drop-shadow(0 0 15px rgba(180, 122, 255, 0.8));
-    animation: slowSpin 20s linear infinite;
+    /* REMOVED: animation: slowSpin 20s linear infinite; */
   }
-  @keyframes slowSpin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
+  /* REMOVED: @keyframes slowSpin animation */
   .tagline {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     color: #b47aff;
@@ -586,6 +583,101 @@
   }
   .preview-hint i { font-size: 0.85rem; color: #b47aff; }
 
+  /* ---------- IRC Chat Section ---------- */
+  .irc-chat-container {
+    background: rgba(21, 8, 32, 0.6);
+    border: 2px solid #5a1f8a;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(138, 63, 214, 0.3);
+  }
+  .irc-chat-container iframe {
+    width: 100%;
+    height: 600px;
+    border: 2px solid #8a3fd6;
+    border-radius: 8px;
+    background: #150820;
+  }
+  .irc-info {
+    text-align: center;
+    color: #a89ab8;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .irc-info strong {
+    color: #d4a5ff;
+  }
+  
+  /* ---------- IRC Chat Controls ---------- */
+  .irc-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .irc-btn {
+    background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(138, 63, 214, 0.4);
+  }
+  .irc-btn:hover {
+    background: linear-gradient(135deg, #a055f0, #7a2fd6);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(180, 122, 255, 0.6);
+  }
+  .irc-btn.disconnect {
+    background: rgba(10, 0, 16, 0.85);
+    border: 2px solid #b47aff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 15px rgba(180, 122, 255, 0.4);
+  }
+  .irc-btn.disconnect:hover {
+    background: #8a3fd6;
+    border-color: #d4a5ff;
+  }
+  .irc-btn i { font-size: 1rem; }
+  
+  /* ---------- IRC Offline Placeholder ---------- */
+  .irc-offline {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(10, 0, 16, 0.5);
+    border: 2px dashed #5a1f8a;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  .irc-offline.active {
+    display: block;
+  }
+  .irc-offline i {
+    font-size: 3rem;
+    color: #8a3fd6;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(180, 122, 255, 0.5));
+  }
+  .irc-offline h3 {
+    color: #d4a5ff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .irc-offline p {
+    color: #a89ab8;
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+
   /* ---------- Footer ---------- */
   footer {
     position: relative;
@@ -780,6 +872,7 @@
     .bg-silhouette { font-size: 40vw; }
     #home h1 { gap: 12px; }
     #home h1 i { font-size: 0.65em; }
+    .irc-chat-container iframe { height: 500px; }
   }
   @media (max-width: 480px) {
     .video-modal-close { padding: 6px 12px; font-size: 0.85rem; }
@@ -787,6 +880,8 @@
       grid-template-columns: 1fr;
       gap: 8px;
     }
+    .irc-chat-container iframe { height: 450px; }
+    .irc-chat-container { padding: 15px; }
   }
 </style>
 </head>
@@ -804,6 +899,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#videos">Videos</a></li>
       <li><a href="#gallery">Wallpapers</a></li>
+      <li><a href="#irc-chat">Chat</a></li>
     </ul>
   </div>
 </nav>
@@ -864,6 +960,118 @@
   <h2 class="section-title">Wallpaper Gallery</h2>
   <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to download it in full 1920 x 1080 HD resolution.</p>
   <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<div class="divider"><span class="ornament">✦</span></div>
+
+<!-- ===================================================================
+     IRC CHAT SECTION - FREE EMBEDDED CLIENT
+     ===================================================================
+     HOW TO MODIFY THIS SECTION:
+     
+     This uses KiwiIRC - a free, web-based IRC client that works when
+     loaded on any webserver (including GitHub Pages, Netlify, etc.)
+     
+     The iframe URL below contains configuration parameters:
+     
+     Current URL: https://kiwiirc.com/client/irc.libera.chat/?nick=Kerwin_Guest|?#kerwins-domain
+     
+     BREAKDOWN OF URL PARAMETERS:
+     ========================================
+     1. IRC SERVER: irc.libera.chat
+        - This is the default server (Libera.Chat)
+        - To change to another network, replace "irc.libera.chat" with:
+          * irc.freenode.net (Freenode)
+          * irc.oftc.net (OFTC)
+          * irc.irchighway.net (IRCHighway)
+          * Your own server: irc.yourserver.com
+     
+     2. CHANNEL: #kerwins-domain
+        - This is the default channel
+        - To change the channel, replace "#kerwins-domain" with your desired channel
+        - Examples: #linux, #coding, #music, #chat, etc.
+        - Note: The channel must exist on the IRC network
+     
+     3. NICKNAME: Kerwin_Guest
+        - This is the default nickname users will have
+        - To change it, replace "Kerwin_Guest" with your preferred nick
+        - Users can change their nickname after connecting
+        - The "|?" at the end allows users to modify the nick
+     
+     4. PORT (optional): Default is 6697 (SSL)
+        - To use a different port, add it after the server:
+          irc.libera.chat:6667 (non-SSL)
+          irc.libera.chat:6697 (SSL - recommended)
+     
+     EXAMPLE URLS:
+     ========================================
+     * Connect to #linux on Libera.Chat:
+       https://kiwiirc.com/client/irc.libera.chat/?nick=User|?#linux
+     
+     * Connect to #python on Freenode:
+       https://kiwiirc.com/client/irc.freenode.net/?nick=Coder|?#python
+     
+     * Connect to #coding on OFTC with custom nick:
+       https://kiwiirc.com/client/irc.oftc.net/?nick=Kerwin|?#coding
+     
+     ALTERNATIVE FREE IRC CLIENTS:
+     ========================================
+     If you want to use a different IRC client, here are alternatives:
+     
+     1. Mibbit (https://widget.mibbit.com/)
+        - Embed code: <iframe src="https://widget.mibbit.com/?server=irc.libera.chat&channel=%23kerwins-domain"></iframe>
+     
+     2. TheLounge (self-hosted, requires server)
+        - More advanced but requires installation on your server
+     
+     3. IRCCloud (https://www.irccloud.com/)
+        - Free tier available, requires account
+     
+     For most websites, KiwiIRC (current implementation) is the easiest
+     and works on any webserver without additional setup.
+     =================================================================== -->
+
+<section id="irc-chat">
+  <h2 class="section-title">Live Chat Room</h2>
+  <div class="irc-chat-container">
+    <p class="irc-info">
+      Join our <strong>FREE live chat room</strong> to connect with other visitors!
+      <br>
+      No registration required - just enter a nickname and start chatting.
+      <br>
+      <small>Powered by KiwiIRC - works on any webserver</small>
+    </p>
+    
+    <!-- IRC CLIENT IFRAME - MODIFY THE URL ACCORDING TO NOTES ABOVE -->
+    <div id="ircIframeWrapper">
+      <iframe 
+        id="ircFrame"
+        src="https://kiwiirc.com/client/irc.libera.chat/?nick=Kerwin_Guest|?#kerwins-domain" 
+        allow="clipboard-read; clipboard-write"
+        loading="lazy">
+      </iframe>
+    </div>
+    
+    <!-- OFFLINE PLACEHOLDER - Shown when chat is disconnected -->
+    <div id="ircOffline" class="irc-offline">
+      <i class="fa-solid fa-comments"></i>
+      <h3>Chat Disconnected</h3>
+      <p>You've left the chat room. Use the button below to rejoin the conversation.</p>
+    </div>
+    
+    <!-- SINGLE CHAT CONTROL BUTTON - Toggles between connect/disconnect -->
+    <div class="irc-controls" id="ircControls">
+      <button class="irc-btn disconnect" onclick="disconnectChat()" aria-label="Disconnect from chat">
+        <i class="fa-solid fa-right-from-bracket"></i> Leave Chat
+      </button>
+    </div>
+    
+    <p class="irc-info" style="margin-top: 20px; margin-bottom: 0;">
+      <strong>Trouble connecting?</strong> Make sure JavaScript is enabled in your browser.
+      <br>
+      <small>Channel: #kerwins-domain | Server: irc.libera.chat</small>
+    </p>
+  </div>
 </section>
 
 <div class="video-modal" id="videoModal">
@@ -1116,6 +1324,52 @@
       `);
       popup.document.close();
     }
+  }
+
+  /* ---------- IRC Chat Disconnect/Reconnect Logic ---------- */
+  // The original IRC URL is stored so we can restore it on reconnect
+  const IRC_URL = 'https://kiwiirc.com/client/irc.libera.chat/?nick=Kerwin_Guest|?#kerwins-domain';
+
+  function disconnectChat() {
+    const iframeWrapper = document.getElementById('ircIframeWrapper');
+    const offlineMsg = document.getElementById('ircOffline');
+    const controls = document.getElementById('ircControls');
+    const iframe = document.getElementById('ircFrame');
+    
+    // Clear the iframe src to actually disconnect from IRC
+    if (iframe) iframe.src = 'about:blank';
+    
+    // Hide the iframe and show the offline placeholder
+    iframeWrapper.style.display = 'none';
+    offlineMsg.classList.add('active');
+    
+    // Replace the "Leave Chat" button with a "Reconnect" button
+    controls.innerHTML = `
+      <button class="irc-btn" onclick="connectChat()" aria-label="Reconnect to chat">
+        <i class="fa-solid fa-plug"></i> Reconnect to Chat
+      </button>
+    `;
+  }
+
+  function connectChat() {
+    const iframeWrapper = document.getElementById('ircIframeWrapper');
+    const offlineMsg = document.getElementById('ircOffline');
+    const controls = document.getElementById('ircControls');
+    const iframe = document.getElementById('ircFrame');
+    
+    // Restore the iframe src to reconnect
+    if (iframe) iframe.src = IRC_URL;
+    
+    // Show the iframe and hide the offline placeholder
+    iframeWrapper.style.display = 'block';
+    offlineMsg.classList.remove('active');
+    
+    // Restore the "Leave Chat" button
+    controls.innerHTML = `
+      <button class="irc-btn disconnect" onclick="disconnectChat()" aria-label="Disconnect from chat">
+        <i class="fa-solid fa-right-from-bracket"></i> Leave Chat
+      </button>
+    `;
   }
 
   document.addEventListener('keydown', (e) => {
