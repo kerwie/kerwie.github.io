@@ -1,0 +1,33 @@
+{
+  "networks": [
+    {
+      "name": "MyNetwork",
+      "server": {
+        "host": "irc.libera.chat",
+        "port": 6697,
+        "ssl": true
+      },
+      "nick": "YourNick",
+      "realname": "YourRealName",
+      "ident": "yourident",
+      "channels": [
+        "#mychannel",
+        "#anotherchannel"
+      ],
+      "websocket": {
+        "enabled": true,
+        "url": "wss://irc.libera.chat:6697"
+      }
+    }
+  ],
+  "defaults": {
+    "nick": "Guest{{rand}}",
+    "realname": "Guest {{rand}}",
+    "ident": "guest{{rand}}"
+  },
+  "theme": "default",
+  "startup": {
+    "show_connect_window": true,
+    "connect_automatically": true
+  }
+}
