@@ -229,9 +229,7 @@
     color: #d4a5ff;
     font-size: 0.75em;
     filter: drop-shadow(0 0 15px rgba(180, 122, 255, 0.8));
-    /* REMOVED: animation: slowSpin 20s linear infinite; */
   }
-  /* REMOVED: @keyframes slowSpin animation */
   .tagline {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     color: #b47aff;
@@ -593,10 +591,12 @@
   }
   .irc-chat-container iframe {
     width: 100%;
-    height: 600px;
+    height: calc(100vh - 250px);
+    min-height: 500px;
     border: 2px solid #8a3fd6;
     border-radius: 8px;
     background: #150820;
+    display: block;
   }
   .irc-info {
     text-align: center;
@@ -872,7 +872,7 @@
     .bg-silhouette { font-size: 40vw; }
     #home h1 { gap: 12px; }
     #home h1 i { font-size: 0.65em; }
-    .irc-chat-container iframe { height: 500px; }
+    .irc-chat-container iframe { height: 500px; min-height: 400px; }
   }
   @media (max-width: 480px) {
     .video-modal-close { padding: 6px 12px; font-size: 0.85rem; }
@@ -880,7 +880,7 @@
       grid-template-columns: 1fr;
       gap: 8px;
     }
-    .irc-chat-container iframe { height: 450px; }
+    .irc-chat-container iframe { height: 450px; min-height: 350px; }
     .irc-chat-container { padding: 15px; }
   }
 </style>
@@ -969,66 +969,27 @@
      ===================================================================
      HOW TO MODIFY THIS SECTION:
      
-     This uses KiwiIRC - a free, web-based IRC client that works when
-     loaded on any webserver (including GitHub Pages, Netlify, etc.)
+     This uses Libera Chat's web client - a free, web-based IRC client
+     that works when loaded on any webserver.
      
-     The iframe URL below contains configuration parameters:
+     Current URL: https://web.libera.chat/#darkdomain
      
-     Current URL: https://kiwiirc.com/client/irc.libera.chat/?nick=Kerwin_Guest|?#kerwins-domain
-     
-     BREAKDOWN OF URL PARAMETERS:
+     TO CHANGE THE CHANNEL:
      ========================================
-     1. IRC SERVER: irc.libera.chat
-        - This is the default server (Libera.Chat)
-        - To change to another network, replace "irc.libera.chat" with:
-          * irc.freenode.net (Freenode)
-          * irc.oftc.net (OFTC)
-          * irc.irchighway.net (IRCHighway)
-          * Your own server: irc.yourserver.com
+     Replace "#darkdomain" with your desired channel name.
+     Examples:
+     - https://web.libera.chat/#linux
+     - https://web.libera.chat/#coding
+     - https://web.libera.chat/#music
      
-     2. CHANNEL: #kerwins-domain
-        - This is the default channel
-        - To change the channel, replace "#kerwins-domain" with your desired channel
-        - Examples: #linux, #coding, #music, #chat, etc.
-        - Note: The channel must exist on the IRC network
+     The channel must exist on the Libera Chat network.
      
-     3. NICKNAME: Kerwin_Guest
-        - This is the default nickname users will have
-        - To change it, replace "Kerwin_Guest" with your preferred nick
-        - Users can change their nickname after connecting
-        - The "|?" at the end allows users to modify the nick
-     
-     4. PORT (optional): Default is 6697 (SSL)
-        - To use a different port, add it after the server:
-          irc.libera.chat:6667 (non-SSL)
-          irc.libera.chat:6697 (SSL - recommended)
-     
-     EXAMPLE URLS:
+     TO USE A DIFFERENT IRC NETWORK:
      ========================================
-     * Connect to #linux on Libera.Chat:
-       https://kiwiirc.com/client/irc.libera.chat/?nick=User|?#linux
+     This implementation uses Libera Chat. For other networks,
+     you would need to use KiwiIRC or Mibbit instead.
      
-     * Connect to #python on Freenode:
-       https://kiwiirc.com/client/irc.freenode.net/?nick=Coder|?#python
-     
-     * Connect to #coding on OFTC with custom nick:
-       https://kiwiirc.com/client/irc.oftc.net/?nick=Kerwin|?#coding
-     
-     ALTERNATIVE FREE IRC CLIENTS:
-     ========================================
-     If you want to use a different IRC client, here are alternatives:
-     
-     1. Mibbit (https://widget.mibbit.com/)
-        - Embed code: <iframe src="https://widget.mibbit.com/?server=irc.libera.chat&channel=%23kerwins-domain"></iframe>
-     
-     2. TheLounge (self-hosted, requires server)
-        - More advanced but requires installation on your server
-     
-     3. IRCCloud (https://www.irccloud.com/)
-        - Free tier available, requires account
-     
-     For most websites, KiwiIRC (current implementation) is the easiest
-     and works on any webserver without additional setup.
+     See previous comments for KiwiIRC configuration options.
      =================================================================== -->
 
 <section id="irc-chat">
@@ -1039,12 +1000,19 @@
       <br>
       No registration required - just enter a nickname and start chatting.
       <br>
-      <small>Powered by KiwiIRC - works on any webserver</small>
+      <small>Powered by Libera Chat Web Client</small>
     </p>
     
-    <!-- IRC CLIENT IFRAME - MODIFY THE URL ACCORDING TO NOTES ABOVE -->
+    <!-- IRC CLIENT IFRAME - Full width, responsive height -->
     <div id="ircIframeWrapper">
-     <iframe src="https://web.libera.chat/#darkdomain" style="border:0; width:100%; height:450px;"></iframe>   
+      <iframe 
+        id="ircFrame"
+        src="https://web.libera.chat/#darkdomain" 
+        style="border:0; width:100%; height:calc(100vh - 250px); min-height:500px;"
+        allow="clipboard-read; clipboard-write"
+        loading="lazy">
+      </iframe>
+    </div>
     
     <!-- OFFLINE PLACEHOLDER - Shown when chat is disconnected -->
     <div id="ircOffline" class="irc-offline">
@@ -1322,7 +1290,7 @@
 
   /* ---------- IRC Chat Disconnect/Reconnect Logic ---------- */
   // The original IRC URL is stored so we can restore it on reconnect
-  const IRC_URL = 'https://kiwiirc.com/client/irc.libera.chat/?nick=Kerwin_Guest|?#kerwins-domain';
+  const IRC_URL = 'https://web.libera.chat/#darkdomain';
 
   function disconnectChat() {
     const iframeWrapper = document.getElementById('ircIframeWrapper');
