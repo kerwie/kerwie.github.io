@@ -104,7 +104,6 @@
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #b47aff, #8a3fd6);
   }
-  /* Firefox Support */
   html {
     scrollbar-width: thin;
     scrollbar-color: #8a3fd6 #0a0010;
@@ -461,7 +460,6 @@
     border: 0;
   }
   
-  /* Modal Footer / Caption Bar */
   .video-modal-footer {
     padding: 15px 20px;
     background: #0f0518;
@@ -642,7 +640,6 @@
     color: #d4a5ff;
   }
   
-  /* ---------- IRC Chat Controls ---------- */
   .irc-controls {
     display: flex;
     justify-content: center;
@@ -681,7 +678,6 @@
   }
   .irc-btn i { font-size: 1rem; }
   
-  /* ---------- IRC Offline Placeholder ---------- */
   .irc-offline {
     display: none;
     text-align: center;
@@ -711,7 +707,6 @@
     font-size: 1rem;
   }
   
-  /* ---------- IRC Commands Reference Box - Centered & Compact ---------- */
   .irc-commands-box {
     background: rgba(10, 0, 16, 0.7);
     border: 1px solid #5a1f8a;
@@ -1119,6 +1114,7 @@
   </div>
 </section>
 
+<!-- Video Modal -->
 <div class="video-modal" id="videoModal">
   <div class="video-modal-inner">
     <div class="video-frame-wrap">
@@ -1138,9 +1134,6 @@
   </div>
 </div>
 
-<!-- ===================================================================
-     FOOTER - Restored to original structure with TikTok, Email, and 6 names
-     =================================================================== -->
 <footer>
   <div class="love-box">
     <div class="love-box-header">
@@ -1148,7 +1141,6 @@
       <h4>People I Love & Respect</h4>
     </div>
     <ul>
-      <!-- Replace these placeholder names with your actual people -->
       <li><span class="person-name">Name One</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
       <li><span class="person-name">Name Two</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
       <li><span class="person-name">Name Three</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
@@ -1174,8 +1166,147 @@
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
+<!-- Buy Me a Coffee Widget -->
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
 <script>
-  // Back to top button visibility
+  // =================================================================
+  // GALLERY & VIDEO DATA CONFIGURATION (6 Videos, 8 Wallpapers)
+  // Replace these sample entries with your actual YouTube IDs and image paths
+  // =================================================================
+  
+  const videosData = [
+    { id: 'dQw4w9WgXcQ', title: 'Epic Nu Metal Mix 2024' },
+    { id: 'M7lc1UVf-VE', title: 'Building AI Websites with Python' },
+    { id: 'C0DPdy98e4c', title: 'Linux Mint 21 Full Review' },
+    { id: 'jfKfPfyJRdk', title: 'Lofi Coding Beats to Relax To' },
+    { id: 'kXYiU_JCYtU', title: 'Linkin Park - Numb (Official Music Video)' },
+    { id: '5qap5aO4i9A', title: 'Synthwave / Retrowave Coding Mix' }
+  ];
+
+  const wallpapersData = [
+    { src: 'https://via.placeholder.com/1920x1080/3d1760/d4a5ff?text=Cyberpunk+City+HD', alt: 'Cyberpunk City Wallpaper' },
+    { src: 'https://via.placeholder.com/1920x1080/5a1f8a/e6dcf5?text=Linux+Penguin+Neon', alt: 'Linux Neon Wallpaper' },
+    { src: 'https://via.placeholder.com/1920x1080/0a0010/b47aff?text=Abstract+Purple+Waves', alt: 'Abstract Purple Waves' },
+    { src: 'https://via.placeholder.com/1920x1080/150820/d4a5ff?text=Second+Life+Landscape', alt: 'Second Life Landscape' },
+    { src: 'https://via.placeholder.com/1920x1080/2a0a4a/e6dcf5?text=AI+Neural+Network+Art', alt: 'AI Neural Network Art' },
+    { src: 'https://via.placeholder.com/1920x1080/0f0518/b47aff?text=Dark+Mode+Code+Editor', alt: 'Dark Mode Code Editor' },
+    { src: 'https://via.placeholder.com/1920x1080/3d1760/ffffff?text=Nu+Metal+Concert+Stage', alt: 'Nu Metal Concert Stage' },
+    { src: 'https://via.placeholder.com/1920x1080/1a052a/d4a5ff?text=Retro+Synthwave+Grid', alt: 'Retro Synthwave Grid' }
+  ];
+
+  // =================================================================
+  // RENDER FUNCTIONS
+  // =================================================================
+
+  function renderVideos() {
+    const grid = document.getElementById('videosGrid');
+    grid.innerHTML = videosData.map(video => `
+      <div class="video-card" onclick="openVideoModal('${video.id}', '${video.title}')">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/${video.id}?controls=0&mute=1&rel=0" 
+                  title="${video.title}" 
+                  loading="lazy" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-title">${video.title}</div>
+      </div>
+    `).join('');
+  }
+
+  function renderGallery() {
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = wallpapersData.map(wp => `
+      <div class="gallery-item" onclick="window.open('${wp.src}', '_blank')" title="Click to view/download full resolution">
+        <img src="${wp.src}" alt="${wp.alt}" loading="lazy">
+        <div class="preview-hint">
+          <i class="fa-solid fa-download"></i> Download HD
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // =================================================================
+  // VIDEO MODAL CONTROLS
+  // =================================================================
+
+  function openVideoModal(videoId, title) {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoFrame');
+    const titleEl = document.getElementById('videoModalTitle');
+    
+    // Autoplay enabled when opened
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    titleEl.textContent = title;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoFrame');
+    
+    iframe.src = ''; // Stops video playback and audio
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  // Close modal when clicking outside the inner content
+  document.getElementById('videoModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeVideoModal();
+    }
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeVideoModal();
+    }
+  });
+
+  // Volume Control UI 
+  function toggleMute() {
+    const icon = document.getElementById('modalVolumeIcon');
+    const slider = document.getElementById('modalVolumeSlider');
+    
+    if (slider.value == 0) {
+      slider.value = 100;
+      icon.className = 'fa-solid fa-volume-high';
+      document.getElementById('modalVolumeValue').textContent = '100%';
+    } else {
+      slider.value = 0;
+      icon.className = 'fa-solid fa-volume-xmark';
+      document.getElementById('modalVolumeValue').textContent = '0%';
+    }
+  }
+
+  function changeVolume(val) {
+    const icon = document.getElementById('modalVolumeIcon');
+    const valueEl = document.getElementById('modalVolumeValue');
+    
+    valueEl.textContent = val + '%';
+    if (val == 0) {
+      icon.className = 'fa-solid fa-volume-xmark';
+    } else if (val < 50) {
+      icon.className = 'fa-solid fa-volume-low';
+    } else {
+      icon.className = 'fa-solid fa-volume-high';
+    }
+  }
+
+  // =================================================================
+  // IRC & SCROLL CONTROLS
+  // =================================================================
+
+  function disconnectChat() {
+    document.getElementById('ircFrame').src = 'about:blank';
+    document.getElementById('ircOffline').classList.add('active');
+    document.getElementById('ircControls').innerHTML = '<button class="irc-btn" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Rejoin Chat</button>';
+  }
+
   window.addEventListener('scroll', () => {
     const btn = document.getElementById('backToTop');
     if (window.scrollY > 300) {
@@ -1185,18 +1316,11 @@
     }
   });
 
-  // Basic placeholder functions to prevent errors if video/IRC logic is expanded later
-  function closeVideoModal() {
-    document.getElementById('videoModal').classList.remove('active');
-    document.getElementById('videoFrame').src = '';
-  }
-  function toggleMute() {}
-  function changeVolume(val) {}
-  function disconnectChat() {
-    document.getElementById('ircFrame').src = 'about:blank';
-    document.getElementById('ircOffline').classList.add('active');
-    document.getElementById('ircControls').innerHTML = '<button class="irc-btn" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Rejoin Chat</button>';
-  }
+  // Initialize galleries on load
+  document.addEventListener('DOMContentLoaded', () => {
+    renderVideos();
+    renderGallery();
+  });
 </script>
 </body>
 </html>
