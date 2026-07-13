@@ -616,6 +616,88 @@
   }
   .preview-hint i { font-size: 0.85rem; color: #b47aff; }
 
+  /* ---------- Wallpaper Modal ---------- */
+  .wallpaper-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(5, 0, 10, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .wallpaper-modal.active { display: flex; }
+  .wallpaper-modal-inner {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    background: #150820;
+    border: 2px solid #8a3fd6;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(180, 122, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+  }
+  .wallpaper-image-wrap {
+    width: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 70vh;
+  }
+  .wallpaper-image-wrap img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+  }
+  .wallpaper-modal-footer {
+    padding: 15px 20px;
+    background: #0f0518;
+    border-top: 1px solid #3d1760;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .wallpaper-modal-title {
+    color: #d4a5ff;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .wallpaper-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(10, 0, 16, 0.85);
+    border: 2px solid #b47aff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    transition: all 0.25s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 15px rgba(180, 122, 255, 0.4);
+    backdrop-filter: blur(6px);
+  }
+  .wallpaper-modal-close:hover {
+    background: #8a3fd6;
+    border-color: #d4a5ff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(180, 122, 255, 0.7);
+  }
+
   /* ---------- IRC Chat Section ---------- */
   .irc-chat-container {
     background: rgba(21, 8, 32, 0.6);
@@ -665,11 +747,13 @@
     gap: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(138, 63, 214, 0.4);
+    text-decoration: none;
   }
   .irc-btn:hover {
     background: linear-gradient(135deg, #a055f0, #7a2fd6);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(180, 122, 255, 0.6);
+    color: #fff;
   }
   .irc-btn.disconnect {
     background: rgba(10, 0, 16, 0.85);
@@ -968,7 +1052,7 @@
     .irc-chat-container iframe { height: 500px; min-height: 400px; }
   }
   @media (max-width: 480px) {
-    .video-modal-close { padding: 6px 12px; font-size: 0.85rem; }
+    .video-modal-close, .wallpaper-modal-close { padding: 6px 12px; font-size: 0.85rem; }
     .love-box ul {
       grid-template-columns: 1fr;
       gap: 8px;
@@ -1053,7 +1137,7 @@
 
 <section id="gallery">
   <h2 class="section-title">Wallpaper Gallery</h2>
-  <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to download it in full 1920 x 1080 HD resolution.</p>
+  <p style="text-align:center; color:#a89ab8; margin-bottom:40px;">Click any wallpaper to view and download it in full 1920 x 1080 HD resolution.</p>
   <div class="gallery-grid" id="galleryGrid"></div>
 </section>
 
@@ -1138,6 +1222,24 @@
   </div>
 </div>
 
+<!-- Wallpaper Modal -->
+<div class="wallpaper-modal" id="wallpaperModal" onclick="closeWallpaperModal(event)">
+  <div class="wallpaper-modal-inner" onclick="event.stopPropagation()">
+    <button class="wallpaper-modal-close" onclick="closeWallpaperModal()" aria-label="Close wallpaper preview">
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+    <div class="wallpaper-image-wrap">
+      <img id="wallpaperImage" src="" alt="Wallpaper Preview">
+    </div>
+    <div class="wallpaper-modal-footer">
+      <div class="wallpaper-modal-title" id="wallpaperModalTitle"></div>
+      <a id="wallpaperDownloadBtn" href="#" download class="irc-btn" style="text-decoration: none;">
+        <i class="fa-solid fa-download"></i> Download HD
+      </a>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="love-box">
     <div class="love-box-header">
@@ -1179,7 +1281,6 @@
 <script>
   // =================================================================
   // GALLERY & VIDEO DATA CONFIGURATION (6 Videos, 8 Wallpapers)
-  // Replace these sample entries with your actual YouTube IDs and image paths
   // =================================================================
   
   const videosData = [
@@ -1226,10 +1327,10 @@
   function renderGallery() {
     const grid = document.getElementById('galleryGrid');
     grid.innerHTML = wallpapersData.map(wp => `
-      <div class="gallery-item" onclick="window.open('${wp.src}', '_blank')" title="Click to view/download full resolution">
+      <div class="gallery-item" onclick="openWallpaperModal('${wp.src}', '${wp.alt}')" title="Click to view and download full resolution">
         <img src="${wp.src}" alt="${wp.alt}" loading="lazy">
         <div class="preview-hint">
-          <i class="fa-solid fa-download"></i> Download HD
+          <i class="fa-solid fa-download"></i> View & Download HD
         </div>
       </div>
     `).join('');
@@ -1252,11 +1353,10 @@
     
     titleEl.textContent = title;
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
 
     if (player) {
       player.loadVideoById(videoId);
-      // Sync player volume with current UI slider state
       player.setVolume(slider.value);
       if (slider.value == 0) {
         player.mute();
@@ -1284,27 +1384,24 @@
   function closeVideoModal() {
     const modal = document.getElementById('videoModal');
     if (player) {
-      player.stopVideo(); // Stops playback and audio immediately
+      player.stopVideo();
     }
     modal.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
+    document.body.style.overflow = '';
   }
 
-  // Close modal when clicking outside the inner content
   document.getElementById('videoModal').addEventListener('click', function(e) {
     if (e.target === this) {
       closeVideoModal();
     }
   });
 
-  // Close modal on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeVideoModal();
     }
   });
 
-  // Volume Control UI 
   function toggleMute() {
     if (!player) return;
     const icon = document.getElementById('modalVolumeIcon');
@@ -1352,13 +1449,90 @@
   }
 
   // =================================================================
+  // WALLPAPER MODAL CONTROLS
+  // =================================================================
+
+  function openWallpaperModal(src, alt) {
+    const modal = document.getElementById('wallpaperModal');
+    const img = document.getElementById('wallpaperImage');
+    const title = document.getElementById('wallpaperModalTitle');
+    const downloadBtn = document.getElementById('wallpaperDownloadBtn');
+    
+    img.src = src;
+    img.alt = alt;
+    title.textContent = alt;
+    downloadBtn.href = src;
+    
+    const filename = src.substring(src.lastIndexOf('/') + 1);
+    downloadBtn.setAttribute('download', filename);
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWallpaperModal(event) {
+    if (event && event.target !== event.currentTarget) return;
+    
+    const modal = document.getElementById('wallpaperModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    setTimeout(() => {
+      document.getElementById('wallpaperImage').src = '';
+    }, 300);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('wallpaperModal');
+      if (modal.classList.contains('active')) {
+        closeWallpaperModal();
+      }
+    }
+  });
+
+  // =================================================================
   // IRC & SCROLL CONTROLS
   // =================================================================
 
   function disconnectChat() {
-    document.getElementById('ircFrame').src = 'about:blank';
-    document.getElementById('ircOffline').classList.add('active');
-    document.getElementById('ircControls').innerHTML = '<button class="irc-btn" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Rejoin Chat</button>';
+    const iframe = document.getElementById('ircFrame');
+    const wrapper = document.getElementById('ircIframeWrapper');
+    const offline = document.getElementById('ircOffline');
+    const controls = document.getElementById('ircControls');
+    
+    // Stop the chat by clearing src
+    iframe.src = 'about:blank';
+    // Hide the wrapper window
+    wrapper.style.display = 'none';
+    // Show offline message
+    offline.classList.add('active');
+    // Change button to Rejoin
+    controls.innerHTML = `
+      <button class="irc-btn" onclick="rejoinChat()">
+        <i class="fa-solid fa-rotate-right"></i> Rejoin Chat
+      </button>
+    `;
+  }
+
+  function rejoinChat() {
+    const iframe = document.getElementById('ircFrame');
+    const wrapper = document.getElementById('ircIframeWrapper');
+    const offline = document.getElementById('ircOffline');
+    const controls = document.getElementById('ircControls');
+    
+    // Restore src
+    iframe.src = 'https://web.libera.chat/#darkdomain';
+    // Show wrapper window
+    wrapper.style.display = 'block';
+    // Hide offline message
+    offline.classList.remove('active');
+    // Change button back to Leave
+    controls.innerHTML = `
+      <button class="irc-btn disconnect" onclick="disconnectChat()" aria-label="Disconnect from chat">
+        <i class="fa-solid fa-right-from-bracket"></i> Leave Chat
+      </button>
+    `;
   }
 
   window.addEventListener('scroll', () => {
