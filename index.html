@@ -88,6 +88,28 @@
     overflow-x: hidden;
   }
 
+  /* ---------- Custom Scrollbar ---------- */
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0010;
+    border-left: 1px solid #3d1760;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8a3fd6, #5a1f8a);
+    border-radius: 7px;
+    border: 3px solid #0a0010;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #b47aff, #8a3fd6);
+  }
+  /* Firefox Support */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #8a3fd6 #0a0010;
+  }
+
   /* ---------- Background Chinese Silhouettes ---------- */
   .bg-silhouette {
     position: fixed;
@@ -151,10 +173,21 @@
     font-weight: 500;
     transition: color 0.3s, text-shadow 0.3s;
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  nav ul li a i {
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s;
   }
   nav ul li a:hover {
     color: #d4a5ff;
     text-shadow: 0 0 10px #b47aff;
+  }
+  nav ul li a:hover i {
+    color: #d4a5ff;
+    transform: translateY(-2px);
   }
   nav ul li a::after {
     content: '';
@@ -958,11 +991,11 @@
   <div class="nav-inner">
     <div class="logo"><i class="fa-solid fa-yin-yang"></i> Kerwin's <span>Domain</span></div>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#videos">Videos</a></li>
-      <li><a href="#gallery">Wallpapers</a></li>
-      <li><a href="#irc-chat">Chat</a></li>
+      <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
+      <li><a href="#videos"><i class="fa-solid fa-video"></i> Videos</a></li>
+      <li><a href="#gallery"><i class="fa-solid fa-image"></i> Wallpapers</a></li>
+      <li><a href="#irc-chat"><i class="fa-solid fa-comments"></i> Chat</a></li>
     </ul>
   </div>
 </nav>
@@ -1027,34 +1060,6 @@
 
 <div class="divider"><span class="ornament">✦</span></div>
 
-<!-- ===================================================================
-     IRC CHAT SECTION - FREE EMBEDDED CLIENT
-     ===================================================================
-     HOW TO MODIFY THIS SECTION:
-     
-     This uses Libera Chat's web client - a free, web-based IRC client
-     that works when loaded on any webserver.
-     
-     Current URL: https://web.libera.chat/#darkdomain
-     
-     TO CHANGE THE CHANNEL:
-     ========================================
-     Replace "#darkdomain" with your desired channel name.
-     Examples:
-     - https://web.libera.chat/#linux
-     - https://web.libera.chat/#coding
-     - https://web.libera.chat/#music
-     
-     The channel must exist on the Libera Chat network.
-     
-     TO USE A DIFFERENT IRC NETWORK:
-     ========================================
-     This implementation uses Libera Chat. For other networks,
-     you would need to use KiwiIRC or Mibbit instead.
-     
-     See previous comments for KiwiIRC configuration options.
-     =================================================================== -->
-
 <section id="irc-chat">
   <h2 class="section-title">Live Chat Room</h2>
   <div class="irc-chat-container">
@@ -1066,7 +1071,6 @@
       <small>Powered by Libera Chat Web Client</small>
     </p>
     
-    <!-- IRC CLIENT IFRAME - Full width, responsive height -->
     <div id="ircIframeWrapper">
       <iframe 
         id="ircFrame"
@@ -1077,7 +1081,6 @@
       </iframe>
     </div>
     
-    <!-- IRC COMMANDS REFERENCE BOX - Centered & Compact -->
     <div class="irc-commands-box">
       <h4><i class="fa-solid fa-terminal"></i> Basic IRC Chat Commands</h4>
       <ul>
@@ -1096,14 +1099,12 @@
       </ul>
     </div>
     
-    <!-- OFFLINE PLACEHOLDER - Shown when chat is disconnected -->
     <div id="ircOffline" class="irc-offline">
       <i class="fa-solid fa-comments"></i>
       <h3>Chat Disconnected</h3>
       <p>You've left the chat room. Use the button below to rejoin the conversation.</p>
     </div>
     
-    <!-- SINGLE CHAT CONTROL BUTTON - Toggles between connect/disconnect -->
     <div class="irc-controls" id="ircControls">
       <button class="irc-btn disconnect" onclick="disconnectChat()" aria-label="Disconnect from chat">
         <i class="fa-solid fa-right-from-bracket"></i> Leave Chat
@@ -1126,7 +1127,6 @@
       </button>
       <iframe id="videoFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <!-- Caption bar with Title and Volume Control centered -->
     <div class="video-modal-footer">
       <div class="video-modal-title" id="videoModalTitle"></div>
       <div class="modal-volume-control">
@@ -1138,303 +1138,65 @@
   </div>
 </div>
 
+<!-- ===================================================================
+     FOOTER - Restored to original structure with TikTok, Email, and 6 names
+     =================================================================== -->
 <footer>
   <div class="love-box">
     <div class="love-box-header">
       <i class="fa-solid fa-heart"></i>
-      <h4>People I Love &amp; Respect</h4>
+      <h4>People I Love & Respect</h4>
     </div>
     <ul>
-      <li><span class="person-name">Dezzie</span><a href="https://answersingenesis.org/" class="fav-link" data-tooltip="My Faith is My Strength" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
-      <li><span class="person-name">Melly</span><a href="https://www.youtube.com/watch?v=d404PeooWl8" class="fav-link" data-tooltip="My Favourite Song" target="_blank" rel="noopener noreferrer">My Favourite Song</a></li>
-      <li><span class="person-name">Stewie</span><a href="http://www.youtube.com" class="fav-link" data-tooltip="I Love Youtube" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
-      <li><span class="person-name">Mel - NDIS</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
-      <li><span class="person-name">Nicole - NDIS</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
-      <li><span class="person-name">Baney</span><a href="#" class="fav-link" data-tooltip="Edit this text for the tooltip" target="_blank" rel="noopener noreferrer">My Favourite Website</a></li>
+      <!-- Replace these placeholder names with your actual people -->
+      <li><span class="person-name">Name One</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
+      <li><span class="person-name">Name Two</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
+      <li><span class="person-name">Name Three</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
+      <li><span class="person-name">Name Four</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
+      <li><span class="person-name">Name Five</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
+      <li><span class="person-name">Name Six</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
     </ul>
   </div>
 
   <div class="footer-center">
     <div class="social-icons">
-      <a href="https://www.facebook.com/kerwin.jones" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-      <a href="https://www.youtube.com/@kerwie" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://x.com/Kerwie1965" title="X / Twitter" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="https://www.tiktok.com/@kerwie65" title="TikTok" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="mailto:kerwin65@gmail.com" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://www.facebook.com/kerwin.jones" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@kerwie" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://x.com/Kerwie1965" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.tiktok.com/@kerwie" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="mailto:your.email@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
-    <p class="copyright">
-      &copy; <span id="year"></span> <strong>Kerwin's Domain</strong>. All Rights Reserved.
-    </p>
+    <p class="copyright">&copy; 2026 <strong>Kerwin's Domain</strong>. Built with passion, code, and a little bit of magic.</p>
   </div>
 </footer>
 
-<button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
 
 <script>
-  const videos = [
-    { id: 'kXYiU_JCYtU', title: 'Linkin Park - Numb' },
-    { id: 'eVTXPUF4Oz4', title: 'Linkin Park - In The End' },
-    { id: 'Nco_kh8xJDs', title: 'Alice In Chains - Would?' },
-    { id: 'jhat-xUQ6dw', title: 'Queensrÿche - Silent Lucidity' },
-    { id: 'OYjZK_6i37M', title: 'Godsmack - I Stand Alone' },
-    { id: 'xZi2Xpu6qKs', title: 'CortexUS - Not Broken' }
-  ];
-
-  const wallpapers = [
-    'images/lsrwallpaper.jpg',
-    'images/epicbattleLW.jpg',
-    'images/AICTribute.jpg',
-    'images/LPTribute.jpg',
-    'images/gargoyle.jpg',
-    'images/gt350cartoon.jpg',
-    'images/undercons.png',
-    'images/undercons.png'
-  ];
-
-  /* ---------- Volume Control Logic ---------- */
-  let currentVolume = 100;
-  let isMuted = false;
-
-  function changeVolume(value) {
-    currentVolume = parseInt(value);
-    document.getElementById('modalVolumeValue').textContent = currentVolume + '%';
-    const iframe = document.getElementById('videoFrame');
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [currentVolume] }), '*');
-    }
-    updateVolumeIcon();
-    if (isMuted && currentVolume > 0) {
-      isMuted = false;
-      if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-      }
-    }
-  }
-
-  function toggleMute() {
-    const iframe = document.getElementById('videoFrame');
-    if (!iframe || !iframe.contentWindow) return;
-    isMuted = !isMuted;
-    if (isMuted) {
-      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
-      document.getElementById('modalVolumeSlider').value = 0;
-      document.getElementById('modalVolumeValue').textContent = '0%';
-    } else {
-      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-      iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [currentVolume] }), '*');
-      document.getElementById('modalVolumeSlider').value = currentVolume;
-      document.getElementById('modalVolumeValue').textContent = currentVolume + '%';
-    }
-    updateVolumeIcon();
-  }
-
-  function updateVolumeIcon() {
-    const icon = document.getElementById('modalVolumeIcon');
-    if (isMuted || currentVolume === 0) icon.className = 'fa-solid fa-volume-xmark';
-    else if (currentVolume < 50) icon.className = 'fa-solid fa-volume-low';
-    else icon.className = 'fa-solid fa-volume-high';
-  }
-
-  /* ---------- Render Videos ---------- */
-  const videosGrid = document.getElementById('videosGrid');
-  const videoModal = document.getElementById('videoModal');
-  const videoFrame = document.getElementById('videoFrame');
-  const videoModalTitle = document.getElementById('videoModalTitle');
-
-  videos.forEach(v => {
-    const card = document.createElement('div');
-    card.className = 'video-card';
-    card.onclick = () => openVideoModal(v.id, v.title);
-    card.innerHTML = `
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/${v.id}?enablejsapi=1" loading="lazy" allowfullscreen></iframe>
-      </div>
-      <div class="video-title">${v.title}</div>
-    `;
-    videosGrid.appendChild(card);
-  });
-
-  function openVideoModal(id, title) {
-    videoFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&cc_load_policy=1&modestbranding=1&rel=0&enablejsapi=1`;
-    videoModalTitle.textContent = title;
-    videoModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    // Reset volume UI in modal
-    isMuted = false;
-    document.getElementById('modalVolumeSlider').value = currentVolume;
-    document.getElementById('modalVolumeValue').textContent = currentVolume + '%';
-    updateVolumeIcon();
-  }
-
-  function closeVideoModal() {
-    videoModal.classList.remove('active');
-    videoFrame.src = '';
-    document.body.style.overflow = '';
-  }
-
-  videoModal.addEventListener('click', (e) => {
-    if (e.target === videoModal) closeVideoModal();
-  });
-
-  /* ---------- Render Wallpaper Gallery & Download Popup ---------- */
-  const galleryGrid = document.getElementById('galleryGrid');
-
-  wallpapers.forEach(src => {
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.onclick = () => openWallpaperPopup(src);
-    item.innerHTML = `
-      <img src="${src}" alt="Desktop Wallpaper" loading="lazy" oncontextmenu="return false;" ondragstart="return false;">
-      <div class="preview-hint">
-        <i class="fa-solid fa-download"></i> Click to Download
-      </div>
-    `;
-    galleryGrid.appendChild(item);
-  });
-
-  function openWallpaperPopup(src) {
-    const urlParts = src.split('/');
-    const fileName = urlParts[urlParts.length - 1].split('?')[0] || 'kerwins-domain-wallpaper.jpg';
-    
-    const popup = window.open('', 'WallpaperDownload', 'width=400,height=280,scrollbars=no,resizable=no');
-    
-    if (popup) {
-      popup.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Download Wallpaper</title>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-          <style>
-            body {
-              background: #150820;
-              color: #e6dcf5;
-              font-family: 'Segoe UI', sans-serif;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              height: 100vh;
-              margin: 0;
-              text-align: center;
-            }
-            h3 { color: #d4a5ff; margin-bottom: 10px; font-size: 1.3rem; }
-            p { color: #a89ab8; font-size: 0.9rem; margin-bottom: 25px; }
-            .btn {
-              background: linear-gradient(135deg, #8a3fd6, #5a1f8a);
-              color: #fff;
-              border: none;
-              padding: 10px 24px;
-              border-radius: 25px;
-              font-size: 1rem;
-              font-weight: 600;
-              cursor: pointer;
-              margin: 5px;
-              display: inline-flex;
-              align-items: center;
-              gap: 8px;
-              transition: all 0.3s ease;
-              text-decoration: none;
-            }
-            .btn:hover { background: linear-gradient(135deg, #a055f0, #7a2fd6); transform: translateY(-2px); }
-            .close-btn { background: rgba(10, 0, 16, 0.85); border: 2px solid #b47aff; }
-            .close-btn:hover { background: #8a3fd6; }
-          </style>
-        </head>
-        <body>
-          <h3>Download Wallpaper</h3>
-          <p>Click below to save to your device.</p>
-          <div>
-            <button class="btn" onclick="downloadFile('${src}', '${fileName}')">
-              <i class="fa-solid fa-download"></i> Save to Device
-            </button>
-            <button class="btn close-btn" onclick="window.close()">
-              <i class="fa-solid fa-xmark"></i> Close
-            </button>
-          </div>
-          <script>
-            function downloadFile(url, name) {
-              var a = document.createElement('a');
-              a.href = url;
-              a.download = name;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-            }
-          <\/script>
-        </body>
-        </html>
-      `);
-      popup.document.close();
-    }
-  }
-
-  /* ---------- IRC Chat Disconnect/Reconnect Logic ---------- */
-  // The original IRC URL is stored so we can restore it on reconnect
-  const IRC_URL = 'https://web.libera.chat/#darkdomain';
-
-  function disconnectChat() {
-    const iframeWrapper = document.getElementById('ircIframeWrapper');
-    const offlineMsg = document.getElementById('ircOffline');
-    const controls = document.getElementById('ircControls');
-    const iframe = document.getElementById('ircFrame');
-    
-    // Clear the iframe src to actually disconnect from IRC
-    if (iframe) iframe.src = 'about:blank';
-    
-    // Hide the iframe and show the offline placeholder
-    iframeWrapper.style.display = 'none';
-    offlineMsg.classList.add('active');
-    
-    // Replace the "Leave Chat" button with a "Reconnect" button
-    controls.innerHTML = `
-      <button class="irc-btn" onclick="connectChat()" aria-label="Reconnect to chat">
-        <i class="fa-solid fa-plug"></i> Reconnect to Chat
-      </button>
-    `;
-  }
-
-  function connectChat() {
-    const iframeWrapper = document.getElementById('ircIframeWrapper');
-    const offlineMsg = document.getElementById('ircOffline');
-    const controls = document.getElementById('ircControls');
-    const iframe = document.getElementById('ircFrame');
-    
-    // Restore the iframe src to reconnect
-    if (iframe) iframe.src = IRC_URL;
-    
-    // Show the iframe and hide the offline placeholder
-    iframeWrapper.style.display = 'block';
-    offlineMsg.classList.remove('active');
-    
-    // Restore the "Leave Chat" button
-    controls.innerHTML = `
-      <button class="irc-btn disconnect" onclick="disconnectChat()" aria-label="Disconnect from chat">
-        <i class="fa-solid fa-right-from-bracket"></i> Leave Chat
-      </button>
-    `;
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeVideoModal();
-    }
-  });
-
-  const backToTop = document.getElementById('backToTop');
+  // Back to top button visibility
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) backToTop.classList.add('visible');
-    else backToTop.classList.remove('visible');
-  });
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
   });
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // Basic placeholder functions to prevent errors if video/IRC logic is expanded later
+  function closeVideoModal() {
+    document.getElementById('videoModal').classList.remove('active');
+    document.getElementById('videoFrame').src = '';
+  }
+  function toggleMute() {}
+  function changeVolume(val) {}
+  function disconnectChat() {
+    document.getElementById('ircFrame').src = 'about:blank';
+    document.getElementById('ircOffline').classList.add('active');
+    document.getElementById('ircControls').innerHTML = '<button class="irc-btn" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Rejoin Chat</button>';
+  }
 </script>
-
-<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
-
 </body>
 </html>
