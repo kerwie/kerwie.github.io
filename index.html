@@ -453,10 +453,14 @@
     padding-top: 56.25%;
     background: #000;
   }
-  .video-modal-inner iframe {
+  #youtube-player {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
+  }
+  #youtube-player iframe {
+    width: 100% !important;
+    height: 100% !important;
     border: 0;
   }
   
@@ -1121,13 +1125,13 @@
       <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Close video">
         <i class="fa-solid fa-xmark"></i> Close Window
       </button>
-      <iframe id="videoFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <div id="youtube-player"></div>
     </div>
     <div class="video-modal-footer">
       <div class="video-modal-title" id="videoModalTitle"></div>
       <div class="modal-volume-control">
         <i class="fa-solid fa-volume-high" id="modalVolumeIcon" onclick="toggleMute()"></i>
-        <input type="range" class="volume-slider" id="modalVolumeSlider" min="0" max="100" value="100" oninput="changeVolume(this.value)">
+        <input type="range" class="volume-slider" id="modalVolumeSlider" min="0" max="100" value="100" oninput="changeVolume(this.value)" aria-label="Volume control">
         <span class="volume-value" id="modalVolumeValue">100%</span>
       </div>
     </div>
@@ -1168,6 +1172,9 @@
 
 <!-- Buy Me a Coffee Widget -->
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kerwie" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+<!-- YouTube IFrame API (Required for programmatic volume control) -->
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
   // =================================================================
@@ -1229,26 +1236,56 @@
   }
 
   // =================================================================
-  // VIDEO MODAL CONTROLS
+  // VIDEO MODAL CONTROLS (YouTube IFrame API)
   // =================================================================
+
+  let player;
+
+  function onYouTubeIframeAPIReady() {
+    // Player will be initialized when the first video is opened
+  }
 
   function openVideoModal(videoId, title) {
     const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('videoFrame');
     const titleEl = document.getElementById('videoModalTitle');
+    const slider = document.getElementById('modalVolumeSlider');
     
-    // Autoplay enabled when opened
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
     titleEl.textContent = title;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+    if (player) {
+      player.loadVideoById(videoId);
+      // Sync player volume with current UI slider state
+      player.setVolume(slider.value);
+      if (slider.value == 0) {
+        player.mute();
+      } else {
+        player.unMute();
+      }
+    } else {
+      player = new YT.Player('youtube-player', {
+        videoId: videoId,
+        playerVars: {
+          'autoplay': 1,
+          'controls': 1,
+          'rel': 0,
+          'modestbranding': 1
+        },
+        events: {
+          'onReady': function(event) {
+            event.target.setVolume(slider.value);
+          }
+        }
+      });
+    }
   }
 
   function closeVideoModal() {
     const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('videoFrame');
-    
-    iframe.src = ''; // Stops video playback and audio
+    if (player) {
+      player.stopVideo(); // Stops playback and audio immediately
+    }
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Restore scrolling
   }
@@ -1269,25 +1306,42 @@
 
   // Volume Control UI 
   function toggleMute() {
+    if (!player) return;
     const icon = document.getElementById('modalVolumeIcon');
     const slider = document.getElementById('modalVolumeSlider');
     
-    if (slider.value == 0) {
-      slider.value = 100;
-      icon.className = 'fa-solid fa-volume-high';
-      document.getElementById('modalVolumeValue').textContent = '100%';
+    if (player.isMuted()) {
+      player.unMute();
+      let vol = parseInt(slider.value);
+      if (vol === 0) {
+        vol = 100;
+        slider.value = 100;
+      }
+      player.setVolume(vol);
+      updateVolumeIcon(vol);
     } else {
-      slider.value = 0;
+      player.mute();
       icon.className = 'fa-solid fa-volume-xmark';
       document.getElementById('modalVolumeValue').textContent = '0%';
     }
   }
 
   function changeVolume(val) {
-    const icon = document.getElementById('modalVolumeIcon');
+    if (!player) return;
     const valueEl = document.getElementById('modalVolumeValue');
-    
     valueEl.textContent = val + '%';
+    
+    player.setVolume(val);
+    if (val == 0) {
+      player.mute();
+    } else {
+      player.unMute();
+    }
+    updateVolumeIcon(val);
+  }
+
+  function updateVolumeIcon(val) {
+    const icon = document.getElementById('modalVolumeIcon');
     if (val == 0) {
       icon.className = 'fa-solid fa-volume-xmark';
     } else if (val < 50) {
