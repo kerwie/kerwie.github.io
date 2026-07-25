@@ -868,118 +868,6 @@
     align-items: center;
   }
 
-  .love-box {
-    width: fit-content;
-    max-width: 100%;
-    background: rgba(21, 8, 32, 0.6);
-    border: 1px solid #5a1f8a;
-    border-radius: 10px;
-    padding: 14px 20px;
-    margin: 0 auto 25px auto;
-  }
-  .love-box-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  .love-box-header i {
-    font-size: 1.2rem;
-    color: #e74c8b;
-    filter: drop-shadow(0 0 6px rgba(231, 76, 139, 0.6));
-    animation: heartbeat 1.8s ease-in-out infinite;
-  }
-  @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    15% { transform: scale(1.15); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.1); }
-    60% { transform: scale(1); }
-  }
-  .love-box-header h4 {
-    font-size: 0.95rem;
-    color: #d4a5ff;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin: 0;
-  }
-  .love-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px 24px;
-  }
-  .love-box ul li {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    position: relative;
-    padding-left: 14px;
-    white-space: nowrap;
-  }
-  .love-box ul li::before {
-    content: '♥';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #e74c8b;
-    font-size: 0.7rem;
-    opacity: 0.8;
-  }
-  .person-name {
-    color: #c9bcd9;
-    font-size: 0.85rem;
-    font-weight: 500;
-  }
-  .fav-link {
-    font-size: 0.75rem;
-    color: #b47aff;
-    text-decoration: none;
-    font-style: italic;
-    transition: color 0.3s;
-    position: relative;
-  }
-  .fav-link::before {
-    content: '—';
-    color: #8a7a9e;
-    margin: 0 4px;
-  }
-  .fav-link:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
-  .fav-link::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #150820;
-    border: 1px solid #8a3fd6;
-    color: #d4a5ff;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    z-index: 100;
-  }
-  .fav-link:hover::after {
-    opacity: 1;
-    visibility: visible;
-    bottom: calc(100% + 14px);
-  }
-
   .footer-center {
     display: flex;
     flex-direction: column;
@@ -1053,10 +941,6 @@
   }
   @media (max-width: 480px) {
     .video-modal-close, .wallpaper-modal-close { padding: 6px 12px; font-size: 0.85rem; }
-    .love-box ul {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
     .irc-chat-container iframe { height: 450px; min-height: 350px; }
     .irc-chat-container { padding: 15px; }
     .irc-commands-box { font-size: 0.8rem; padding: 10px 15px; }
@@ -1241,21 +1125,6 @@
 </div>
 
 <footer>
-  <div class="love-box">
-    <div class="love-box-header">
-      <i class="fa-solid fa-heart"></i>
-      <h4>People I Love & Respect</h4>
-    </div>
-    <ul>
-      <li><span class="person-name">Dezzie</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
-      <li><span class="person-name">Melly</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
-      <li><span class="person-name">Stewie</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
-      <li><span class="person-name">Baney</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
-      <li><span class="person-name">Mel - NDIS</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
-      <li><span class="person-name">Nicole - NDIS</span><a href="#" class="fav-link" data-tooltip="A special note about them">Favorite thing</a></li>
-    </ul>
-  </div>
-
   <div class="footer-center">
     <div class="social-icons">
       <a href="https://www.facebook.com/kerwin.jones" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
