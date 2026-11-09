@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ✏️ EDIT: the browser-tab title and the description search engines show -->
+<title>Kerwin Jones — Rain, Rock & Good Living</title>
+<meta name="description" content="The personal website of Kerwin Jones — heavy rock, creating with AI, good food, rainy days and a life without drama.">
+
+<!-- FAVICON: a storm cloud with an ember lightning bolt and rain (built in, no extra file needed).
+     A copy is also saved as favicon.svg next to this file if you'd rather link to that. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231c2740'/%3E%3Cstop offset='1' stop-color='%230a0e17'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffd27a'/%3E%3Cstop offset='1' stop-color='%23ff7a1a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23b)'/%3E%3Cpath d='M18 36a9 9 0 0 1 1.5-17.9A12 12 0 0 1 42 16a10 10 0 0 1 4 20z' fill='%23d9e2f2'/%3E%3Cpath d='M33 30l-7 13h6l-3 12 11-16h-7l4-9z' fill='url(%23f)' stroke='%23fff3d6' stroke-width='1'/%3E%3Cpath d='M19 42l-3 7M24 46l-2 5M44 42l-3 7M49 40l-2 5' stroke='%2352d6ff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================================
+   THEME COLOURS — three themes, pick one in Settings (or change here)
+   ===================================================================== */
+:root{
+  --bg:#090d15; --bg2:#0f1522; --panel:rgba(19,26,41,.78); --panel2:rgba(28,37,58,.7);
+  --line:rgba(255,255,255,.09); --text:#f1f4f9; --muted:#b4bfd0;
+  --accent:#ffa53d; --accent-2:#52d6ff; --accent-soft:rgba(255,165,61,.16);
+  --brass1:#f6d38a; --brass2:#a86b22;
+  --radius:22px; --nav-h:74px;
+  --head:'Oswald','Arial Narrow',Impact,sans-serif;
+  --body:'Outfit','Segoe UI',system-ui,sans-serif;
+}
+body[data-theme="storm"]  {--accent:#5aa9ff; --accent-2:#b48cff; --accent-soft:rgba(90,169,255,.16); --brass1:#cfe3ff; --brass2:#3a5f96;}
+body[data-theme="crimson"]{--accent:#ff4d5e; --accent-2:#ffb347; --accent-soft:rgba(255,77,94,.16); --brass1:#ffc2a8; --brass2:#8c2230;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 10px)}
+body{
+  font-family:var(--body); font-weight:600; font-size:18px; line-height:1.6;
+  color:var(--text); background:var(--bg);
+  background-image:
+    radial-gradient(1200px 700px at 85% -10%, rgba(82,214,255,.10), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, var(--accent-soft), transparent 60%),
+    linear-gradient(180deg,#0b1120 0%, #090d15 100%);
+  background-attachment:fixed; overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+p,blockquote{text-wrap:pretty}
+.hero .tag,.gcard .tg,.gcard .welcome,.sec-head p{text-wrap:balance}
+h1,h2,h3{font-family:var(--head);font-weight:700;letter-spacing:.02em;line-height:1.15}
+button,input,select,textarea{font:inherit}
+::selection{background:var(--accent);color:#111}
+
+/* ---------- rain + lightning layers ---------- */
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#flash{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 60% 0%,rgba(220,235,255,.55),rgba(200,220,255,.08) 60%);opacity:0}
+#flash.on{animation:flash 1.1s ease-out}
+@keyframes flash{0%{opacity:0}6%{opacity:.9}12%{opacity:.15}18%{opacity:.7}100%{opacity:0}}
+main,nav,footer{position:relative;z-index:2}
+
+/* ---------- navigation ---------- */
+nav.top{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:0 clamp(18px,3vw,48px);
+  background:rgba(9,13,21,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--head);font-size:24px;font-weight:700;white-space:nowrap}
+.brand svg{width:38px;height:38px;flex:none}
+.brand span b{color:var(--accent)}
+.navlinks{display:flex;gap:6px;align-items:center;flex-wrap:nowrap}
+.navlinks a{text-decoration:none;padding:9px 16px;border-radius:999px;font-weight:700;font-size:16px;color:var(--muted);transition:.25s;white-space:nowrap}
+.navlinks a:hover,.navlinks a.active{color:var(--text);background:var(--panel2)}
+.gear{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);
+  padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-size:16px;transition:.25s}
+.gear:hover{border-color:var(--accent);box-shadow:0 0 18px var(--accent-soft)}
+.gear svg{width:18px;height:18px}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:8px 12px;font-size:20px;cursor:pointer}
+
+/* ---------- layout ---------- */
+.wrap{width:min(1360px,92vw);margin:0 auto}
+.section{padding:110px 0 60px}
+.sec-head{text-align:center;margin-bottom:46px}
+.eyebrow{display:inline-block;font-family:var(--head);font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:15px;color:var(--accent);
+  padding:6px 16px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);margin-bottom:16px}
+.sec-head h2{font-size:clamp(34px,3.4vw,54px)}
+.sec-head p{color:var(--muted);max-width:760px;margin:12px auto 0;font-size:19px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.wave{display:block;width:100%;height:70px;color:rgba(255,255,255,.035)}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav-h) + 30px) 0 60px}
+.hero .kicker{font-family:var(--head);letter-spacing:.3em;text-transform:uppercase;color:var(--accent-2);font-size:clamp(15px,1.2vw,19px)}
+.hero h1{font-size:clamp(56px,7.4vw,124px);margin:14px 0 10px;
+  background:linear-gradient(180deg,#fff 20%,var(--brass1) 70%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))}
+.hero .tag{font-size:clamp(19px,1.6vw,26px);color:var(--muted);max-width:900px;margin:0 auto}
+.hero .cta{display:flex;gap:16px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:200px;padding:15px 28px;border-radius:999px;font-weight:800;font-size:17px;
+  text-decoration:none;cursor:pointer;border:2px solid transparent;transition:.25s}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--brass2));color:#120c04;box-shadow:0 10px 30px var(--accent-soft)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px var(--accent-soft)}
+.btn.ghost{border-color:var(--line);background:var(--panel);color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent-2)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.scroll-hint{margin-top:60px;color:var(--muted);font-size:15px;letter-spacing:.2em;text-transform:uppercase;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(300px,440px) 1fr;gap:56px;align-items:center;padding:48px}
+.frame{position:relative;padding:18px;border-radius:20px;
+  background:linear-gradient(145deg,var(--brass1),var(--brass2) 45%,var(--brass1) 70%,var(--brass2));
+  box-shadow:0 0 0 2px rgba(0,0,0,.4) inset,0 25px 60px rgba(0,0,0,.55),0 0 50px var(--accent-soft)}
+.frame .inner{border-radius:12px}
+.frame .inner{border-radius:16px;overflow:hidden;aspect-ratio:4/5;background:#0d1320;border:3px solid rgba(0,0,0,.55)}
+.frame .inner img,.frame .inner svg{width:100%;height:100%;object-fit:cover}
+.about-text h3{font-size:clamp(30px,2.6vw,42px);margin-bottom:6px}
+.about-text .sub{color:var(--accent);font-weight:800;margin-bottom:20px;font-size:19px}
+.about-text p{color:#dfe5ef;margin-bottom:16px;font-size:19px}
+.loves{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.bubble{display:flex;align-items:center;gap:14px;min-height:76px;padding:14px 22px;border-radius:999px;text-decoration:none;
+  background:var(--panel);border:1px solid var(--line);font-weight:800;font-size:17px;line-height:1.25;transition:.3s;position:relative;overflow:hidden}
+.bubble .ic{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:23px;background:var(--accent-soft);border:1px solid var(--accent-soft)}
+.bubble .ic svg{width:32px;height:32px}
+.card .ic svg{width:42px;height:42px}
+.bubble:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px var(--accent-soft)}
+.bubble::after{content:"↗";position:absolute;right:20px;opacity:0;transition:.3s;color:var(--accent)}
+.bubble:hover::after{opacity:1}
+
+/* ---------- beliefs ---------- */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.card{padding:34px 28px;display:flex;flex-direction:column;gap:12px;transition:.3s}
+.card:hover{transform:translateY(-5px);border-color:var(--accent-soft)}
+.card .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(135deg,var(--accent-soft),rgba(82,214,255,.12));border:1px solid var(--line)}
+.card h3{font-size:24px}
+.card p{color:var(--muted);font-size:17.5px}
+.quote{margin-top:28px;padding:40px 48px;text-align:center;position:relative;overflow:hidden}
+.quote blockquote{font-family:var(--head);font-size:clamp(24px,2.3vw,36px);font-weight:600;line-height:1.35}
+.quote blockquote b{color:var(--accent)}
+.quote cite{display:block;margin-top:14px;color:var(--muted);font-style:normal;letter-spacing:.15em;text-transform:uppercase;font-size:15px}
+
+/* ---------- videos ---------- */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.vcard{overflow:hidden;display:flex;flex-direction:column}
+.vthumb{position:relative;aspect-ratio:16/9;background:#05070c center/cover no-repeat;cursor:pointer;border:0;width:100%;display:block}
+.vthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.65))}
+.vthumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;
+  background:rgba(10,14,22,.65);border:3px solid var(--accent);display:grid;place-items:center;transition:.25s;backdrop-filter:blur(4px)}
+.vthumb .play::after{content:"";margin-left:6px;border-left:24px solid var(--accent);border-top:15px solid transparent;border-bottom:15px solid transparent}
+.vthumb:hover .play{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 30px var(--accent)}
+.vthumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vinfo{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:84px}
+.vinfo h3{font-family:var(--body);font-weight:800;font-size:18px;line-height:1.3}
+.vinfo small{display:block;color:var(--muted);font-weight:600;font-size:15px}
+.vinfo a{flex:none;font-size:14px;font-weight:800;text-decoration:none;color:var(--accent-2);border:1px solid var(--line);padding:7px 12px;border-radius:999px;white-space:nowrap}
+.vinfo a:hover{border-color:var(--accent-2)}
+
+.vwatch{flex:none;font-size:14px;font-weight:800;color:var(--accent);border:1px solid var(--accent-soft);background:var(--accent-soft);padding:7px 14px;border-radius:999px;white-space:nowrap}
+
+/* ---------- video player popup ---------- */
+.vmodal{position:fixed;inset:0;z-index:260;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(3,5,10,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.vmodal.show{display:flex}
+.vbox{width:min(1500px,94vw,calc((92vh - 160px) * 16 / 9));min-width:min(560px,94vw);display:flex;flex-direction:column;overflow:hidden}
+.vtop{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px 14px 24px;min-height:72px}
+.vtop h3{font-size:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vtop h3 small{font-family:var(--body);font-weight:700;font-size:16px;color:var(--muted);margin-left:10px;letter-spacing:0}
+.vtop .x{position:static;flex:none}
+.vstage{position:relative;aspect-ratio:16/9;background:#000}
+.vstage>div,.vstage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vmsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px;color:var(--muted);font-size:18px}
+.vmsg h4{font-family:var(--head);font-size:28px;color:var(--text)}
+.vctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;min-height:68px}
+.vgroup{display:flex;align-items:center;gap:10px;flex:none}
+.cbtn{height:44px;width:44px;flex:none;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--text);
+  font-weight:800;font-size:15px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.2s}
+.cbtn svg{width:18px;height:18px;fill:currentColor}
+.cbtn:hover{border-color:var(--accent);box-shadow:0 0 14px var(--accent-soft);color:var(--accent)}
+.cbtn.main{width:112px;border-radius:999px;gap:8px;background:linear-gradient(135deg,var(--accent),var(--brass2));color:#120c04;border-color:transparent}
+.cbtn.main:hover{color:#120c04}
+.vol{display:flex;align-items:center;gap:10px;flex:1 1 auto;min-width:0;max-width:340px;justify-content:flex-end}
+.vol output{flex:none;width:44px;text-align:right;font-weight:800;font-size:15px}
+input[type=range].vr{flex:1 1 auto;min-width:70px;max-width:180px;height:6px;accent-color:var(--accent);cursor:pointer}
+
+/* ---------- gallery ---------- */
+.ggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.gitem{overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:.3s}
+.gitem:hover{transform:translateY(-4px);border-color:var(--accent-soft)}
+.gimg{aspect-ratio:4/3;overflow:hidden;background:#0c1220}
+.gimg img,.gimg svg{width:100%;height:100%;object-fit:cover;transition:.5s}
+.gitem:hover .gimg img{transform:scale(1.06)}
+.gcap{padding:14px 18px;font-weight:800;font-size:17px;min-height:56px;display:flex;align-items:center}
+.lightbox{position:fixed;inset:0;z-index:300;background:rgba(3,5,10,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:40px}
+.lightbox.show{display:flex}
+.lightbox img{max-width:min(1400px,90vw);max-height:80vh;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.lightbox p{font-size:20px;font-weight:800}
+.x{position:absolute;top:22px;right:26px;width:50px;height:50px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:26px;cursor:pointer;line-height:1}
+.x:hover{border-color:var(--accent)}
+
+/* ---------- chat ---------- */
+.chat-grid{display:grid;grid-template-columns:380px 1fr;gap:26px;align-items:stretch}
+.chat-side{padding:30px;display:flex;flex-direction:column;gap:18px}
+.chat-side h3{font-size:26px}
+label.f{display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:16px}
+.inp{width:100%;padding:13px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(5,8,14,.7);color:var(--text);font-weight:600;font-size:17px;outline:none;transition:.2s}
+.inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+select.inp{appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);
+  background-position:calc(100% - 22px) 52%,calc(100% - 16px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px}
+select.inp option{background:#111827;color:#fff}
+.note{color:var(--muted);font-size:15px;line-height:1.5}
+.chat-frame{overflow:hidden;min-height:620px;position:relative;display:flex}
+.chat-frame iframe{flex:1;width:100%;border:0;background:#fff}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:40px;color:var(--muted)}
+.chat-empty .big{font-size:64px}
+.chat-empty h3{color:var(--text);font-size:28px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ---------- footer ---------- */
+footer{padding:60px 0 50px;text-align:center;border-top:1px solid var(--line);background:rgba(5,8,14,.55)}
+.legacy{max-width:820px;margin:0 auto 22px;font-size:19px;color:#dfe5ef;font-style:italic}
+footer .small{color:var(--muted);font-size:15px}
+footer .small a{color:var(--accent);text-decoration:none;cursor:pointer}
+
+/* ---------- welcome gate (profile card) ---------- */
+.gate{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(circle at 50% 30%,rgba(18,26,44,.82),rgba(4,6,11,.96))}
+.gate.hide{display:none}
+.gcard{width:min(600px,94vw);max-height:94vh;overflow:auto;padding:34px 38px;text-align:center;position:relative}
+.gcard .avatar{width:122px;height:122px;margin:0 auto 14px;border-radius:50%;padding:6px;
+  background:linear-gradient(145deg,var(--brass1),var(--brass2),var(--brass1));box-shadow:0 0 40px var(--accent-soft)}
+.gcard .avatar>div{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0d1320;border:3px solid rgba(0,0,0,.5)}
+.gcard .avatar img,.gcard .avatar svg{width:100%;height:100%;object-fit:cover}
+.gcard h2{font-size:38px}
+.gcard .tg{color:var(--accent);font-weight:800;margin:2px 0 6px}
+.gcard .welcome{color:var(--muted);font-size:17px;margin-bottom:20px}
+.chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.chips span{font-size:14px;font-weight:800;padding:6px 12px;border-radius:999px;background:var(--panel2);border:1px solid var(--line)}
+.gcard label.f{text-align:left}
+.terms{text-align:left;height:170px;overflow:auto;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(5,8,14,.6);font-size:15px;color:#cdd5e2;margin:16px 0 14px;line-height:1.55}
+.terms h4{font-family:var(--head);font-size:17px;margin:10px 0 4px;color:var(--text);letter-spacing:.04em}
+.terms h4:first-child{margin-top:0}
+.check{display:flex;align-items:flex-start;gap:12px;text-align:left;font-weight:800;font-size:16px;cursor:pointer;margin-bottom:20px}
+.check input{width:22px;height:22px;accent-color:var(--accent);flex:none;margin-top:2px;cursor:pointer}
+.gcard .btn{width:100%}
+.denied{display:none}
+.denied .big{font-size:60px;margin-bottom:10px}
+
+/* ---------- modals (password + settings) ---------- */
+.modal{position:fixed;inset:0;z-index:250;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,5,10,.8);backdrop-filter:blur(6px)}
+.modal.show{display:flex}
+.mbox{width:min(460px,94vw);padding:34px;position:relative}
+.mbox h3{font-size:28px;margin-bottom:6px}
+.mbox .note{margin-bottom:18px}
+.mbox form{display:flex;flex-direction:column;gap:14px}
+.err{color:#ff7b7b;font-weight:800;font-size:15px;min-height:22px}
+.sbox{width:min(1100px,95vw);max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 30px;border-bottom:1px solid var(--line)}
+.shead h3{font-size:30px}
+.sbody{overflow:auto;padding:26px 30px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.sgroup{padding:22px;border-radius:18px;border:1px solid var(--line);background:rgba(5,8,14,.45);display:flex;flex-direction:column;gap:14px}
+.sgroup.full{grid-column:1/-1}
+.sgroup h4{font-family:var(--head);font-size:20px;letter-spacing:.04em;color:var(--accent)}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800;font-size:16px}
+.toggle input{width:22px;height:22px;accent-color:var(--accent);cursor:pointer}
+.vrow{display:grid;grid-template-columns:40px 1fr 1.4fr;gap:10px;align-items:center}
+.vrow b{color:var(--accent);text-align:center}
+.ggrid-set{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grow{display:grid;grid-template-columns:128px 1fr;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02)}
+.gthumb{position:relative;width:128px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid var(--line);background:#0c1220}
+.gthumb img,.gthumb svg{width:100%;height:100%;object-fit:cover;display:block}
+.gthumb::after{content:"Change";position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.65);font-size:13px;font-weight:800;text-align:center;padding:3px;opacity:0;transition:.2s}
+.gthumb:hover::after{opacity:1}
+.gthumb .num{position:absolute;top:6px;left:6px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#120c04;font-size:13px;font-weight:800;display:grid;place-items:center}
+.gfields{display:flex;flex-direction:column;gap:8px;min-width:0}
+.gfields .inp,.gbtns .inp{padding:9px 12px;font-size:15px;min-width:0}
+.gbtns{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}
+.sbtn{height:42px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap;transition:.2s}
+.sbtn:hover{border-color:var(--accent);color:var(--accent)}
+.sbtn:disabled{opacity:.5;cursor:wait}
+@media (max-width:1250px){.ggrid-set{grid-template-columns:1fr}}
+.sfoot{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;padding:18px 30px;border-top:1px solid var(--line)}
+.sfoot .btn{min-width:170px;padding:12px 22px}
+.btn.danger{border-color:rgba(255,100,100,.4);background:transparent;color:#ff9b9b}
+textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(120px);z-index:400;padding:14px 26px;border-radius:999px;
+  background:var(--accent);color:#120c04;font-weight:800;transition:.35s;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1250px){
+  .navlinks{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;padding:14px;background:rgba(9,13,21,.96);border-bottom:1px solid var(--line);display:none}
+  .navlinks.open{display:flex}
+  .menu-btn{display:block}
+  .loves,.cards4,.ggrid{grid-template-columns:repeat(2,1fr)}
+  .vgrid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;padding:32px}
+  .about-grid .frame{max-width:420px;margin:0 auto;width:100%}
+  .chat-grid{grid-template-columns:1fr}
+  .sbody{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .loves,.cards4,.ggrid,.vgrid{grid-template-columns:1fr}
+  .gear .lbl{display:none}
+  .vrow{grid-template-columns:30px 1fr}
+  .vrow input:last-child{grid-column:2}
+  .row2{grid-template-columns:1fr}
+}
+/* shorter screens (e.g. Windows display scaling): keep the whole welcome card visible */
+@media (max-height:900px){
+  .gcard{width:min(640px,94vw);padding:22px 30px}
+  .gcard .avatar{width:84px;height:84px;margin-bottom:8px}
+  .gcard h2{font-size:30px}
+  .gcard .tg{font-size:16px}
+  .gcard .welcome{font-size:15.5px;margin-bottom:12px}
+  .chips{margin-bottom:12px}
+  .chips span{font-size:13px;padding:4px 10px}
+  .gcard .inp{padding:10px 14px}
+  .terms{height:110px;margin:10px 0}
+  .check{margin-bottom:12px}
+  .gcard .btn{padding:12px 24px}
+}
+@media (max-height:680px){ .chips{display:none} .gcard .avatar{width:64px;height:64px} .terms{height:90px} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body data-theme="ember" class="locked">
+
+<canvas id="rain"></canvas>
+<div id="flash"></div>
+
+<!-- =====================================================================
+     WELCOME PROFILE CARD — visitors must pick an age range and accept
+     the terms before the site opens. Terms text is below (✏️ edit freely).
+     ===================================================================== -->
+<div class="gate" id="gate">
+  <div class="gcard panel">
+    <div id="gateMain">
+      <div class="avatar"><div data-photo></div></div>
+      <h2 data-name>Kerwin Jones</h2>
+      <div class="tg" data-tagline></div>
+      <p class="welcome">Come on in, you're welcome here. Treat me decent and I'll do the same. Push it too far and you'll find out where the line is.</p>
+      <div class="chips"><span>🎸 Heavy Rock</span><span>🤖 AI Creator</span><span>🍲 Good Food</span><span>🌧️ Rainy Days</span></div>
+
+      <label class="f">Choose your age range
+        <select class="inp" id="ageSel">
+          <option value="">— Select your age range —</option>
+          <option value="u18">Under 18</option>
+          <option value="18-24">18 – 24</option>
+          <option value="25-34">25 – 34</option>
+          <option value="35-44">35 – 44</option>
+          <option value="45-54">45 – 54</option>
+          <option value="55-64">55 – 64</option>
+          <option value="65+">65 and over</option>
+        </select>
+      </label>
+
+      <!-- ✏️ EDIT: TERMS AND CONDITIONS — change any wording you like -->
+      <div class="terms" tabindex="0">
+        <h4>1. About this site</h4>
+        This is a personal website. Everything here is my own opinion and life experience, shared for interest only.
+        <h4>2. Not medical advice</h4>
+        I talk about medical cannabis and mental health. Nothing here is medical, legal or professional advice. Please talk to a qualified doctor or health professional about your own situation.
+        <h4>3. Adults only</h4>
+        This site discusses adult health topics and includes a live public chat, so it's for people aged 18 and over.
+        <h4>4. The chat room</h4>
+        The chat uses public IRC networks run by other people. I don't control them or what's said there. Be respectful, never share personal details, and leave if anything makes you uncomfortable.
+        <h4>5. Videos and outside links</h4>
+        Videos are played from YouTube and some links go to other websites. Those sites have their own terms and privacy rules.
+        <h4>6. Your privacy</h4>
+        This site doesn't collect or send your personal information. It only remembers your choices (like accepting these terms) in your own browser.
+        <h4>7. Copyright</h4>
+        My words and photos are mine — please ask before reusing them.
+      </div>
+
+      <label class="check"><input type="checkbox" id="agree"> I have read and accept the terms and conditions</label>
+      <button class="btn primary" id="enterBtn" disabled>Enter the Website</button>
+    </div>
+
+    <div class="denied" id="gateDenied">
+      <div class="big">🌧️</div>
+      <h2>Sorry, mate</h2>
+      <p class="welcome" style="margin-top:10px">This website is for adults aged 18 and over because it talks about adult health topics and has a public chat room. Thanks for stopping by — come back when you're older.</p>
+      <button class="btn ghost" id="backBtn">Go back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ NAVIGATION ============================ -->
+<nav class="top">
+  <a class="brand" href="#home">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="nb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2740"/><stop offset="1" stop-color="#0a0e17"/></linearGradient><linearGradient id="nf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#ff7a1a"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#nb)"/><path d="M18 36a9 9 0 0 1 1.5-17.9A12 12 0 0 1 42 16a10 10 0 0 1 4 20z" fill="#d9e2f2"/><path d="M33 30l-7 13h6l-3 12 11-16h-7l4-9z" fill="url(#nf)"/><path d="M19 42l-3 7M24 46l-2 5M44 42l-3 7M49 40l-2 5" stroke="#52d6ff" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <span data-brand>Kerwin <b>Jones</b></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#beliefs">What I Stand For</a>
+    <a href="#videos">Videos</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#chat">Chat</a>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <button class="gear" id="gearBtn" title="Settings (password protected)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <span class="lbl">Settings</span>
+    </button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<main>
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="kicker">Loud rock · Cold rain · Respect is earnt</div>
+      <h1 data-name>Kerwin Jones</h1>
+      <p class="tag" data-tagline></p>
+      <div class="cta">
+        <a class="btn primary" href="#about">Get to know me</a>
+        <a class="btn ghost" href="#videos">My favourite videos</a>
+        <a class="btn ghost" href="#chat">Come and chat</a>
+      </div>
+      <div class="scroll-hint">▼ scroll down ▼</div>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ME ============================ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <header class="sec-head"><span class="eyebrow">01 · About Me</span><h2>A Bit About Me</h2></header>
+      <div class="panel about-grid">
+        <!-- ✏️ EDIT YOUR PHOTO: set  profilePhoto  in the CONFIG section near the bottom
+             of this file, e.g.  profilePhoto: "images/me.jpg"  -->
+        <div class="frame"><div class="inner" data-photo></div></div>
+        <div class="about-text">
+          <h3 data-name>Kerwin Jones</h3>
+          <div class="sub" data-subtitle></div>
+          <div id="aboutText"></div>
+        </div>
+      </div>
+      <!-- 8 THINGS I LOVE bubbles — ✏️ edit them in CONFIG → loves -->
+      <div class="loves" id="loves"></div>
+    </div>
+  </section>
+
+  <!-- ========================= WHAT I STAND FOR ========================= -->
+  <section class="section" id="beliefs">
+    <div class="wrap">
+      <header class="sec-head"><span class="eyebrow">02 · What I Stand For</span><h2>Things I Believe In</h2>
+        <p>A few things life's taught me, mostly the hard way.</p></header>
+      <div class="cards4">
+        <div class="card panel"><div class="ic" data-leaf></div><h3>Medical Cannabis</h3>
+          <p>I'm a big supporter of medical cannabis. Used properly and with a doctor's guidance, it can give people a better quality of life.</p></div>
+        <div class="card panel"><div class="ic">🧠</div><h3>Mental Health</h3>
+          <p>Most people would benefit from professional therapy. Talking to someone qualified isn't weakness — it's one of the strongest things you can do.</p></div>
+        <div class="card panel"><div class="ic">🪞</div><h3>Self-Awareness</h3>
+          <p>Know your own patterns, triggers and weak spots. It's what keeps me in check when the worry creeps in. Being self-aware is the key to understanding yourself.</p></div>
+        <div class="card panel"><div class="ic">🤝</div><h3>Respect &amp; Limits</h3>
+          <p>Be decent with me and I'll be decent back. I'm open minded, but I've got boundaries and I stick to them. Respect is earnt, not given. Don't like me? Kiss my entire ass.</p></div>
+      </div>
+      <div class="quote panel">
+        <blockquote>"Being <b>self-aware</b> can be the key to the understanding of one's self."</blockquote>
+        <cite data-name-cite>— Kerwin Jones</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== YOUTUBE VIDEO GALLERY ========================
+       ✏️ TO CHANGE THE VIDEOS: scroll down to the CONFIG section and edit
+       the "videos" list. You only need each video's ID — see the notes there.
+       (You can also change them from the Settings panel on the website.)
+       ===================================================================== -->
+  <section class="section" id="videos">
+    <div class="wrap">
+      <header class="sec-head"><span class="eyebrow">03 · Turn It Up</span><h2>My Favourite Videos</h2>
+        <p>Six of my all-time favourites. Click any one to play it right here.</p></header>
+      <div class="vgrid" id="vgrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================ PHOTO GALLERY ============================
+       ✏️ TO ADD YOUR PHOTOS: edit the "gallery" list in CONFIG.
+       Empty slots show a placeholder until you add a picture.
+       ===================================================================== -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <header class="sec-head"><span class="eyebrow">04 · Snapshots</span><h2>Photo Gallery</h2>
+        <p>Moments, meals, rainy days and things I've made. Click a photo to see it bigger.</p></header>
+      <div class="ggrid" id="ggrid"></div>
+    </div>
+  </section>
+
+  <!-- =============================== IRC CHAT ===============================
+       Uses the free Kiwi IRC web client, which can connect to almost any IRC
+       network. ✏️ Change the default network/channel in CONFIG → chat.
+       ===================================================================== -->
+  <section class="section" id="chat">
+    <div class="wrap">
+      <header class="sec-head"><span class="eyebrow">05 · Live Chat</span><h2>Come and Have a Chat</h2>
+        <p>Jump into a live IRC chat room right here on the page. Pick a network, choose a nickname and hit connect.</p></header>
+      <div class="chat-grid">
+        <div class="chat-side panel">
+          <h3>Connect</h3>
+          <label class="f">IRC network
+            <select class="inp" id="ircServer"></select>
+          </label>
+          <label class="f">Channel
+            <input class="inp" id="ircChan" placeholder="#channel" maxlength="40">
+          </label>
+          <label class="f">Your nickname
+            <input class="inp" id="ircNick" placeholder="Guest" maxlength="16">
+          </label>
+          <div class="row2">
+            <button class="btn primary" id="ircGo" style="min-width:0">Connect</button>
+            <button class="btn ghost" id="ircTab" style="min-width:0">New tab</button>
+          </div>
+          <p class="note">💡 Be kind and never share personal details. If the chat window won't load on your device, use <b>New tab</b>. Some networks may ask you to wait a moment or verify before joining.</p>
+        </div>
+        <div class="chat-frame panel" id="chatFrame">
+          <div class="chat-empty">
+            <div class="big">💬</div>
+            <h3>The chat room is waiting</h3>
+            <p>Choose a network and nickname on the left, then press <b>Connect</b>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="legacy" id="legacy"></p>
+    <p class="small">© <span id="yr"></span> <span data-plainname>Kerwin Jones</span> · Built with AI, loud music and a love of rainy days · <a id="termsLink">View terms</a></p>
+  </div>
+</footer>
+
+<!-- lightbox for gallery -->
+<div class="lightbox" id="lightbox"><button class="x" id="lbClose">×</button><img id="lbImg" alt=""><p id="lbCap"></p></div>
+
+<!-- video player popup (plays YouTube videos right here on the site) -->
+<div class="vmodal" id="vModal">
+  <div class="vbox panel">
+    <div class="vtop"><h3 id="vTitle">Video</h3><button class="x" id="vClose" title="Close video (Esc)">×</button></div>
+    <div class="vstage" id="vStage"></div>
+    <div class="vctrl">
+      <div class="vgroup">
+        <button class="cbtn" id="vPrev" title="Previous video" aria-label="Previous video"><svg viewBox="0 0 24 24"><path d="M6 5h2.5v14H6zM20 5v14L9.5 12z"/></svg></button>
+        <button class="cbtn main" id="vPlay">⏸ Pause</button>
+        <button class="cbtn" id="vNext" title="Next video" aria-label="Next video"><svg viewBox="0 0 24 24"><path d="M15.5 5H18v14h-2.5zM4 5v14l10.5-7z"/></svg></button>
+      </div>
+      <div class="vol">
+        <button class="cbtn" id="vMute" title="Mute / unmute">🔊</button>
+        <input type="range" class="vr" id="vVol" min="0" max="100" step="1" value="70" aria-label="Volume">
+        <output id="vVolOut">70%</output>
+      </div>
+      <div class="vgroup">
+        <button class="cbtn" id="vFull" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24"><path d="M4 4h6v2.5H6.5V10H4zM14 4h6v6h-2.5V6.5H14zM4 14h2.5v3.5H10V20H4zM17.5 14H20v6h-6v-2.5h3.5z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- password modal -->
+<div class="modal" id="pwModal">
+  <div class="mbox panel">
+    <button class="x" data-close style="top:14px;right:14px;width:42px;height:42px;font-size:22px">×</button>
+    <h3 id="pwTitle">Settings Locked</h3>
+    <p class="note" id="pwNote"></p>
+    <form id="pwForm" action="#" method="post">
+      <!-- hidden username so Brave/Chrome password managers can offer to remember the password -->
+      <input type="text" name="username" autocomplete="username" value="website-settings" style="display:none" readonly>
+      <input class="inp" type="password" name="password" id="pw1" placeholder="Password" autocomplete="current-password">
+      <input class="inp" type="password" name="password2" id="pw2" placeholder="Type it again" autocomplete="new-password">
+      <div class="err" id="pwErr"></div>
+      <button class="btn primary" type="submit" id="pwBtn">Unlock</button>
+      <p class="note" style="text-align:center"><a href="#" id="pwForgot" style="color:var(--accent)">Forgot your password?</a></p>
+    </form>
+  </div>
+</div>
+
+<!-- settings panel -->
+<div class="modal" id="setModal">
+  <div class="sbox panel">
+    <div class="shead"><h3>⚙️ Website Settings</h3><button class="x" data-close style="position:static">×</button></div>
+    <div class="sbody">
+      <div class="sgroup">
+        <h4>Your Details</h4>
+        <label class="f">Name<input class="inp" id="s_name"></label>
+        <label class="f">Tagline<input class="inp" id="s_tagline"></label>
+        <label class="f">Subtitle under your name<input class="inp" id="s_subtitle"></label>
+        <div class="f">Profile photo
+          <div class="gbtns"><input class="inp" id="s_photo" placeholder="or file name"><button class="sbtn" id="s_photoPick">📷 Choose</button><button class="sbtn" id="s_photoDel" title="Remove photo">✕</button></div>
+        </div>
+      </div>
+      <div class="sgroup">
+        <h4>Look &amp; Feel</h4>
+        <label class="f">Colour theme
+          <select class="inp" id="s_theme"><option value="ember">Ember — warm heater glow</option><option value="storm">Storm — electric blue</option><option value="crimson">Crimson — heavy rock red</option></select></label>
+        <label class="toggle">Rain falling in the background <input type="checkbox" id="s_rain"></label>
+        <label class="toggle">Lightning flashes <input type="checkbox" id="s_lightning"></label>
+        <label class="toggle">Ask visitors to accept terms &amp; age <input type="checkbox" id="s_gate"></label>
+        <label class="f">Default chat network<select class="inp" id="s_irc"></select></label>
+        <label class="f">Default chat channel<input class="inp" id="s_chan"></label>
+      </div>
+      <div class="sgroup full">
+        <h4>About Me text <span class="note" style="font-family:var(--body)">(leave a blank line between paragraphs)</span></h4>
+        <textarea class="inp" id="s_about"></textarea>
+      </div>
+      <div class="sgroup full">
+        <h4>Favourite Videos <span class="note" style="font-family:var(--body)">(paste a YouTube link or just the video ID)</span></h4>
+        <div id="s_videos" style="display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+      <div class="sgroup full">
+        <h4>Photo Gallery <span class="note" style="font-family:var(--body)">(click a picture or 📷 Choose to pick a photo from your computer, then type its caption)</span></h4>
+        <div class="ggrid-set" id="s_gallery"></div>
+      </div>
+      <div class="sgroup full">
+        <h4>Memorial / Legacy message in the footer</h4>
+        <textarea class="inp" id="s_legacy" style="min-height:90px"></textarea>
+      </div>
+      <div class="sgroup">
+        <h4>Security</h4>
+        <p class="note">Change the settings password saved in this browser.</p>
+        <input class="inp" type="password" id="s_newpw" placeholder="New password">
+        <input class="inp" type="password" id="s_newpw2" placeholder="Type it again">
+        <button class="btn ghost" id="s_pwBtn">Change password</button>
+      </div>
+      <div class="sgroup">
+        <h4>Make Changes Permanent</h4>
+        <p class="note">This saves a new <b>index.html</b> with all your settings <b>and your password</b> built in, so they work in every browser and for every visitor. Put it in your website folder in place of the old one (and upload it to your web host).</p>
+        <p class="note" id="s_storeNote"></p>
+        <button class="btn primary" id="s_download">💾 Download updated website file</button>
+        <button class="btn danger" id="s_reset">Reset to the original settings</button>
+      </div>
+    </div>
+    <div class="sfoot">
+      <button class="btn ghost" id="s_lock">Lock settings</button>
+      <button class="btn primary" id="s_save">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   ✏️✏️✏️  CONFIG — THIS IS THE MAIN PLACE TO EDIT YOUR WEBSITE  ✏️✏️✏️
+   ---------------------------------------------------------------------
+   • Keep the quote marks "like this" around text.
+   • Keep the commas at the end of each line.
+   • Save the file and refresh your browser to see changes.
+   ===================================================================== */
+/* CONFIG-START */
+const CONFIG = {
+  name: "Kerwin Jones",
+  tagline: "Heavy rock, good food, rainy days. Easy to get along with, but I've got my limits.",
+  subtitle: "AI creator · Rock lover · Fair, but no pushover",
+
+  /* ✏️ YOUR PHOTO for the frame and the welcome card.
+     Put your picture in a folder called "images" next to this file,
+     then write its name here, e.g. "images/me.jpg".
+     Leave it as "" to show the placeholder. */
+  profilePhoto: "",
+
+  /* ✏️ ABOUT ME — each line in quotes is one paragraph */
+  about: [
+    "G'day, I'm Kerwin. I'm 60, I live with a disability, and I've got everything I need in life. I keep a pretty tight grip on things, but there's always a bit of worry ticking away in the back of my head about something. I've learnt to live with it.",
+    "These days I spend my time creating with AI: websites, games and apps. I'm still amazed at what one bloke and a computer can build together.",
+    "I love heavy rock turned up loud, good food, and a life with no stress and no drama. Give me a cold, rainy day, the heater going and something yummy to eat, and that's about as relaxed as I get.",
+    "I'm a pretty easy bloke to get along with. I'll listen to anyone, I'm open to seeing things a different way, and I'll help out where I can. But I've got my limits and I stick to them. Respect works both ways with me. It's earnt, not given, and once you've lost it, good luck getting it back.",
+    "I've got no time for assholes or morons, and I keep my circle small on purpose. If you don't like me, that's fine. Kiss my entire ass and move on.",
+    "I'm a big supporter of medical cannabis and professional mental health therapy. Most people could do with talking to someone, and the world would have a lot fewer assholes in it if they did. Being self-aware is the key to understanding yourself."
+  ],
+
+  /* ✏️ 8 THINGS I LOVE — the bubbles under About Me.
+     icon = an emoji (or "leaf" for the cannabis leaf picture), text = the label, url = where the bubble links to */
+  loves: [
+    { icon: "🎸", text: "Heavy Rock Music",      url: "https://www.youtube.com/results?search_query=heavy+rock+music" },
+    { icon: "🤖", text: "Creating with AI",      url: "https://claude.ai" },
+    { icon: "🍲", text: "Good Food",             url: "https://www.taste.com.au" },
+    { icon: "🌧️", text: "Rainy Days",            url: "https://www.bom.gov.au/australia/radar/" },
+    { icon: "🔥", text: "Cold Days by the Heater", url: "https://www.youtube.com/results?search_query=rain+sounds+cosy+fireplace" },
+    { icon: "leaf", text: "Medical Cannabis",      url: "https://www.tga.gov.au/products/unapproved-therapeutic-goods/medicinal-cannabis-hub" },
+    { icon: "🧠", text: "Mental Health Therapy", url: "https://www.beyondblue.org.au" },
+    { icon: "🚫", text: "No Drama, No Dickheads", url: "#beliefs" }
+  ],
+
+  /* =================================================================
+     ✏️ YOUTUBE VIDEOS — EDIT YOUR 6 FAVOURITE VIDEOS HERE
+     -----------------------------------------------------------------
+     Each video needs its ID — the code after "v=" in a YouTube link:
+        https://www.youtube.com/watch?v=kXYiU_JCYtU
+                                        ^^^^^^^^^^^  ← this is the ID
+     For short links like https://youtu.be/kXYiU_JCYtU the ID is the
+     part after the last "/". You can also paste the whole link — the
+     site will work out the ID for you.
+     title = the name shown under the video, artist = the small line.
+     ================================================================= */
+  videos: [
+    { id: "kXYiU_JCYtU", title: "Numb",               artist: "Linkin Park" },   // ✏️ VIDEO 1
+    { id: "eVTXPUF4Oz4", title: "In The End",         artist: "Linkin Park" },   // ✏️ VIDEO 2
+    { id: "8sgycukafqQ", title: "What I've Done",     artist: "Linkin Park" },   // ✏️ VIDEO 3
+    { id: "v2H4l9RpkwM", title: "Breaking the Habit", artist: "Linkin Park" },   // ✏️ VIDEO 4
+    { id: "LYU-8IFcDPw", title: "Faint",              artist: "Linkin Park" },   // ✏️ VIDEO 5
+    { id: "zsCD5XCu6CM", title: "Somewhere I Belong", artist: "Linkin Park" }    // ✏️ VIDEO 6
+  ],
+
+  /* ✏️ PHOTO GALLERY — 8 slots. Put photos in the "images" folder and
+     write the file name in src, e.g. src: "images/rainy-day.jpg".
+     Leave src as "" to show a placeholder. */
+  gallery: [
+    { src: "", caption: "Rainy day at home" },
+    { src: "", caption: "Cosy by the heater" },
+    { src: "", caption: "Something yummy" },
+    { src: "", caption: "Made with AI" },
+    { src: "", caption: "Rock night" },
+    { src: "", caption: "Storm clouds rolling in" },
+    { src: "", caption: "Favourite feed" },
+    { src: "", caption: "Just me" }
+  ],
+
+  /* ✏️ IRC CHAT — default network and channel when the page opens.
+     network must be one of: libera, oftc, efnet, ircnet, rizon, dalnet, undernet */
+  chat: { network: "libera", channel: "#darkdomain", nickPrefix: "Guest" },
+
+  /* ✏️ The message in the footer — your lasting words to visitors */
+  legacy: "This is my little corner of the web, and it's staying put. Whenever you're reading this — today or years from now — turn the music up, put the heater on, grab something good to eat, and don't waste a second of your life on idiots. Thanks for stopping by.",
+
+  theme: "ember",        // "ember", "storm" or "crimson"
+  rain: true,            // rain falling in the background
+  lightning: true,       // occasional lightning flashes
+  ageGate: true,         // show the welcome card with terms + age range
+  showSettingsButton: true, // false = hide the Settings button from visitors
+                            // (you can still open it with Ctrl+Alt+S, or by adding #settings to the end of the web address)
+
+  /* 🔒 SETTINGS PASSWORD — filled in automatically when you use
+     "Download updated website file" in Settings. It's a scrambled code,
+     not your real password. Set it back to "" if you ever forget your password. */
+  settingsPasswordHash: ""
+};
+/* CONFIG-END */
+
+/* =====================================================================
+   IRC NETWORKS — the list of servers in the chat dropdown.
+   (Advanced: you can add more in the same format.)
+   ===================================================================== */
+const IRC_NETWORKS = {
+  libera:   { label: "Libera.Chat",  host: "web.libera.chat",   web: "https://web.libera.chat/", chan: "#darkdomain" },  // uses Libera's own web chat
+  oftc:     { label: "OFTC",         host: "irc.oftc.net",      port: 6697, tls: true,  chan: "#oftc" },
+  efnet:    { label: "EFnet",        host: "irc.efnet.org",     port: 6667, tls: false, chan: "#efnet" },
+  ircnet:   { label: "IRCnet",       host: "open.ircnet.net",   port: 6667, tls: false, chan: "#ircnet" },
+  rizon:    { label: "Rizon",        host: "irc.rizon.net",     port: 6697, tls: true,  chan: "#rizon" },
+  dalnet:   { label: "DALnet",       host: "irc.dal.net",       port: 6697, tls: true,  chan: "#dalnet" },
+  undernet: { label: "Undernet",     host: "chat.undernet.org", web: "https://chat.undernet.org/", chan: "#undernet" }  // uses Undernet's own web chat
+};
+
+/* =====================================================================
+   Everything below makes the site work — you shouldn't need to edit it.
+   ===================================================================== */
+/* A copy of this page exactly as it was loaded — used to build the
+   "Download updated website file" in Settings. */
+const PAGE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+const LS = { cfg: "kj_site_settings", gate: "kj_site_gate", pw: "kj_site_pw", vol: "kj_site_volume" };
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } },
+  del(k){ try{ localStorage.removeItem(k); }catch(e){} }
+};
+
+let S = Object.assign(JSON.parse(JSON.stringify(CONFIG)), store.get(LS.cfg) || {});
+
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2600); }
+
+function videoId(v){
+  v = String(v||"").trim();
+  const m = v.match(/(?:v=|youtu\.be\/|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  return /^[A-Za-z0-9_-]{11}$/.test(v) ? v : "";
+}
+
+/* Cannabis leaf picture — used wherever an icon is set to "leaf" */
+const LEAF_SVG = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="cannaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a6ef6f"/><stop offset="1" stop-color="#2f9443"/></linearGradient></defs><path d="M50,66 L50,96" stroke="#2f9443" stroke-width="2.6" stroke-linecap="round"/><path d="M50.0,63.5 L51.1,60.6 L53.4,55.7 L53.0,54.8 L55.9,49.9 L54.2,49.0 L57.4,44.1 L54.8,43.2 L57.8,38.3 L54.8,37.4 L57.4,32.5 L54.3,31.6 L56.3,26.7 L53.4,25.8 L54.7,20.9 L52.4,20.0 L52.9,15.1 L51.3,14.2 L51.2,9.3 L50.3,8.4 L50.0,5.5 L49.7,8.4 L48.8,9.3 L48.7,14.2 L47.1,15.1 L47.6,20.0 L45.3,20.9 L46.6,25.8 L43.7,26.7 L45.7,31.6 L42.6,32.5 L45.2,37.4 L42.2,38.3 L45.2,43.2 L42.6,44.1 L45.8,49.0 L44.1,49.9 L47.0,54.8 L46.6,55.7 L48.9,60.6Z M51.4,63.9 L53.6,62.3 L57.8,59.7 L57.8,58.8 L62.5,56.5 L61.6,55.1 L66.4,52.9 L64.9,51.0 L69.6,48.8 L67.7,46.6 L72.1,44.2 L70.2,42.0 L74.0,39.3 L72.3,37.2 L75.7,34.1 L74.4,32.3 L77.2,28.9 L76.4,27.4 L78.7,23.7 L78.5,22.6 L79.7,20.3 L78.0,22.3 L76.9,22.5 L74.5,26.2 L72.8,26.1 L70.8,30.0 L68.7,29.6 L67.2,33.9 L64.6,33.2 L63.7,37.8 L61.0,37.0 L60.5,41.9 L57.8,41.1 L57.7,46.3 L55.3,45.7 L55.3,50.9 L53.6,50.8 L53.4,55.9 L52.6,56.3 L51.9,61.2Z M48.6,63.9 L48.1,61.2 L47.4,56.3 L46.6,55.9 L46.4,50.8 L44.7,50.9 L44.7,45.7 L42.3,46.3 L42.2,41.1 L39.5,41.9 L39.0,37.0 L36.3,37.8 L35.4,33.2 L32.8,33.9 L31.3,29.6 L29.2,30.0 L27.2,26.1 L25.5,26.2 L23.1,22.5 L22.0,22.3 L20.3,20.3 L21.5,22.6 L21.3,23.7 L23.6,27.4 L22.8,28.9 L25.6,32.3 L24.3,34.1 L27.7,37.2 L26.0,39.3 L29.8,42.0 L27.9,44.2 L32.3,46.6 L30.4,48.8 L35.1,51.0 L33.6,52.9 L38.4,55.1 L37.5,56.5 L42.2,58.8 L42.2,59.7 L46.4,62.3Z M52.3,65.0 L54.5,64.9 L58.3,64.9 L58.8,64.4 L62.8,64.9 L62.9,63.5 L67.0,64.2 L66.8,62.2 L70.8,62.8 L70.5,60.6 L74.4,60.8 L74.1,58.6 L77.9,58.4 L77.6,56.3 L81.2,55.7 L81.1,54.0 L84.4,52.9 L84.5,51.6 L87.6,50.2 L88.0,49.3 L89.7,48.3 L87.8,48.9 L87.0,48.6 L83.8,50.0 L82.7,49.2 L79.7,51.0 L78.5,49.7 L75.6,51.9 L74.3,50.4 L71.7,53.1 L70.2,51.3 L67.8,54.4 L66.3,52.7 L64.0,56.1 L62.7,54.6 L60.4,58.1 L59.4,57.2 L57.0,60.6 L56.4,60.5 L53.8,63.4Z M47.7,65.0 L46.2,63.4 L43.6,60.5 L43.0,60.6 L40.6,57.2 L39.6,58.1 L37.3,54.6 L36.0,56.1 L33.7,52.7 L32.2,54.4 L29.8,51.3 L28.3,53.1 L25.7,50.4 L24.4,51.9 L21.5,49.7 L20.3,51.0 L17.3,49.2 L16.2,50.0 L13.0,48.6 L12.2,48.9 L10.3,48.3 L12.0,49.3 L12.4,50.2 L15.5,51.6 L15.6,52.9 L18.9,54.0 L18.8,55.7 L22.4,56.3 L22.1,58.4 L25.9,58.6 L25.6,60.8 L29.5,60.6 L29.2,62.8 L33.2,62.2 L33.0,64.2 L37.1,63.5 L37.2,64.9 L41.2,64.4 L41.7,64.9 L45.5,64.9Z M52.4,66.6 L53.4,67.2 L55.0,68.5 L55.4,68.4 L57.0,69.9 L57.4,69.4 L59.0,71.0 L59.5,70.1 L61.1,71.6 L61.7,70.6 L63.3,71.9 L63.9,70.9 L65.5,72.0 L66.1,71.0 L67.8,71.9 L68.3,71.1 L70.1,71.8 L70.5,71.2 L72.4,71.6 L72.8,71.4 L73.9,71.5 L72.8,71.2 L72.6,70.7 L70.8,70.3 L70.6,69.6 L68.7,69.4 L68.6,68.5 L66.7,68.5 L66.6,67.4 L64.6,67.7 L64.5,66.5 L62.5,67.0 L62.4,65.8 L60.3,66.5 L60.2,65.5 L58.2,66.2 L58.0,65.5 L55.9,66.2 L55.6,66.0 L53.6,66.4Z M47.6,66.6 L46.4,66.4 L44.4,66.0 L44.1,66.2 L42.0,65.5 L41.8,66.2 L39.8,65.5 L39.7,66.5 L37.6,65.8 L37.5,67.0 L35.5,66.5 L35.4,67.7 L33.4,67.4 L33.3,68.5 L31.4,68.5 L31.3,69.4 L29.4,69.6 L29.2,70.3 L27.4,70.7 L27.2,71.2 L26.1,71.5 L27.2,71.4 L27.6,71.6 L29.5,71.2 L29.9,71.8 L31.7,71.1 L32.2,71.9 L33.9,71.0 L34.5,72.0 L36.1,70.9 L36.7,71.9 L38.3,70.6 L38.9,71.6 L40.5,70.1 L41.0,71.0 L42.6,69.4 L43.0,69.9 L44.6,68.4 L45.0,68.5 L46.6,67.2Z" fill="url(#cannaG)" stroke="#1c5a29" stroke-width="0.7" stroke-linejoin="round"/><path d="M50,66 L50.0,19.6 M50,66 L72.7,31.1 M50,66 L27.3,31.1 M50,66 L80.0,52.7 M50,66 L20.0,52.7 M50,66 L67.1,70.0 M50,66 L32.9,70.0" stroke="#1c5a29" stroke-width="0.9" stroke-linecap="round" fill="none" opacity=".6"/></svg>';
+const iconHTML = ic => String(ic).trim().toLowerCase() === "leaf" ? LEAF_SVG : esc(ic);
+
+/* placeholder art (no image files needed) */
+function placeholderPortrait(){
+  return `<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2640"/><stop offset="1" stop-color="#0b101b"/></linearGradient></defs>
+  <rect width="400" height="500" fill="url(#pp)"/><circle cx="200" cy="190" r="78" fill="#2c3a5a"/><path d="M60 470c10-110 70-160 140-160s130 50 140 160z" fill="#2c3a5a"/>
+  <text x="200" y="455" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="22" fill="#8fa0bd">Your photo here</text></svg>`;
+}
+function placeholderTile(i, cap){
+  const hues=[[28,210],[200,260],[12,40],[180,220],[350,20],[210,240],[30,0],[260,200]][i%8];
+  return `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="hsl(${hues[0]},45%,22%)"/><stop offset="1" stop-color="hsl(${hues[1]},45%,10%)"/></linearGradient></defs>
+  <rect width="400" height="300" fill="url(#g${i})"/>
+  <g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="6" stroke-linejoin="round"><rect x="150" y="105" width="100" height="72" rx="12"/><circle cx="200" cy="141" r="20"/><path d="M175 105l8-14h34l8 14"/></g>
+  <text x="200" y="225" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="20" fill="rgba(255,255,255,.75)">Photo ${i+1} — add yours</text></svg>`;
+}
+function photoHTML(src){ return src ? `<img src="${esc(src)}" alt="${esc(S.name)}">` : placeholderPortrait(); }
+
+/* ---------- render the page from settings ---------- */
+function render(){
+  document.body.dataset.theme = S.theme || "ember";
+  $$("[data-name]").forEach(e => e.textContent = S.name);
+  $$("[data-plainname]").forEach(e => e.textContent = S.name);
+  $$("[data-name-cite]").forEach(e => e.textContent = "— " + S.name);
+  $$("[data-tagline]").forEach(e => e.textContent = S.tagline);
+  $$("[data-subtitle]").forEach(e => e.textContent = S.subtitle);
+  $$("[data-photo]").forEach(e => e.innerHTML = photoHTML(S.profilePhoto));
+  const parts = String(S.name).trim().split(/\s+/);
+  const last = parts.length > 1 ? parts.pop() : "";
+  $("[data-brand]").innerHTML = esc(parts.join(" ")) + (last ? " <b>" + esc(last) + "</b>" : "");
+
+  $$("[data-leaf]").forEach(e => e.innerHTML = LEAF_SVG);
+  $("#aboutText").innerHTML = (S.about||[]).map(p => `<p>${esc(p)}</p>`).join("");
+
+  $("#loves").innerHTML = (S.loves||[]).slice(0,8).map(l => {
+    const ext = /^https?:/i.test(l.url);
+    return `<a class="bubble" href="${esc(l.url)}" ${ext?'target="_blank" rel="noopener"':''}><span class="ic">${iconHTML(l.icon)}</span><span>${esc(l.text)}</span></a>`;
+  }).join("");
+
+  $("#vgrid").innerHTML = (S.videos||[]).slice(0,6).map((v,i) => {
+    const id = videoId(v.id);
+    const thumb = id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : "";
+    return `<div class="vcard panel">
+      <button class="vthumb" data-vid="${id}" style="${thumb?`background-image:url('${thumb}')`:''}" aria-label="Play ${esc(v.title)}">
+        ${id ? '<span class="play"></span>' : '<span style="position:absolute;inset:0;display:grid;place-items:center;color:#8fa0bd;font-weight:800">Add a video ID in Settings</span>'}
+      </button>
+      <div class="vinfo"><div><h3>${esc(v.title||"Video "+(i+1))}</h3><small>${esc(v.artist||"")}</small></div>
+      ${id?`<span class="vwatch">▶ Watch</span>`:''}</div></div>`;
+  }).join("");
+
+  $("#ggrid").innerHTML = (S.gallery||[]).slice(0,8).map((g,i) =>
+    `<div class="gitem panel" data-i="${i}"><div class="gimg">${g.src?`<img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy">`:placeholderTile(i,g.caption)}</div><div class="gcap">${esc(g.caption)}</div></div>`
+  ).join("");
+
+  $("#legacy").textContent = S.legacy || "";
+  $("#gearBtn").style.display = S.showSettingsButton === false ? "none" : "";
+
+  const sel = $("#ircServer");
+  if (!sel.options.length) sel.innerHTML = Object.entries(IRC_NETWORKS).map(([k,n]) => `<option value="${k}">${n.label} — ${n.host}</option>`).join("");
+  sel.value = IRC_NETWORKS[S.chat?.network] ? S.chat.network : "libera";
+  $("#ircChan").value = S.chat?.channel || IRC_NETWORKS[sel.value].chan;
+  if (!$("#ircNick").value) $("#ircNick").value = (S.chat?.nickPrefix || "Guest") + Math.floor(100 + Math.random()*900);
+  rain.setOn(S.rain !== false);
+}
+
+/* ---------- videos: popup player with volume control ---------- */
+const VP = { player: null, idx: 0, playing: false, muted: false, apiState: "none", timer: 0,
+  vol: (() => { const v = store.get(LS.vol); return (typeof v === "number" && v >= 0 && v <= 100) ? v : 70; })() };
+function playable(){ return (S.videos||[]).slice(0,6).map((v,i)=>({...v, vid: videoId(v.id), i})).filter(v=>v.vid); }
+function loadYTApi(cb){
+  if (window.YT && YT.Player) return cb();
+  VP.onApi = cb;
+  if (VP.apiState === "loading") return;
+  VP.apiState = "loading";
+  const prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = () => { VP.apiState = "ready"; prev && prev(); VP.onApi && VP.onApi(); };
+  const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api";
+  s.onerror = () => { VP.apiState = "none"; vMessage("offline"); };
+  document.head.appendChild(s);
+}
+function vMessage(kind){
+  const v = playable()[VP.idx] || {};
+  const link = v.vid ? `<a class="btn ghost" href="https://www.youtube.com/watch?v=${v.vid}" target="_blank" rel="noopener">Open on YouTube instead</a>` : "";
+  const txt = kind === "offline"
+    ? "The video player couldn't load. Check your internet connection and try again."
+    : location.protocol === "file:"
+      ? "YouTube doesn't allow its videos to play inside a page opened straight from your computer. They'll play right here once the website is on your web host."
+      : "The owner of this video doesn't allow it to be played on other websites. Try another one.";
+  $("#vStage").innerHTML = `<div class="vmsg"><div style="font-size:54px">🎬</div><h4>This video can't play here</h4><p>${txt}</p>${link}</div>`;
+  VP.playing = false; updateVButtons();
+}
+function updateVButtons(){
+  $("#vPlay").textContent = VP.playing ? "⏸ Pause" : "▶ Play";
+  $("#vMute").textContent = (VP.muted || VP.vol === 0) ? "🔇" : VP.vol < 40 ? "🔉" : "🔊";
+  $("#vVol").value = VP.vol; $("#vVolOut").textContent = VP.vol + "%";
+}
+function openVideo(i){
+  const list = playable(); if (!list.length) return;
+  VP.idx = (i + list.length) % list.length;
+  const v = list[VP.idx];
+  $("#vTitle").innerHTML = esc(v.title || "Video") + (v.artist ? `<small>${esc(v.artist)}</small>` : "");
+  $("#vModal").classList.add("show"); document.body.classList.add("locked");
+  if (VP.player){ try { VP.player.destroy(); } catch(e){} VP.player = null; }
+  $("#vStage").innerHTML = `<div id="ytHost"></div><div class="vmsg" id="vLoading">Loading video…</div>`;
+  clearTimeout(VP.timer);
+  VP.timer = setTimeout(() => { if (!VP.player) vMessage("offline"); }, 12000);
+  loadYTApi(() => {
+    if (!$("#vModal").classList.contains("show") || !$("#ytHost")) return;
+    VP.player = new YT.Player("ytHost", {
+      videoId: v.vid,
+      playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, fs: 1 },
+      events: {
+        onReady: e => { clearTimeout(VP.timer); const l=$("#vLoading"); l && l.remove();
+          e.target.setVolume(VP.vol); VP.muted ? e.target.mute() : e.target.unMute(); e.target.playVideo(); },
+        onStateChange: e => { VP.playing = (e.data === 1 || e.data === 3); if (e.data === 0) openVideo(VP.idx + 1); updateVButtons(); },
+        onError: () => { clearTimeout(VP.timer); vMessage("blocked"); }
+      }
+    });
+  });
+  updateVButtons();
+}
+function closeVideo(){
+  clearTimeout(VP.timer);
+  if (VP.player){ try { VP.player.destroy(); } catch(e){} VP.player = null; }
+  $("#vStage").innerHTML = ""; VP.playing = false;
+  $("#vModal").classList.remove("show");
+  if ($("#gate").classList.contains("hide")) document.body.classList.remove("locked");
+}
+$("#vgrid").addEventListener("click", e => {
+  const b = e.target.closest(".vcard"); if (!b) return;
+  const vid = b.querySelector(".vthumb").dataset.vid; if (!vid) return;
+  openVideo(playable().findIndex(v => v.vid === vid));
+});
+$("#vClose").onclick = closeVideo;
+$("#vModal").addEventListener("click", e => { if (e.target.id === "vModal") closeVideo(); });
+$("#vPrev").onclick = () => openVideo(VP.idx - 1);
+$("#vNext").onclick = () => openVideo(VP.idx + 1);
+$("#vPlay").onclick = () => { const p = VP.player; if (!p || !p.getPlayerState) return; VP.playing ? p.pauseVideo() : p.playVideo(); };
+$("#vVol").addEventListener("input", e => {
+  VP.vol = +e.target.value; store.set(LS.vol, VP.vol);
+  if (VP.player && VP.player.setVolume){ VP.player.setVolume(VP.vol); if (VP.vol > 0 && VP.muted){ VP.muted = false; VP.player.unMute(); } }
+  updateVButtons();
+});
+$("#vMute").onclick = () => {
+  VP.muted = !VP.muted;
+  if (VP.player && VP.player.mute) VP.muted ? VP.player.mute() : VP.player.unMute();
+  updateVButtons();
+};
+$("#vFull").onclick = () => { const st = $("#vStage"); if (document.fullscreenElement) document.exitFullscreen(); else st.requestFullscreen && st.requestFullscreen(); };
+
+/* ---------- gallery lightbox ---------- */
+$("#ggrid").addEventListener("click", e => {
+  const it = e.target.closest(".gitem"); if (!it) return;
+  const g = S.gallery[+it.dataset.i];
+  if (!g.src){ toast("Add a photo for this slot in the CONFIG section"); return; }
+  $("#lbImg").src = g.src; $("#lbCap").textContent = g.caption; $("#lightbox").classList.add("show");
+});
+$("#lbClose").onclick = () => $("#lightbox").classList.remove("show");
+$("#lightbox").onclick = e => { if (e.target.id === "lightbox") $("#lightbox").classList.remove("show"); };
+
+/* ---------- IRC chat ---------- */
+function ircURL(){
+  const n = IRC_NETWORKS[$("#ircServer").value];
+  let chan = $("#ircChan").value.trim().replace(/[\s,]/g,"") || n.chan;
+  if (!/^[#&]/.test(chan)) chan = "#" + chan;
+  let nick = $("#ircNick").value.trim().replace(/[^A-Za-z0-9_\-\[\]\\^{}|`]/g,"").slice(0,16);
+  if (!nick || /^[0-9-]/.test(nick)) nick = "Guest" + Math.floor(100 + Math.random()*900);
+  $("#ircNick").value = nick; $("#ircChan").value = chan;
+  if (n.web) return `${n.web}?nick=${encodeURIComponent(nick)}#${chan.replace(/^#/, "")}`;   // e.g. https://web.libera.chat/?nick=Guest#libera
+  const proto = n.tls ? "ircs" : "irc";
+  return `https://kiwiirc.com/nextclient/#${proto}://${n.host}:${n.tls?"+":""}${n.port}/${chan}?nick=${encodeURIComponent(nick)}`;
+}
+$("#ircServer").addEventListener("change", () => { $("#ircChan").value = IRC_NETWORKS[$("#ircServer").value].chan; });
+$("#ircGo").onclick = () => {
+  const url = ircURL();
+  /* Chat sites refuse to load inside a page opened straight from your computer
+     (a file:// address). In that case the chat opens in its own window instead.
+     On your live website it loads right here on the page. */
+  if (location.protocol === "file:"){
+    const w = Math.min(1200, screen.availWidth - 80), h = Math.min(860, screen.availHeight - 80);
+    const win = window.open(url, "kj_chat", `width=${w},height=${h},left=${(screen.availWidth-w)/2},top=${(screen.availHeight-h)/2}`);
+    $("#chatFrame").innerHTML = `<div class="chat-empty"><div class="big">🪟</div><h3>Chat opened in its own window</h3>
+      <p>You're viewing the site from your computer, where chat sites won't load inside the page.<br>Once your website is live, the chat will appear right here.</p>
+      ${win ? "" : `<a class="btn primary" href="${url}" target="_blank" rel="noopener">Open the chat</a>`}</div>`;
+    return;
+  }
+  $("#chatFrame").innerHTML = `<iframe src="${url}" title="IRC chat" allow="clipboard-write; notifications"></iframe>`;
+  toast("Connecting to the chat…");
+};
+$("#ircTab").onclick = () => window.open(ircURL(), "_blank", "noopener");
+
+/* ---------- welcome gate ---------- */
+function updateEnter(){ $("#enterBtn").disabled = !($("#ageSel").value && $("#agree").checked); }
+$("#ageSel").onchange = updateEnter; $("#agree").onchange = updateEnter;
+$("#enterBtn").onclick = () => {
+  if ($("#ageSel").value === "u18"){ $("#gateMain").style.display="none"; $("#gateDenied").style.display="block"; return; }
+  store.set(LS.gate, { age: $("#ageSel").value, accepted: true, at: Date.now() });
+  closeGate();
+};
+$("#backBtn").onclick = () => { $("#gateDenied").style.display="none"; $("#gateMain").style.display="block"; $("#ageSel").value=""; $("#agree").checked=false; updateEnter(); };
+function closeGate(){ $("#gate").classList.add("hide"); document.body.classList.remove("locked"); maybeOpenSettingsFromHash(); }
+function openGate(){ $("#gate").classList.remove("hide"); document.body.classList.add("locked"); }
+$("#termsLink").onclick = () => { $("#agree").checked=false; $("#ageSel").value=""; updateEnter(); openGate(); };
+(function initGate(){
+  const g = store.get(LS.gate);
+  const fresh = g && g.accepted && (Date.now() - g.at) < 30*24*3600*1000;   // remembered for 30 days
+  if (CONFIG.ageGate === false || S.ageGate === false || fresh) closeGate(); else openGate();
+})();
+
+/* ---------- password (SHA-256, stored as a salted hash in this browser) ---------- */
+function sha256(str){
+  const ascii = unescape(encodeURIComponent(str));
+  const rr=(v,a)=>(v>>>a)|(v<<(32-a)); const maxWord=Math.pow(2,32);
+  let i,j,result="",words=[],hash=[],k=[],pc=0,isComp={};
+  for (let c=2; pc<64; c++){ if(!isComp[c]){ for(i=0;i<313;i+=c) isComp[i]=c; hash[pc]=(Math.pow(c,.5)*maxWord)|0; k[pc++]=(Math.pow(c,1/3)*maxWord)|0; } }
+  let s = ascii + "\x80"; const bitLen = ascii.length*8;
+  while (s.length%64 - 56) s += "\x00";
+  for (i=0;i<s.length;i++){ j=s.charCodeAt(i); words[i>>2] |= j << ((3-i)%4)*8; }
+  words[words.length] = (bitLen/maxWord)|0; words[words.length] = bitLen;
+  for (j=0;j<words.length;){
+    const w = words.slice(j, j+=16), old = hash; hash = hash.slice(0,8);
+    for (i=0;i<64;i++){
+      const w15=w[i-15], w2=w[i-2], a=hash[0], e=hash[4];
+      const t1 = hash[7] + (rr(e,6)^rr(e,11)^rr(e,25)) + ((e&hash[5])^((~e)&hash[6])) + k[i]
+        + (w[i] = (i<16) ? w[i] : (w[i-16] + (rr(w15,7)^rr(w15,18)^(w15>>>3)) + w[i-7] + (rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+      const t2 = (rr(a,2)^rr(a,13)^rr(a,22)) + ((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+      hash = [(t1+t2)|0].concat(hash); hash[4] = (hash[4]+t1)|0;
+    }
+    for (i=0;i<8;i++) hash[i] = (hash[i]+old[i])|0;
+  }
+  for (i=0;i<8;i++) for (j=3;j+1;j--){ const b=(hash[i]>>(j*8))&255; result += (b<16?"0":"") + b.toString(16); }
+  return result;
+}
+const makeSalt = () => Array.from({length:16},()=>Math.floor(Math.random()*16).toString(16)).join("");
+let unlocked = false, pwMode = "unlock";
+
+/* Where the password lives:
+   1) built into the file (CONFIG.settingsPasswordHash) — works in every browser, never lost
+   2) saved in this browser — only if the browser allows it */
+function canStore(){ try { localStorage.setItem("kj_t","1"); const ok = localStorage.getItem("kj_t")==="1"; localStorage.removeItem("kj_t"); return ok; } catch(e){ return false; } }
+let sessionPw = null;   // keeps a new password working for this visit if the browser refuses to save it
+function pwRecords(){
+  const r = [];
+  const baked = String(CONFIG.settingsPasswordHash || "").split(":");
+  if (baked.length === 2 && baked[1].length === 64) r.push({ salt: baked[0], hash: baked[1] });
+  const saved = store.get(LS.pw); if (saved && saved.hash) r.push(saved);
+  if (sessionPw) r.push(sessionPw);
+  return r;
+}
+function currentPwRecord(){ const r = pwRecords(); return sessionPw || store.get(LS.pw) || r[0] || null; }
+function savePw(p){
+  const rec = { salt: makeSalt() }; rec.hash = sha256(rec.salt + p);
+  sessionPw = rec;
+  return store.set(LS.pw, rec);
+}
+
+function openPw(){
+  const has = pwRecords().length > 0;
+  pwMode = has ? "unlock" : "create";
+  $("#pw1").autocomplete = has ? "current-password" : "new-password";
+  $("#pwTitle").textContent = has ? "Settings Locked" : "Create a Settings Password";
+  $("#pwNote").textContent = has ? "Enter your password to open the settings." : "First time here — choose a password to protect your settings. It's saved in this browser. Use at least 6 characters.";
+  $("#pw2").style.display = has ? "none" : "";
+  $("#pwBtn").textContent = has ? "Unlock" : "Save password";
+  $("#pw1").value = $("#pw2").value = ""; $("#pwErr").textContent = "";
+  $("#pwModal").classList.add("show"); setTimeout(()=>$("#pw1").focus(),50);
+}
+$("#pwForm").onsubmit = e => {
+  e.preventDefault();
+  const p1 = $("#pw1").value, p2 = $("#pw2").value;
+  if (pwMode === "create"){
+    if (p1.length < 6) return $("#pwErr").textContent = "Please use at least 6 characters.";
+    if (p1 !== p2) return $("#pwErr").textContent = "The two passwords don't match.";
+    const ok = savePw(p1);
+    toast(ok ? "Password saved ✔" : "Password set for this visit — see the note in Settings");
+  } else {
+    if (!pwRecords().some(r => sha256(r.salt + p1) === r.hash)) { $("#pw1").value=""; return $("#pwErr").textContent = "That password isn't right."; }
+  }
+  unlocked = true; $("#pwModal").classList.remove("show"); openSettings();
+};
+$("#pwForgot").onclick = e => {
+  e.preventDefault();
+  const baked = !!CONFIG.settingsPasswordHash;
+  if (!confirm("Forgot your password?\n\n" +
+      (baked ? "Your password is built into the website file. To reset it: open index.html in Notepad, search for settingsPasswordHash, change it to \"\" and save. Then press OK here to also clear any password saved in this browser.\n\n"
+             : "Press OK to clear the password saved in this browser. You'll then be asked to create a new one.\n\n") +
+      "Clear the password saved in this browser now?")) return;
+  store.del(LS.pw); sessionPw = null; openPw();
+};
+$("#gearBtn").onclick = () => unlocked ? openSettings() : openPw();
+function maybeOpenSettingsFromHash(){ if (location.hash === "#settings") setTimeout(()=>$("#gearBtn").click(),300); }
+window.addEventListener("hashchange", maybeOpenSettingsFromHash);
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.altKey && e.key.toLowerCase()==="s"){ e.preventDefault(); $("#gearBtn").click(); }   // Ctrl+Alt+S opens settings
+  if (e.key === "Escape"){ if ($("#vModal").classList.contains("show")) closeVideo(); $$(".modal.show,.lightbox.show").forEach(m=>m.classList.remove("show")); }
+});
+$$("[data-close]").forEach(b => b.onclick = () => b.closest(".modal").classList.remove("show"));
+
+/* ---------- settings panel ---------- */
+function openSettings(){
+  $("#s_name").value = S.name; $("#s_tagline").value = S.tagline; $("#s_subtitle").value = S.subtitle; photoDraft = S.profilePhoto || ""; showPhotoField();
+  $("#s_theme").value = S.theme; $("#s_rain").checked = S.rain !== false; $("#s_lightning").checked = S.lightning !== false; $("#s_gate").checked = S.ageGate !== false;
+  $("#s_irc").innerHTML = $("#ircServer").innerHTML; $("#s_irc").value = S.chat.network; $("#s_chan").value = S.chat.channel;
+  $("#s_about").value = (S.about||[]).join("\n\n"); $("#s_legacy").value = S.legacy;
+  $("#s_storeNote").innerHTML = canStore()
+    ? "✅ This browser is saving your settings and password."
+    : "⚠️ <b>This browser is blocking the site from saving anything</b> (common in Brave when a page is opened straight from your computer). Your changes only last until you close the page — use the download button below to keep them.";
+  galDraft = Array.from({length:8}, (_,i) => ({ src: S.gallery?.[i]?.src || "", caption: S.gallery?.[i]?.caption || "" }));
+  renderGalleryRows();
+  $("#s_videos").innerHTML = S.videos.map((v,i)=>`<div class="vrow"><b>${i+1}</b><input class="inp" data-vt="${i}" value="${esc(v.title)}" placeholder="Title"><input class="inp" data-vi="${i}" value="${esc(v.id)}" placeholder="YouTube link or ID"></div>`).join("");
+  $("#setModal").classList.add("show");
+}
+function collect(){
+  const n = JSON.parse(JSON.stringify(S));
+  n.name = $("#s_name").value.trim() || CONFIG.name; n.tagline = $("#s_tagline").value.trim(); n.subtitle = $("#s_subtitle").value.trim();
+  n.profilePhoto = photoDraft;
+  n.gallery = galDraft.map(g => ({ src: g.src || "", caption: (g.caption || "").trim() })); n.theme = $("#s_theme").value;
+  n.rain = $("#s_rain").checked; n.lightning = $("#s_lightning").checked; n.ageGate = $("#s_gate").checked;
+  n.chat = Object.assign({}, n.chat, { network: $("#s_irc").value, channel: $("#s_chan").value.trim() });
+  n.about = $("#s_about").value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+  n.legacy = $("#s_legacy").value.trim();
+  n.videos = n.videos.map((v,i)=>({ ...v, title: $(`[data-vt="${i}"]`).value.trim(), id: videoId($(`[data-vi="${i}"]`).value) || $(`[data-vi="${i}"]`).value.trim() }));
+  return n;
+}
+$("#s_save").onclick = () => {
+  S = collect(); const ok = store.set(LS.cfg, S); $("#ircNick").value=""; render(); $("#setModal").classList.remove("show");
+  toast(ok ? "Settings saved ✔" : "Changes showing now — use 💾 Download updated website file to keep them");
+};
+
+/* ---------- photo picking (gallery + profile photo) ----------
+   Photos you choose are shrunk to a sensible size and built right into
+   the website, so you don't need to copy them anywhere. */
+let galDraft = [], photoDraft = "";
+const isBuiltIn = s => /^data:image\//.test(s || "");
+function pickImage(){
+  return new Promise(res => {
+    const i = document.createElement("input"); i.type = "file"; i.accept = "image/*";
+    i.onchange = () => res(i.files[0] || null); i.click();
+  });
+}
+function shrinkImage(file, max = 1600){
+  return new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onerror = rej;
+    fr.onload = () => {
+      const img = new Image();
+      img.onerror = () => rej(new Error("not an image"));
+      img.onload = () => {
+        const s = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement("canvas"); c.width = Math.round(img.width*s); c.height = Math.round(img.height*s);
+        const x = c.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0,0,c.width,c.height); x.drawImage(img, 0, 0, c.width, c.height);
+        res(c.toDataURL("image/jpeg", 0.85));
+      };
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+async function choosePhoto(max){
+  const f = await pickImage(); if (!f) return null;
+  try { return await shrinkImage(f, max); } catch(e){ toast("Sorry, that file isn't a picture I can use"); return null; }
+}
+function renderGalleryRows(){
+  $("#s_gallery").innerHTML = galDraft.map((g,i) => `<div class="grow">
+    <div class="gthumb" data-gpick="${i}" title="Choose photo ${i+1}"><span class="num">${i+1}</span>${g.src ? `<img src="${esc(g.src)}" alt="">` : placeholderTile(i)}</div>
+    <div class="gfields">
+      <input class="inp" data-gcap="${i}" value="${esc(g.caption)}" placeholder="Caption for photo ${i+1}" maxlength="60">
+      <div class="gbtns">
+        <input class="inp" data-gsrc="${i}" value="${isBuiltIn(g.src) ? "" : esc(g.src)}" placeholder="${isBuiltIn(g.src) ? "✔ Photo added" : "or file name"}">
+        <button class="sbtn" data-gpick="${i}">📷 Choose</button>
+        <button class="sbtn" data-gdel="${i}" title="Remove this photo">✕</button>
+      </div>
+    </div></div>`).join("");
+}
+$("#s_gallery").addEventListener("input", e => {
+  const c = e.target.dataset.gcap, s = e.target.dataset.gsrc;
+  if (c !== undefined) galDraft[c].caption = e.target.value;
+  if (s !== undefined) galDraft[s].src = e.target.value.trim();
+});
+$("#s_gallery").addEventListener("change", e => { if (e.target.dataset.gsrc !== undefined) renderGalleryRows(); });
+$("#s_gallery").addEventListener("click", async e => {
+  const p = e.target.closest("[data-gpick]"), d = e.target.closest("[data-gdel]");
+  if (p){ const i = +p.dataset.gpick; const src = await choosePhoto(1600); if (src){ galDraft[i].src = src; renderGalleryRows(); toast("Photo " + (i+1) + " added ✔ — press Save changes"); } }
+  if (d){ const i = +d.dataset.gdel; galDraft[i].src = ""; renderGalleryRows(); }
+});
+function showPhotoField(){
+  const f = $("#s_photo");
+  f.value = isBuiltIn(photoDraft) ? "" : photoDraft;
+  f.placeholder = isBuiltIn(photoDraft) ? "✔ Photo added" : "or file name";
+}
+$("#s_photo").addEventListener("input", e => { photoDraft = e.target.value.trim(); });
+$("#s_photoPick").onclick = async () => { const src = await choosePhoto(1000); if (src){ photoDraft = src; showPhotoField(); toast("Profile photo added ✔ — press Save changes"); } };
+$("#s_photoDel").onclick = () => { photoDraft = ""; showPhotoField(); };
+$("#s_lock").onclick = () => { unlocked = false; $("#setModal").classList.remove("show"); toast("Settings locked 🔒"); };
+$("#s_reset").onclick = () => {
+  if (!confirm("Reset all settings back to the original CONFIG? (Your password stays.)")) return;
+  store.del(LS.cfg); S = JSON.parse(JSON.stringify(CONFIG)); render(); openSettings(); toast("Back to the original settings");
+};
+$("#s_pwBtn").onclick = () => {
+  const a = $("#s_newpw").value, b = $("#s_newpw2").value;
+  if (a.length < 6) return toast("Use at least 6 characters");
+  if (a !== b) return toast("The passwords don't match");
+  savePw(a);
+  $("#s_newpw").value = $("#s_newpw2").value = ""; toast("Password changed ✔ — download the updated file to keep it");
+};
+
+/* Builds the CONFIG section (with its editing notes) from the current settings */
+function configToCode(c, pwHash){
+  const J = v => JSON.stringify(v ?? "");
+  const pad = (s, n) => s + " ".repeat(Math.max(1, n - s.length));
+  return `const CONFIG = {
+  name: ${J(c.name)},
+  tagline: ${J(c.tagline)},
+  subtitle: ${J(c.subtitle)},
+
+  /* ✏️ YOUR PHOTO for the frame and the welcome card, e.g. "images/me.jpg".
+     Leave it as "" to show the placeholder. */
+  profilePhoto: ${J(c.profilePhoto)},
+
+  /* ✏️ ABOUT ME — each line in quotes is one paragraph */
+  about: [
+${(c.about||[]).map(p => "    " + J(p)).join(",\n")}
+  ],
+
+  /* ✏️ 8 THINGS I LOVE — the bubbles under About Me.
+     icon = an emoji (or "leaf" for the cannabis leaf picture), text = the label, url = where the bubble links to */
+  loves: [
+${(c.loves||[]).map(l => `    { icon: ${J(l.icon)}, text: ${J(l.text)}, url: ${J(l.url)} }`).join(",\n")}
+  ],
+
+  /* =================================================================
+     ✏️ YOUTUBE VIDEOS — EDIT YOUR 6 FAVOURITE VIDEOS HERE
+     -----------------------------------------------------------------
+     Each video needs its ID — the code after "v=" in a YouTube link:
+        https://www.youtube.com/watch?v=kXYiU_JCYtU
+                                        ^^^^^^^^^^^  ← this is the ID
+     For short links like https://youtu.be/kXYiU_JCYtU the ID is the
+     part after the last "/". You can also paste the whole link.
+     title = the name shown under the video, artist = the small line.
+     ================================================================= */
+  videos: [
+${(c.videos||[]).map((v,i) => "    " + pad(`{ id: ${J(v.id)}, title: ${J(v.title)}, artist: ${J(v.artist)} }` + (i < c.videos.length-1 ? "," : ""), 78) + "// ✏️ VIDEO " + (i+1)).join("\n")}
+  ],
+
+  /* ✏️ PHOTO GALLERY — 8 slots. Put photos in the "images" folder and
+     write the file name in src, e.g. src: "images/rainy-day.jpg".
+     Leave src as "" to show a placeholder. */
+  gallery: [
+${(c.gallery||[]).map(g => `    { src: ${J(g.src)}, caption: ${J(g.caption)} }`).join(",\n")}
+  ],
+
+  /* ✏️ IRC CHAT — default network and channel when the page opens.
+     network must be one of: libera, oftc, efnet, ircnet, rizon, dalnet, undernet */
+  chat: { network: ${J(c.chat?.network)}, channel: ${J(c.chat?.channel)}, nickPrefix: ${J(c.chat?.nickPrefix || "Guest")} },
+
+  /* ✏️ The message in the footer — your lasting words to visitors */
+  legacy: ${J(c.legacy)},
+
+  theme: ${J(c.theme)},        // "ember", "storm" or "crimson"
+  rain: ${c.rain !== false},            // rain falling in the background
+  lightning: ${c.lightning !== false},       // occasional lightning flashes
+  ageGate: ${c.ageGate !== false},         // show the welcome card with terms + age range
+  showSettingsButton: ${c.showSettingsButton !== false}, // false = hide the Settings button from visitors
+                            // (you can still open it with Ctrl+Alt+S, or by adding #settings to the end of the web address)
+
+  /* 🔒 SETTINGS PASSWORD — filled in automatically when you use
+     "Download updated website file" in Settings. It's a scrambled code,
+     not your real password. Set it back to "" if you ever forget your password. */
+  settingsPasswordHash: ${J(pwHash)}
+};`.replace(/<\//g, "<\\/");
+}
+$("#s_download").onclick = () => {
+  const c = collect();
+  const rec = currentPwRecord();
+  const code = configToCode(c, rec ? rec.salt + ":" + rec.hash : (CONFIG.settingsPasswordHash || ""));
+  const START = "/* CONFIG-" + "START */", END = "/* CONFIG-" + "END */";
+  const a = PAGE_SOURCE.indexOf(START), b = PAGE_SOURCE.indexOf(END);
+  if (a < 0 || b < 0) return toast("Sorry — couldn't build the file");
+  const html = PAGE_SOURCE.slice(0, a + START.length) + "\n" + code + "\n" + PAGE_SOURCE.slice(b);
+  const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+  const link = Object.assign(document.createElement("a"), { href: url, download: "index.html" });
+  document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  toast("Downloaded index.html ✔ — put it in your website folder");
+};
+
+/* ---------- mobile menu + active link ---------- */
+$("#menuBtn").onclick = () => $("#navlinks").classList.toggle("open");
+$$("#navlinks a").forEach(a => a.addEventListener("click", () => $("#navlinks").classList.remove("open")));
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) $$("#navlinks a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+$$("main section").forEach(s => io.observe(s));
+$("#yr").textContent = new Date().getFullYear();
+
+/* ---------- rain + lightning ---------- */
+const rain = (() => {
+  const cv = $("#rain"), ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let drops = [], on = true, raf = 0, W = 0, H = 0, nextBolt = performance.now() + 9000;
+  function size(){ W = cv.width = innerWidth; H = cv.height = innerHeight; drops = Array.from({length: Math.round(W*H/9000)}, mk); }
+  function mk(){ const z = Math.random(); return { x: Math.random()*W*1.2, y: Math.random()*H, l: 10+z*22, v: 9+z*14, a: .12+z*.33, w: .8+z*1.2 }; }
+  function frame(t){
+    ctx.clearRect(0,0,W,H);
+    for (const d of drops){
+      ctx.strokeStyle = `rgba(170,200,240,${d.a})`; ctx.lineWidth = d.w;
+      ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(d.x - d.l*.18, d.y + d.l); ctx.stroke();
+      d.y += d.v; d.x -= d.v*.18;
+      if (d.y > H){ d.y = -20; d.x = Math.random()*W*1.2; }
+    }
+    if (S.lightning !== false && t > nextBolt){
+      const f = $("#flash"); f.classList.remove("on"); void f.offsetWidth; f.classList.add("on");
+      nextBolt = t + 14000 + Math.random()*22000;
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  addEventListener("resize", () => { if (on) size(); });
+  return { setOn(v){
+    on = v && !reduce; cancelAnimationFrame(raf);
+    if (on){ size(); raf = requestAnimationFrame(frame); } else ctx.clearRect(0,0,cv.width,cv.height);
+  }};
+})();
+
+/* ---------- no right-click anywhere on the site ---------- */
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("dragstart", e => { if (e.target.tagName === "IMG") e.preventDefault(); });   // stops dragging photos off the page
+
+render();
+</script>
+</body>
+</html>
