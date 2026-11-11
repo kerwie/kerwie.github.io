@@ -183,18 +183,38 @@ nav.top{
 .vol output{flex:none;width:44px;text-align:right;font-weight:800;font-size:15px}
 input[type=range].vr{flex:1 1 auto;min-width:70px;max-width:180px;height:6px;accent-color:var(--accent);cursor:pointer}
 
-/* ---------- gallery ---------- */
-.ggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.gitem{overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:.3s}
-.gitem:hover{transform:translateY(-4px);border-color:var(--accent-soft)}
-.gimg{aspect-ratio:4/3;overflow:hidden;background:#0c1220}
-.gimg img,.gimg svg{width:100%;height:100%;object-fit:cover;transition:.5s}
-.gitem:hover .gimg img{transform:scale(1.06)}
-.gcap{padding:14px 18px;font-weight:800;font-size:17px;min-height:56px;display:flex;align-items:center}
-.lightbox{position:fixed;inset:0;z-index:300;background:rgba(3,5,10,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:40px}
-.lightbox.show{display:flex}
-.lightbox img{max-width:min(1400px,90vw);max-height:80vh;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
-.lightbox p{font-size:20px;font-weight:800}
+/* ---------- game downloads ---------- */
+.gmgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.gmcard{display:flex;flex-direction:column;position:relative;transition:.3s}
+.gmcard:hover{z-index:4}
+.gmcard:hover{transform:translateY(-5px);border-color:var(--accent-soft)}
+.gmtop{position:relative;height:150px;display:grid;place-items:center;overflow:hidden;border-radius:var(--radius) var(--radius) 0 0;
+  background:radial-gradient(circle at 30% 20%,var(--accent-soft),transparent 60%),radial-gradient(circle at 80% 90%,rgba(82,214,255,.14),transparent 55%),linear-gradient(160deg,#1a2338,#0c111c)}
+.gmtop .gic{font-size:64px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.5));display:grid;place-items:center}
+.gmtop .gic svg{width:92px;height:92px}
+#s_games{grid-template-columns:1fr;gap:12px}
+#s_games .grow-game{grid-template-columns:64px 1fr;gap:12px;align-items:center}
+#s_games .gic-in{width:64px;height:64px;font-size:30px}
+#s_games .gfields{display:grid;grid-template-columns:1fr 1.3fr;gap:8px}
+#s_games .gfields textarea{grid-column:1/-1;min-height:0}
+.gmtop .gnum{position:absolute;top:14px;left:14px;font-family:var(--head);font-size:14px;letter-spacing:.18em;color:var(--muted)}
+.gmbody{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1;position:relative}
+.gmbody p.trunc{cursor:help}
+.gmdesc{position:relative}
+.gmtip{position:absolute;left:-8px;right:-8px;top:calc(100% + 10px);z-index:5;padding:14px 16px;border-radius:14px;
+  background:#1d273d;border:1px solid var(--accent);color:var(--text);font-size:16px;font-weight:700;line-height:1.5;
+  box-shadow:0 14px 40px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateY(-6px);transition:.2s;pointer-events:none}
+.gmtip::after{content:"";position:absolute;left:28px;bottom:100%;border:8px solid transparent;border-bottom-color:var(--accent)}
+.gmbody p.trunc:hover + .gmtip{opacity:1;visibility:visible;transform:translateY(0)}
+.gmbody h3{font-size:clamp(20px,1.45vw,26px);white-space:nowrap}
+.gmbody p{color:var(--muted);font-size:16.5px;line-height:1.5;min-height:3em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gmfoot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:8px}
+.gmcount{display:flex;flex-direction:column;line-height:1.2}
+.gmcount b{font-size:22px;color:var(--text)}
+.gmcount small{font-size:13.5px;color:var(--muted);font-weight:700}
+.gmfoot .btn{min-width:0;padding:12px 22px;font-size:16px}
+.bestview{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:8px 18px;border-radius:999px;font-weight:800;font-size:16px;letter-spacing:.02em;color:var(--accent-2);background:rgba(82,214,255,.1);border:1px solid rgba(82,214,255,.3)}
+.gmnote{text-align:center;color:var(--muted);font-size:15px;margin-top:26px}
 .x{position:absolute;top:22px;right:26px;width:50px;height:50px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:26px;cursor:pointer;line-height:1}
 .x:hover{border-color:var(--accent)}
 
@@ -281,6 +301,8 @@ footer .small a{color:var(--accent);text-decoration:none;cursor:pointer}
 .sbtn:hover{border-color:var(--accent);color:var(--accent)}
 .sbtn:disabled{opacity:.5;cursor:wait}
 @media (max-width:1250px){.ggrid-set{grid-template-columns:1fr}}
+.grow-game{grid-template-columns:70px 1fr}
+.grow-game .gic-in{width:70px;height:70px;font-size:34px;text-align:center;padding:0;border-radius:14px}
 .sfoot{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;padding:18px 30px;border-top:1px solid var(--line)}
 .sfoot .btn{min-width:170px;padding:12px 22px}
 .btn.danger{border-color:rgba(255,100,100,.4);background:transparent;color:#ff9b9b}
@@ -294,16 +316,19 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
   .navlinks{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;padding:14px;background:rgba(9,13,21,.96);border-bottom:1px solid var(--line);display:none}
   .navlinks.open{display:flex}
   .menu-btn{display:block}
-  .loves,.cards4,.ggrid{grid-template-columns:repeat(2,1fr)}
+  .loves,.cards4{grid-template-columns:repeat(2,1fr)}
+
   .vgrid{grid-template-columns:repeat(2,1fr)}
   .about-grid{grid-template-columns:1fr;padding:32px}
   .about-grid .frame{max-width:420px;margin:0 auto;width:100%}
   .chat-grid{grid-template-columns:1fr}
   .sbody{grid-template-columns:1fr}
 }
+@media (max-width:760px){#s_games .gfields{grid-template-columns:1fr}}
+@media (max-width:900px){.gmgrid{grid-template-columns:1fr}}
 @media (max-width:640px){
   body{font-size:17px}
-  .loves,.cards4,.ggrid,.vgrid{grid-template-columns:1fr}
+  .loves,.cards4,.gmgrid,.vgrid{grid-template-columns:1fr}
   .gear .lbl{display:none}
   .vrow{grid-template-columns:30px 1fr}
   .vrow input:last-child{grid-column:2}
@@ -400,7 +425,7 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
     <a href="#about">About Me</a>
     <a href="#beliefs">What I Stand For</a>
     <a href="#videos">Videos</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#games">Games</a>
     <a href="#chat">Chat</a>
   </div>
   <div style="display:flex;gap:10px;align-items:center">
@@ -482,15 +507,18 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
     </div>
   </section>
 
-  <!-- ============================ PHOTO GALLERY ============================
-       ✏️ TO ADD YOUR PHOTOS: edit the "gallery" list in CONFIG.
-       Empty slots show a placeholder until you add a picture.
+  <!-- =========================== HTML GAME DOWNLOADS ===========================
+       ✏️ TO CHANGE THE GAMES: edit the "games" list in CONFIG (or use Settings).
+       Put each zipped game in a folder called "games" next to this file,
+       e.g.  games/nebula-strike.zip
        ===================================================================== -->
-  <section class="section" id="gallery">
+  <section class="section" id="games">
     <div class="wrap">
-      <header class="sec-head"><span class="eyebrow">04 · Snapshots</span><h2>Photo Gallery</h2>
-        <p>Moments, meals, rainy days and things I've made. Click a photo to see it bigger.</p></header>
-      <div class="ggrid" id="ggrid"></div>
+      <header class="sec-head"><span class="eyebrow">04 · Play</span><h2>HTML Game Downloads</h2>
+        <p>Games I've built with AI. Each one is a single web page, so just download it, unzip it and open it in your browser. No installing, no accounts.</p>
+        <div class="bestview">🖥️ Best Viewed at 1920 x 1080 Resolution</div></header>
+      <div class="gmgrid" id="gmgrid"></div>
+      <p class="gmnote">Download counts are counted once per person.</p>
     </div>
   </section>
 
@@ -540,8 +568,6 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
   </div>
 </footer>
 
-<!-- lightbox for gallery -->
-<div class="lightbox" id="lightbox"><button class="x" id="lbClose">×</button><img id="lbImg" alt=""><p id="lbCap"></p></div>
 
 <!-- video player popup (plays YouTube videos right here on the site) -->
 <div class="vmodal" id="vModal">
@@ -617,8 +643,8 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
         <div id="s_videos" style="display:flex;flex-direction:column;gap:10px"></div>
       </div>
       <div class="sgroup full">
-        <h4>Photo Gallery <span class="note" style="font-family:var(--body)">(click a picture or 📷 Choose to pick a photo from your computer, then type its caption)</span></h4>
-        <div class="ggrid-set" id="s_gallery"></div>
+        <h4>HTML Game Downloads <span class="note" style="font-family:var(--body)">(icon = an emoji · file = the zip's name inside your "games" folder)</span></h4>
+        <div class="ggrid-set" id="s_games"></div>
       </div>
       <div class="sgroup full">
         <h4>Memorial / Legacy message in the footer</h4>
@@ -711,19 +737,31 @@ const CONFIG = {
     { id: "zsCD5XCu6CM", title: "Somewhere I Belong", artist: "Linkin Park" }    // ✏️ VIDEO 6
   ],
 
-  /* ✏️ PHOTO GALLERY — 8 slots. Put photos in the "images" folder and
-     write the file name in src, e.g. src: "images/rainy-day.jpg".
-     Leave src as "" to show a placeholder. */
-  gallery: [
-    { src: "", caption: "Rainy day at home" },
-    { src: "", caption: "Cosy by the heater" },
-    { src: "", caption: "Something yummy" },
-    { src: "", caption: "Made with AI" },
-    { src: "", caption: "Rock night" },
-    { src: "", caption: "Storm clouds rolling in" },
-    { src: "", caption: "Favourite feed" },
-    { src: "", caption: "Just me" }
+  /* =================================================================
+     ✏️ HTML GAME DOWNLOADS — 9 games (3 rows of 3)
+     -----------------------------------------------------------------
+     Zip each game yourself and put the zips in a folder called
+     "games" next to this index.html file. Then set:
+        icon  = an emoji shown on the card (or "leaf" for the cannabis leaf)
+        title = the game's name
+        desc  = a short line about it (keep it to about 2 lines)
+        file  = where the zip is, e.g. "games/nebula-strike.zip"
+     ================================================================= */
+  games: [
+    { icon: "🚀", title: "Nebula Strike",    desc: "A modern Galaga-style space shooter with upgrades and ships to choose from.", file: "games/nebula-strike.zip" },
+    { icon: "🏁", title: "Red Gum Nitro",    desc: "Drag racing with a garage, workshop and showroom. Tune it and send it.",      file: "games/red-gum-nitro.zip" },
+    { icon: "🏰", title: "Last Bastion",     desc: "Tower defence across six themes, building up to one big final battle.",       file: "games/last-bastion.zip" },
+    { icon: "🎄", title: "Santa's Summer Tree Farm", desc: "Grow Christmas trees, run the shop and keep the customers happy with Summer Santa.", file: "games/santas-summer-tree-farm.zip" },
+    { icon: "🎯", title: "Brass Barrel",     desc: "Shooting arcade with ten levels, prizes, a gun shop and achievements.",       file: "games/brass-barrel.zip" },
+    { icon: "🚂", title: "N-Scale Empire",   desc: "Build an N gauge model railway and run freight and passengers on time.",     file: "games/n-scale-empire.zip" },
+    { icon: "🏎️", title: "SlotMaster Raceway", desc: "Slot car racing. Build your own track, pick from six cars and upgrade them in the garage.", file: "games/slotmaster-raceway.zip" },
+    { icon: "leaf", title: "Canopy & Co.",     desc: "Run a licensed cannabis grow and dispensary. Pick your strains, look after the plants and sell.", file: "games/canopy-and-co.zip" },
+    { icon: "🐶", title: "Pawfect Life",     desc: "Raise your own pet dog with a backyard, kennel, training school and grooming.", file: "games/pawfect-life.zip" }
   ],
+
+  /* Name used by the free download counter (abacus.jasoncameron.dev).
+     Keep it the same forever, or the counts start again from zero. */
+  downloadCounter: "kerwinjones-games",
 
   /* ✏️ IRC CHAT — default network and channel when the page opens.
      network must be one of: libera, oftc, efnet, ircnet, rizon, dalnet, undernet */
@@ -767,7 +805,7 @@ const IRC_NETWORKS = {
    "Download updated website file" in Settings. */
 const PAGE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
 
-const LS = { cfg: "kj_site_settings", gate: "kj_site_gate", pw: "kj_site_pw", vol: "kj_site_volume" };
+const LS = { cfg: "kj_site_settings", gate: "kj_site_gate", pw: "kj_site_pw", vol: "kj_site_volume", dl: "kj_site_downloaded" };
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -777,7 +815,9 @@ const store = {
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
 
+const NUM_GAMES = 9;
 let S = Object.assign(JSON.parse(JSON.stringify(CONFIG)), store.get(LS.cfg) || {});
+if ((S.games || []).length < CONFIG.games.length) S.games = [...(S.games || []), ...CONFIG.games.slice((S.games || []).length)];   // older saved settings had fewer games
 
 function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2600); }
 
@@ -840,9 +880,18 @@ function render(){
       ${id?`<span class="vwatch">▶ Watch</span>`:''}</div></div>`;
   }).join("");
 
-  $("#ggrid").innerHTML = (S.gallery||[]).slice(0,8).map((g,i) =>
-    `<div class="gitem panel" data-i="${i}"><div class="gimg">${g.src?`<img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy">`:placeholderTile(i,g.caption)}</div><div class="gcap">${esc(g.caption)}</div></div>`
-  ).join("");
+  $("#gmgrid").innerHTML = (S.games||[]).slice(0,NUM_GAMES).map((g,i) => `<div class="gmcard panel">
+      <div class="gmtop"><span class="gnum">GAME ${String(i+1).padStart(2,"0")}</span><span class="gic">${iconHTML(g.icon || "🎮")}</span></div>
+      <div class="gmbody">
+        <h3>${esc(g.title || "Game " + (i+1))}</h3>
+        <div class="gmdesc"><p>${esc(g.desc || "")}</p><div class="gmtip" role="tooltip">${esc(g.desc || "")}</div></div>
+        <div class="gmfoot">
+          <div class="gmcount"><b data-count="${i}">…</b><small>downloads</small></div>
+          <a class="btn primary" data-dl="${i}" href="${esc(g.file || "#")}" download>⬇ Download</a>
+        </div>
+      </div></div>`).join("");
+  loadCounts();
+  markCutDescriptions();
 
   $("#legacy").textContent = S.legacy || "";
   $("#gearBtn").style.display = S.showSettingsButton === false ? "none" : "";
@@ -940,15 +989,43 @@ $("#vMute").onclick = () => {
 };
 $("#vFull").onclick = () => { const st = $("#vStage"); if (document.fullscreenElement) document.exitFullscreen(); else st.requestFullscreen && st.requestFullscreen(); };
 
-/* ---------- gallery lightbox ---------- */
-$("#ggrid").addEventListener("click", e => {
-  const it = e.target.closest(".gitem"); if (!it) return;
-  const g = S.gallery[+it.dataset.i];
-  if (!g.src){ toast("Add a photo for this slot in the CONFIG section"); return; }
-  $("#lbImg").src = g.src; $("#lbCap").textContent = g.caption; $("#lightbox").classList.add("show");
+/* ---------- full-description tooltip when a game's description is cut off ---------- */
+function markCutDescriptions(){
+  requestAnimationFrame(() => $$(".gmbody p").forEach(p => p.classList.toggle("trunc", p.scrollHeight > p.clientHeight + 2)));
+}
+addEventListener("resize", markCutDescriptions);
+document.fonts && document.fonts.ready.then(markCutDescriptions);
+
+/* ---------- game download counter ----------
+   Uses the free counter at abacus.jasoncameron.dev. Each person's browser
+   only adds 1 to a game's count the first time they download it, so the
+   number shows how many different people downloaded each game. */
+const COUNTER_API = "https://abacus.jasoncameron.dev";
+const counterKey = g => String(g.file || g.title || "game").split("/").pop().replace(/\.zip$/i, "").toLowerCase().replace(/[^a-z0-9_-]+/g, "-").slice(0, 60) || "game";
+const counterNS = () => String(S.downloadCounter || "kerwinjones-games").toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
+const fmtCount = n => Number(n).toLocaleString("en-AU");
+function showCount(i, v){ const el = document.querySelector(`[data-count="${i}"]`); if (el) el.textContent = v; }
+async function loadCounts(){
+  (S.games || []).slice(0,NUM_GAMES).forEach(async (g, i) => {
+    try {
+      const r = await fetch(`${COUNTER_API}/get/${counterNS()}/${counterKey(g)}`);
+      if (r.status === 404) return showCount(i, "0");          // nobody has downloaded it yet
+      const d = await r.json(); showCount(i, fmtCount(d.value ?? 0));
+    } catch(e){ showCount(i, "—"); }
+  });
+}
+$("#gmgrid").addEventListener("click", async e => {
+  const a = e.target.closest("[data-dl]"); if (!a) return;
+  const i = +a.dataset.dl, g = S.games[i];
+  if (!g || !g.file){ e.preventDefault(); toast("This game's download isn't set up yet"); return; }
+  const key = counterNS() + "/" + counterKey(g);
+  const done = store.get(LS.dl) || [];
+  if (done.includes(key)) return;                               // this person has already been counted
+  try {
+    const r = await fetch(`${COUNTER_API}/hit/${key}`); const d = await r.json();
+    if (d && d.value != null){ showCount(i, fmtCount(d.value)); done.push(key); store.set(LS.dl, done); }
+  } catch(err){}
 });
-$("#lbClose").onclick = () => $("#lightbox").classList.remove("show");
-$("#lightbox").onclick = e => { if (e.target.id === "lightbox") $("#lightbox").classList.remove("show"); };
 
 /* ---------- IRC chat ---------- */
 function ircURL(){
@@ -1102,7 +1179,7 @@ function maybeOpenSettingsFromHash(){ if (location.hash === "#settings") setTime
 window.addEventListener("hashchange", maybeOpenSettingsFromHash);
 document.addEventListener("keydown", e => {
   if (e.ctrlKey && e.altKey && e.key.toLowerCase()==="s"){ e.preventDefault(); $("#gearBtn").click(); }   // Ctrl+Alt+S opens settings
-  if (e.key === "Escape"){ if ($("#vModal").classList.contains("show")) closeVideo(); $$(".modal.show,.lightbox.show").forEach(m=>m.classList.remove("show")); }
+  if (e.key === "Escape"){ if ($("#vModal").classList.contains("show")) closeVideo(); $$(".modal.show").forEach(m=>m.classList.remove("show")); }
 });
 $$("[data-close]").forEach(b => b.onclick = () => b.closest(".modal").classList.remove("show"));
 
@@ -1115,8 +1192,13 @@ function openSettings(){
   $("#s_storeNote").innerHTML = canStore()
     ? "✅ This browser is saving your settings and password."
     : "⚠️ <b>This browser is blocking the site from saving anything</b> (common in Brave when a page is opened straight from your computer). Your changes only last until you close the page — use the download button below to keep them.";
-  galDraft = Array.from({length:8}, (_,i) => ({ src: S.gallery?.[i]?.src || "", caption: S.gallery?.[i]?.caption || "" }));
-  renderGalleryRows();
+  $("#s_games").innerHTML = Array.from({length:NUM_GAMES}, (_,i) => { const g = S.games?.[i] || {}; return `<div class="grow grow-game">
+    <input class="inp gic-in" data-gm="icon" data-i="${i}" value="${esc(g.icon || "")}" maxlength="6" title="Icon: an emoji, or leaf for the cannabis leaf">
+    <div class="gfields">
+      <input class="inp" data-gm="title" data-i="${i}" value="${esc(g.title || "")}" placeholder="Game ${i+1} name" maxlength="30">
+      <input class="inp" data-gm="file" data-i="${i}" value="${esc(g.file || "")}" placeholder="games/my-game.zip">
+      <textarea class="inp" data-gm="desc" data-i="${i}" rows="2" placeholder="Short description" maxlength="110" style="min-height:0;resize:none;line-height:1.4">${esc(g.desc || "")}</textarea>
+    </div></div>`; }).join("");
   $("#s_videos").innerHTML = S.videos.map((v,i)=>`<div class="vrow"><b>${i+1}</b><input class="inp" data-vt="${i}" value="${esc(v.title)}" placeholder="Title"><input class="inp" data-vi="${i}" value="${esc(v.id)}" placeholder="YouTube link or ID"></div>`).join("");
   $("#setModal").classList.add("show");
 }
@@ -1124,7 +1206,8 @@ function collect(){
   const n = JSON.parse(JSON.stringify(S));
   n.name = $("#s_name").value.trim() || CONFIG.name; n.tagline = $("#s_tagline").value.trim(); n.subtitle = $("#s_subtitle").value.trim();
   n.profilePhoto = photoDraft;
-  n.gallery = galDraft.map(g => ({ src: g.src || "", caption: (g.caption || "").trim() })); n.theme = $("#s_theme").value;
+  n.games = Array.from({length:NUM_GAMES}, (_,i) => { const v = k => ($(`[data-gm="${k}"][data-i="${i}"]`)?.value || "").trim(); return { icon: v("icon"), title: v("title"), desc: v("desc"), file: v("file") }; });
+  delete n.gallery; n.theme = $("#s_theme").value;
   n.rain = $("#s_rain").checked; n.lightning = $("#s_lightning").checked; n.ageGate = $("#s_gate").checked;
   n.chat = Object.assign({}, n.chat, { network: $("#s_irc").value, channel: $("#s_chan").value.trim() });
   n.about = $("#s_about").value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
@@ -1137,10 +1220,10 @@ $("#s_save").onclick = () => {
   toast(ok ? "Settings saved ✔" : "Changes showing now — use 💾 Download updated website file to keep them");
 };
 
-/* ---------- photo picking (gallery + profile photo) ----------
+/* ---------- photo picking (profile photo) ----------
    Photos you choose are shrunk to a sensible size and built right into
    the website, so you don't need to copy them anywhere. */
-let galDraft = [], photoDraft = "";
+let photoDraft = "";
 const isBuiltIn = s => /^data:image\//.test(s || "");
 function pickImage(){
   return new Promise(res => {
@@ -1170,29 +1253,6 @@ async function choosePhoto(max){
   const f = await pickImage(); if (!f) return null;
   try { return await shrinkImage(f, max); } catch(e){ toast("Sorry, that file isn't a picture I can use"); return null; }
 }
-function renderGalleryRows(){
-  $("#s_gallery").innerHTML = galDraft.map((g,i) => `<div class="grow">
-    <div class="gthumb" data-gpick="${i}" title="Choose photo ${i+1}"><span class="num">${i+1}</span>${g.src ? `<img src="${esc(g.src)}" alt="">` : placeholderTile(i)}</div>
-    <div class="gfields">
-      <input class="inp" data-gcap="${i}" value="${esc(g.caption)}" placeholder="Caption for photo ${i+1}" maxlength="60">
-      <div class="gbtns">
-        <input class="inp" data-gsrc="${i}" value="${isBuiltIn(g.src) ? "" : esc(g.src)}" placeholder="${isBuiltIn(g.src) ? "✔ Photo added" : "or file name"}">
-        <button class="sbtn" data-gpick="${i}">📷 Choose</button>
-        <button class="sbtn" data-gdel="${i}" title="Remove this photo">✕</button>
-      </div>
-    </div></div>`).join("");
-}
-$("#s_gallery").addEventListener("input", e => {
-  const c = e.target.dataset.gcap, s = e.target.dataset.gsrc;
-  if (c !== undefined) galDraft[c].caption = e.target.value;
-  if (s !== undefined) galDraft[s].src = e.target.value.trim();
-});
-$("#s_gallery").addEventListener("change", e => { if (e.target.dataset.gsrc !== undefined) renderGalleryRows(); });
-$("#s_gallery").addEventListener("click", async e => {
-  const p = e.target.closest("[data-gpick]"), d = e.target.closest("[data-gdel]");
-  if (p){ const i = +p.dataset.gpick; const src = await choosePhoto(1600); if (src){ galDraft[i].src = src; renderGalleryRows(); toast("Photo " + (i+1) + " added ✔ — press Save changes"); } }
-  if (d){ const i = +d.dataset.gdel; galDraft[i].src = ""; renderGalleryRows(); }
-});
 function showPhotoField(){
   const f = $("#s_photo");
   f.value = isBuiltIn(photoDraft) ? "" : photoDraft;
@@ -1252,12 +1312,23 @@ ${(c.loves||[]).map(l => `    { icon: ${J(l.icon)}, text: ${J(l.text)}, url: ${J
 ${(c.videos||[]).map((v,i) => "    " + pad(`{ id: ${J(v.id)}, title: ${J(v.title)}, artist: ${J(v.artist)} }` + (i < c.videos.length-1 ? "," : ""), 78) + "// ✏️ VIDEO " + (i+1)).join("\n")}
   ],
 
-  /* ✏️ PHOTO GALLERY — 8 slots. Put photos in the "images" folder and
-     write the file name in src, e.g. src: "images/rainy-day.jpg".
-     Leave src as "" to show a placeholder. */
-  gallery: [
-${(c.gallery||[]).map(g => `    { src: ${J(g.src)}, caption: ${J(g.caption)} }`).join(",\n")}
+  /* =================================================================
+     ✏️ HTML GAME DOWNLOADS — 9 games (3 rows of 3)
+     -----------------------------------------------------------------
+     Zip each game yourself and put the zips in a folder called
+     "games" next to this index.html file. Then set:
+        icon  = an emoji shown on the card (or "leaf" for the cannabis leaf)
+        title = the game's name
+        desc  = a short line about it (keep it to about 2 lines)
+        file  = where the zip is, e.g. "games/nebula-strike.zip"
+     ================================================================= */
+  games: [
+${(c.games||[]).map(g => `    { icon: ${J(g.icon)}, title: ${J(g.title)}, desc: ${J(g.desc)}, file: ${J(g.file)} }`).join(",\n")}
   ],
+
+  /* Name used by the free download counter (abacus.jasoncameron.dev).
+     Keep it the same forever, or the counts start again from zero. */
+  downloadCounter: ${J(c.downloadCounter || "kerwinjones-games")},
 
   /* ✏️ IRC CHAT — default network and channel when the page opens.
      network must be one of: libera, oftc, efnet, ircnet, rizon, dalnet, undernet */
