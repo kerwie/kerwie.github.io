@@ -313,6 +313,9 @@ footer .small a{color:var(--accent);text-decoration:none;cursor:pointer}
 @media (max-width:1250px){.ggrid-set{grid-template-columns:1fr}}
 .grow-game{grid-template-columns:70px 1fr}
 .grow-game .gic-in{width:70px;height:70px;font-size:34px;text-align:center;padding:0;border-radius:14px}
+.dcgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dcbox{display:flex;flex-direction:column;gap:10px;justify-content:flex-start}
+@media (max-width:900px){.dcgrid{grid-template-columns:1fr}}
 .sfoot{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;padding:18px 30px;border-top:1px solid var(--line)}
 .sfoot .btn{min-width:170px;padding:12px 22px}
 .btn.danger{border-color:rgba(255,100,100,.4);background:transparent;color:#ff9b9b}
@@ -661,6 +664,19 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
         <h4>Memorial / Legacy message in the footer</h4>
         <textarea class="inp" id="s_legacy" style="min-height:90px"></textarea>
       </div>
+      <div class="sgroup full">
+        <h4>Download Counters</h4>
+        <div class="dcgrid">
+          <div class="dcbox">
+            <label class="toggle">Don't count downloads from this browser <input type="checkbox" id="s_nocount"></label>
+            <p class="note">Turn this on to test the game downloads on your live website without adding to the counts. Downloads are also never counted while you're logged into Settings, or when the site is opened straight from your computer.</p>
+          </div>
+          <div class="dcbox">
+            <button class="btn danger" id="s_resetCounts" style="width:100%;min-width:0">↺ Reset all download counts to zero</button>
+            <p class="note">Starts every game's count again from 0. Press <b>💾 Download updated website file</b> afterwards and upload it, so the reset shows for everyone. Counter in use: <b id="s_counterName"></b></p>
+          </div>
+        </div>
+      </div>
       <div class="sgroup">
         <h4>Security</h4>
         <p class="note">Change the settings password saved in this browser.</p>
@@ -816,7 +832,7 @@ const IRC_NETWORKS = {
    "Download updated website file" in Settings. */
 const PAGE_SOURCE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
 
-const LS = { cfg: "kj_site_settings", gate: "kj_site_gate", pw: "kj_site_pw", vol: "kj_site_volume", dl: "kj_site_downloaded" };
+const LS = { cfg: "kj_site_settings", gate: "kj_site_gate", pw: "kj_site_pw", vol: "kj_site_volume", dl: "kj_site_downloaded", noCount: "kj_site_nocount" };
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -1000,6 +1016,15 @@ $("#vMute").onclick = () => {
 };
 $("#vFull").onclick = () => { const st = $("#vStage"); if (document.fullscreenElement) document.exitFullscreen(); else st.requestFullscreen && st.requestFullscreen(); };
 
+/* Downloads aren't counted when you're testing: site opened from your computer,
+   logged into Settings, or "Don't count downloads from this browser" turned on. */
+function shouldCount(){
+  if (location.protocol === "file:") return false;
+  if (typeof unlocked !== "undefined" && unlocked) return false;
+  if (store.get(LS.noCount)) return false;
+  return true;
+}
+
 /* ---------- full-description tooltip when a game's description is cut off ---------- */
 function markCutDescriptions(){
   requestAnimationFrame(() => $$(".gmbody p").forEach(p => p.classList.toggle("trunc", p.scrollHeight > p.clientHeight + 2)));
@@ -1030,6 +1055,7 @@ $("#gmgrid").addEventListener("click", async e => {
   const i = +a.dataset.dl, g = S.games[i];
   if (!g || !g.file){ e.preventDefault(); toast("This game's download isn't set up yet"); return; }
   const key = counterNS() + "/" + counterKey(g);
+  if (!shouldCount()){ toast("Test download — not counted ✔"); return; }   // you testing, not a real visitor
   const done = store.get(LS.dl) || [];
   if (done.includes(key)) return;                               // this person has already been counted
   try {
@@ -1200,6 +1226,8 @@ function openSettings(){
   $("#s_theme").value = S.theme; $("#s_rain").checked = S.rain !== false; $("#s_lightning").checked = S.lightning !== false; $("#s_gate").checked = S.ageGate !== false;
   $("#s_irc").innerHTML = $("#ircServer").innerHTML; $("#s_irc").value = S.chat.network; $("#s_chan").value = S.chat.channel;
   $("#s_about").value = (S.about||[]).join("\n\n"); $("#s_legacy").value = S.legacy;
+  $("#s_nocount").checked = !!store.get(LS.noCount);
+  $("#s_counterName").textContent = counterNS();
   $("#s_storeNote").innerHTML = canStore()
     ? "✅ This browser is saving your settings and password."
     : "⚠️ <b>This browser is blocking the site from saving anything</b> (common in Brave when a page is opened straight from your computer). Your changes only last until you close the page — use the download button below to keep them.";
@@ -1283,6 +1311,21 @@ $("#s_pwBtn").onclick = () => {
   if (a !== b) return toast("The passwords don't match");
   savePw(a);
   $("#s_newpw").value = $("#s_newpw2").value = ""; toast("Password changed ✔ — download the updated file to keep it");
+};
+
+$("#s_nocount").onchange = e => {
+  if (e.target.checked ? !store.set(LS.noCount, true) : (store.del(LS.noCount), false))
+    toast("This browser can't remember that — but downloads still aren't counted while you're logged in");
+  else toast(e.target.checked ? "Downloads from this browser won't be counted ✔" : "Downloads from this browser will be counted again");
+};
+$("#s_resetCounts").onclick = () => {
+  if (!confirm("Reset ALL game download counts to zero?\n\nThis can't be undone. Remember to press 'Download updated website file' and upload it so everyone sees the reset.")) return;
+  const base = counterNS().replace(/-r\d+$/, ""), m = counterNS().match(/-r(\d+)$/);
+  S.downloadCounter = base + "-r" + (m ? +m[1] + 1 : 2);   // a brand-new set of counters, all starting at 0
+  store.set(LS.cfg, S); store.del(LS.dl);
+  $("#s_counterName").textContent = counterNS();
+  render();
+  toast("All download counts reset to 0 ✔ — now download the updated website file");
 };
 
 /* Builds the CONFIG section (with its editing notes) from the current settings */
