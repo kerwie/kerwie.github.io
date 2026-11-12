@@ -313,8 +313,13 @@ textarea.inp{resize:vertical;min-height:150px;line-height:1.5}
 
 /* ---------- responsive ---------- */
 @media (max-width:1250px){
-  .navlinks{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;padding:14px;background:rgba(9,13,21,.96);border-bottom:1px solid var(--line);display:none}
-  .navlinks.open{display:flex}
+  .navlinks{position:fixed;top:calc(var(--nav-h) + 8px);right:clamp(18px,3vw,48px);left:auto;width:max-content;min-width:200px;
+    flex-direction:column;align-items:stretch;gap:4px;padding:10px;border-radius:18px;
+    background:rgba(12,17,28,.97);border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.55);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
+  .navlinks.open{opacity:1;visibility:visible;transform:translateY(0)}
+  .navlinks a{padding:11px 20px;border-radius:12px}
   .menu-btn{display:block}
   .loves,.cards4{grid-template-columns:repeat(2,1fr)}
 
@@ -1366,8 +1371,16 @@ $("#s_download").onclick = () => {
 };
 
 /* ---------- mobile menu + active link ---------- */
-$("#menuBtn").onclick = () => $("#navlinks").classList.toggle("open");
-$$("#navlinks a").forEach(a => a.addEventListener("click", () => $("#navlinks").classList.remove("open")));
+/* Pop-out menu (smaller screens): closes when you click a link or anywhere
+   off the menu, and hides by itself 3 seconds after the mouse leaves it. */
+const nav = $("#navlinks"); let navTimer = 0;
+const closeNav = () => { clearTimeout(navTimer); nav.classList.remove("open"); };
+const startNavTimer = () => { clearTimeout(navTimer); navTimer = setTimeout(closeNav, 3000); };
+$("#menuBtn").onclick = e => { e.stopPropagation(); nav.classList.contains("open") ? closeNav() : (nav.classList.add("open"), startNavTimer()); };
+nav.addEventListener("mouseenter", () => clearTimeout(navTimer));
+nav.addEventListener("mouseleave", () => { if (nav.classList.contains("open")) startNavTimer(); });
+$$("#navlinks a").forEach(a => a.addEventListener("click", closeNav));
+document.addEventListener("click", e => { if (nav.classList.contains("open") && !nav.contains(e.target)) closeNav(); });
 const io = new IntersectionObserver(es => es.forEach(en => {
   if (en.isIntersecting) $$("#navlinks a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
 }), { rootMargin: "-45% 0px -50% 0px" });
